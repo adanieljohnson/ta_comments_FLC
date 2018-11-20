@@ -1,0 +1,152 @@
+---
+title: "Round 1 of comment analysis Fall 2018"
+author: "Dan Johnson"
+date: "9/12/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background Overivew
+
+
+### Data Structure
+I have a data table with these columns
+
+ID#
+
+```R_XX value```
+
+Sort#
+
+```Unique numeric value```
+
+title
+
+```Title of the file from which a comment was extracted```
+
+student
+
+```Unique email address of student who wrote report```
+
+course
+
+```Course bins: 1113, 114, 214```
+
+ta
+
+```Instructor marking paper```
+
+lab
+
+```Topic of the lab on which report was written```
+
+tag
+
+```First or second of semester```
+
+type.TA
+
+```Submission or revision version```
+
+grade
+
+```Assigned grade from the TA```
+
+grading.time
+
+```Minutes```
+
+Rank
+
+```Housekeeping data from coding```
+
+hypothesis
+
+```TA entered yes or no for hypothesis```
+
+data
+
+```TA entered yes or no for data present```
+
+citation.ok
+
+```TA entered yes or no for citations in introduction and discussion```
+
+interpretation
+
+```TA entered yes or no for data are interpreted```
+
+organization.ok
+
+```TA entered yes or no for properly organized into 8 sections```
+
+no.flaws
+
+```TA entered yes or no for whether report has technical errors```
+
+writing.ok
+
+```TA entered yes or no for whether report has writing errors```
+
+comments.incorporated
+
+```TA entered yes or no for whether student incorporated comments from submission into revision.
+
+comment
+
+```Text of the actual extracted comment```
+
+Revision Dups
+
+```Housekeeping data from coding```
+
+Dups in Paper
+
+```Housekeeping data from coding ```
+
+Context Notes
+
+```Personal notes made while coding```
+
+
+These are the coded characteristics. Each has well-defined limited choices. Check codebook for detailed descriptions.
+
+Subject	
+
+```What is main subject?```
+
+Structure, Orient
+
+```How is comment structured? Copy correction, etc.```
+
+Locus
+
+```Where is locus of control? Corrective, directive, reflective?```
+
+Scope
+
+```Can comment carry to other parts of report, beyond report?```
+
+Tone
+
+```Is wording likely to be seen as positive, neutral, or negative?```
+
+Other Notes
+
+```Personal notes entered while coding.```
+
+
+
+## Questions I want to ask
+
+
+
+
+
+
+
+## Code Book
+
