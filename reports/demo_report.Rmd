@@ -1,0 +1,22 @@
+---
+title: "MY First Report"
+author: "Michael DeWitt"
+date: "9/19/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+clean_df <- read_rds("outputs/2018-09-19_GSS2017.RDS")
+```
+
+#Sample Graph
+
+```{r cars}
+ggplot(clean_df, aes(MAR1))+
+  geom_bar()+
+  labs(
+    title = paste0(clean_df$MAR1 %>% attributes() %>% .$label)
+  )
+```

@@ -1,0 +1,171 @@
+---
+title: "Round 1 Notebook Fall 2018"
+author: "Dan Johnson"
+date: "9/12/2018"
+output: html_notebook
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Background Overview
+I am interested in understanding how students learn to write in biology, and how we can improve that process. Currently I have an NSF-sponsored project to assess whether scripted instruction and automated feedback can accelerate student growth as writers. 
+
+As part of the project, we are identifying the main writing problems that students have by extracting and compiling the comments that instructors write on student lab reports. We use specific terms, phrases, or other features within instructors' comments to categorize the comments into their topics (writing issues, technical errors, logical flaws, etc.), types (copyediting, prescriptive, reflective) and other categories.
+ 
+This analysis is very informative but impractical to do regularly because the datasets are very large; last semester's dataset contained >11,000 text-based comments plus metadata. 
+ 
+Research questions I would like to explore within the learning community center on how we can extract meaning from these datasets more rapidly and reliably. 
+
+The two specific questions I would like to explore first:
+
+1.  Can we use R's text parsing and analysis tools to identify the most informative features for sorting instructor comments into topics and types?
+2.  Assuming #1 is possible, can we script or automate the process of sorting instructor comments into major themes and types?
+
+\ 
+
+Our long-range goal in pursuing this project is NOT automated scoring of student writing. Rather, we hope to use categorized instructor comments as a tool for more rapidly diagnosing the most common problems students have. Based on that information we will tailor how we teach writing so it focuses more on those specific student challenges.
+
+\ 
+
+### Data Structure
+I have an Excel data table containing ~11,000 data rows, organized into these columns. The data have been de-duplicated already, so that the individual lines represent unique TA comments on student writing.
+
+Name|Description of What the Column Data Are
+----------|--------------------------------------------------------------------
+ID#|R_XX value
+Sort#|Original sorting value. Duplicates of this number indicate a complex comment was split.
+title|Title of the file from which a comment was extracted
+student|Unique email address of student who wrote report
+course|Course bins: 1113, 114, 214
+ta|Instructor marking paper
+lab|Topic of the lab on which report was written
+tag|First or second of semester
+type.TA|Submission or revision version
+grade|Assigned grade from the TA
+grading.time|Minutes
+Rank|Housekeeping data from coding. Used with Sort#
+hypothesis|TA entered yes or no for hypothesis
+data|TA entered yes or no for data present
+citation.ok|TA entered yes or no for citations in introduction and discussion
+interpretation|TA entered yes or no for data are interpreted
+organization.ok|TA entered yes or no for properly organized into 8 sections
+no.flaws|TA entered yes or no for whether report has technical errors
+writing.ok|TA entered yes or no for whether report has writing errors
+comments.incorporated|TA entered yes or no for whether student incorporated comments from submission into revision.
+comment|Text of the actual extracted comment
+Revision Dups|Housekeeping data from coding
+Dups in Paper|Housekeeping data from coding 
+Context Notes|Personal notes made while coding
+\ 
+
+These are the **Coded Characteristics.** Each has well-defined limited choices.
+Check codebook for detailed descriptions.
+
+Name|Description|Status
+------------|----------------------------------|-----------------------
+Subject|What is main subject?|Complete
+Structure, Orient|How is comment structured? Copy correction, etc.|Complete
+Locus|Where is locus of control? Corrective, directive, reflective?|Partial
+Scope|Can comment carry to other parts of report, beyond report?|Some have been done
+Tone|Is wording likely to be seen as positive, neutral, or negative?|Not done yet
+Other Notes|Personal notes entered while coding|Not part of active dataset
+***
+\ 
+
+## Questions I want to ask
+
+1.  Is there a set of characteristics in the text of comments that identifies the **Subject** of the comments with >95% accuracy compared to human readers?
+2.  Is there a set of characteristics in the text of comments that identifies the **Structure** of the comments with >95% accuracy compared to human readers?
+
+\ 
+
+## Codebook and Procedures
+###Code Scheme for TA Comments on Lab Reports
+We evaluating TAs’ comments on student reports to see if and how their comments change as students get more feedback from automated system. 
+
+To build an initial data table, all reports containing TAs’ comments from a single semester were downloaded as MS Word documents. Files were processed using BaSH scripts to extract relevant file data (author, ID#, etc.) and individual TA comments from the raw XML, and write it to a single CSV file. TA comments containing multiple points or suggestions were replicated and edited to produce a working data table with only one comment per entry row. 
+
+In the first semester, ~12,000 individual TA comments were extracted from student reports. Comments were categorized based on:
+
+*  Subject. What is main focus of the comment?
+*  Structure. Does the comment point out an error only, or provide more information?  If the latter, how much and in what form? Does the comment focus on a fundamental writing issue, or an idiomatic preference of the grader?
+*  Locus. Does the comment tell a student what to do, or invite the student to think about a writing issue more deeply?
+*  Scope. Does the comment focus on corrections in context of current work only, or connect it to other past or future work by that student? Does it support comparison and transfer?
+*  Tone. Is the instructor’s comment affectively neutral (should be most common type), positive (aims to build confidence and self-efficacy), or negative (likely to erode self-efficacy)?
+
+In addition to the qualitative categories above, we coded for:
+
+*  Response. Did student act on the comment?
+*  Length. How long is a typical comment?
+*  Count. How many comments did the instructor make on average?
+*  Errors. Comment was factually incorrect, or mis-stated grading policies, criteria.
+
+\ 
+
+####Establishing the Inclusion and Exclusion Criteria
+I assigned TA comments to categories and sub-categories using a codebook established iteratively using two training sets of 120 and 1200 comments selected randomly from the full dataset. 
+
+Briefly, each main category (Subject, Structure, etc.) was divided into 4-8 loosely defined provisional sub-categories. Then each comment from the 120-item training set was assigned to a provisional sub-category within each category. Sub-categories were not mutually exclusive; for example, if a comment was assigned to the “Writing Quality” sub-category under the “Subject” category, that comment could be assigned to ANY of the provisional sub-categories in “Structure,” ANY of the sub-categories in “Locus,” etc.
+
+When comments could not be assigned with high confidence to a provisional sub-category, our original defining features of the provisional sub-categories were refined further and the previously assigned comments re-evaluated using the updated criteria, until all 120 comments in the training set could be assigned reliably. 
+
+Once stable sub-categories were established, examples of TA comments belonging to each sub-category were extracted from the main dataset and combined with finalized criteria to form a working code scheme. The working code scheme was tested and refined again by categorizing the second training set of 1200 comments, to produce the final coding scheme. 
+
+To score the full data table, the 1200 scored training comments were rejoined with the unscored comments, and all comments alphabetized. This step distributed the pre-scored comments randomly within the larger data table, which helped us identify any comments which had been duplicated during the training cycles.
+
+After incorporating the training set back into the main set, I scored the full set of ~12,000 comments. The randomly re-inserted training comments provided a routine reminder of how the key traits had been applied, which further improved scoring consistency. 
+
+**Still need to do:** Have a second reader independently score another sample of ~1,200 randomly selected comments using the coding scheme. In cases of scoring discrepancies, the first and second reader need to compare and discuss scores, then revise the draft set of key characteristics as needed until inter-rater agreement reaches 0.80 or greater. This will become finalized set of key characteristics used for scoring TA comments in all subsequent semesters and for developing the criteria for automated tagging of comments.
+
+\ 
+
+###Proof of Concept for Identifying Comments Using Text Features
+The goal is to find ways to automate this data processing and analysis. My first approach was to look at word frequencies in sub-groups.
+
+To test whether this is even possible, all TA comments assigned to each category and sub-category were combined in sub-sets, then frequency tables for single words, bi-grams and tri-grams were created for each subset using Laurence Anthony's TagAnt and ConcAnt tools (http://www.laurenceanthony.net/)  
+
+Uninformative high-frequency terms (i.e., articles, conjunctions, etc.) were deleted then the draft lists from the sub-categories were scanned for duplicate or high-frequency terms that might represent "signifier terms" for a particular category. This approach provided severalproof of concept" examples suggesting this approach would be feasible.
+
+**Example 1:** When I reviewed the word lists I found that the 2-gram "basic criteria" was informative. The 2-gram phrase "basic criteria" is in 78 comments. Of these, 53/78 are Subject: Basic Criteria, 12/78 are Subject: Writing, 9/78 are in Subject: Technical, and 1/78 are in Subject: Logic. 
+
+When I compared these raw frequencies to total number of comments in each subject, I found 53/211 comments in Subject: Basic Criteria contain this 2-gram; 12 of 2578  comments in Subject: Writing have it,  9 of 5409 comments in Subject: Technical have it, and 1 of 1142 in Subject: Logic have it.
+
+When I calculated the fraction of ALL comments in each subject area, I found:
+
+*  25.12% of comments in Subject: Basic Criteria contain this 2-gram
+*  0.47% of comments in Subject: Writing contain this 2-gram
+*  0.17% of comments in Subject: Technical contain this 2-gram
+*  0.09% of comments in Subject: Logic contain this 2-gram. 
+
+\ 
+
+**Example 2:** Similarly the word "fail" is in 41 comments. Of these, 25/41 are Subject: Basic Criteria, 6/41 are Subject: Writing, 4/41 are in Subject: Technical, and 4/41 are in Subject: Logic. 
+
+When I calculated the fraction of ALL comments in each subject area, I found:
+
+*  11.85% of comments in Subject: Basic Criteria contain this word
+*  0.04% of comments in Subject: Writing contain this word
+*  0.07% of comments in Subject: Technical contain this word
+*  0.35% of comments in Subject: Logic contain this word. 
+
+\ 
+
+**Example 3:** Colloquial 
+The term "colloquial" is **unique** to Subject: Writing, and to Structure: Narrative. It is not present in any of the other Subject or Structure groups. 
+
+\ 
+ 
+**Example 4:** Primary Literature is a less clear 2-gram that I am less sure is useful, but it seems like it should be. These are the individual frequencies.
+
+*  Subject: Basic Criteria. Primary is 17, literature is 18, out of 528 terms
+*  Subject: Writing. Literature is 66, primary is 113, out of 2236 terms
+*  Subject: Technical. Primary is 145, literature is 160, out of 3120 terms
+*  Subject: Logic. Literature is 97, primary is 145, out of 2106 terms
+*  Subject: Praise or concern. Literature is 57, primary is 155, out of 413 terms
+ 
+\  
+
+***
+***
+

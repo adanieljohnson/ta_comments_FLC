@@ -1,0 +1,187 @@
+---
+title: "Data Cleaning"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# These are Global Options for Your Document
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Wide to Long, Long to Wide
+
+As discussed in the slides, we will use functions from `tidyr` (automatically loaded with the `tidyverse`) to manipulate our data.
+
+## `gather` for wide to narrow
+
+Let's read in our data set.
+
+First we need to call in our libraries:
+
+```{r library}
+library(tidyverse)
+```
+
+Now we can read in our data using `readr`'s `read_csv` function
+
+```{r read_wide}
+gap_wide <- read_csv("data/gapminder_wide.csv")
+```
+
+Go ahead and look at the data in the environment pane
+
+## Tidy it up
+
+Now we need to use the `gather` function:
+
+```{r make_narrow}
+gap_narrow <- gap_wide %>% 
+  gather(key = "country", value = "population", -year)
+```
+
+Now we can inspect our work:
+
+```{r inspect_narrow}
+head(gap_narrow)
+```
+
+As a teaser, this can be used to make some very slick graphics
+
+```{r fact_plot}
+gap_narrow %>% 
+  filter(country %in% c("India", "China", "Germany", "France")) %>% 
+  ggplot(aes(year, population))+
+  geom_smooth()+
+  facet_wrap(~country)
+```
+
+# Now To Spread with `spread`
+
+Sometimes data come in a long format where it needs to be a little wider to fit our tidy paradigm.
+
+Let's experiment with spreading data. Let's read in the `health_long.xlsx` file from our data folder.
+
+This requires the `readxl` package.
+
+```{r readxl}
+library(readxl)
+```
+
+Now let's read it into memory.
+
+```{r read_long}
+health_long <- read_excel("data/health_long.xlsx")
+```
+
+We can look at the format of the data
+
+```{r preview_long}
+head(health_long)
+```
+
+It appears that each subject appears in multiple rows with repeating attributes in the "measurement" column.
+
+Thus we want to spread *measurement* (which will make new column names) and then have the values in these new columns be those values in the *value* column. 
+
+```{r}
+health_long %>% 
+  spread(key = measurement, value = value)
+```
+
+# Exercise 1 - Your Turn!
+
+Read in the `heights.dta` file. This file contains data on some physical attributes and earnings of subjects in a study.
+
+Hint: you will need to use the `haven` package. Put the data into a tidy format. You will note that it is currently in a `long` format.
+
+## read in the data
+
+```{r}
+library("package")
+heights_raw <- read_****("data/")
+```
+
+## tidy it
+
+Long -> Wide
+
+```{r}
+heights_raw %>% 
+  verb()
+```
+
+# Exercise 2
+
+Read in the `gapminder.sav` data set and collapse all the metrics for life expectancy, population and GDP per Population into two columns one for `parameter_name` and the other for `value`.
+
+```{r}
+gapminder<-read_****("data/gapminder.sav")
+```
+
+Hint: you will need to use the `-group_1, -group_2, etc` syntax to not collapse the grouping variables that you wish to keep. 
+
+```{r}
+gapminder %>% 
+  verb()
+```
+
+
+# Excerise 3
+
+Using `select` to subset
+
+From the `gapminder` data set that you already read into memory, select the "year" and "pop" columns
+
+```{r}
+gapminder
+```
+
+
+# Excerise 4
+
+Use the `unite` function to combine "year" and "country" into one column called country_year with values separated by a "-". Save this into an object called "unite_demo."
+
+```{r}
+
+```
+
+# Exercise 5
+
+Now convert this new data set back into the "year" and "country" columns using `separate`.
+
+```{r}
+
+```
+
+
+# Exercise 6
+
+Now let's return to the `gap_narrow` dataset and filter the "year" field for values for "1977" only using the `filter` function and the `==` operator
+
+```{r}
+
+```
+
+# Bonus
+
+Using the `gap_narrow` dataset let's print the row with the maximum population.
+
+
+# Excerise 7
+
+Let's combine a few operations together using the pipe `%>%`.
+
+- Take the "health_long" data set
+
+- `spread` to a tidy format
+
+- `rename` the "subject" column to "subject_id"
+
+- use `mutate` to create a value for total cholesterol (e.g. total_cholesterol = lhl + hdl)
+
+```{r}
+health_long
+```
+

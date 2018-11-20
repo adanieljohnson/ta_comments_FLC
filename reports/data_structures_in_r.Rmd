@@ -1,0 +1,114 @@
+---
+title: "Data Structures in R"
+author: "Michael DeWitt"
+date: "10/4/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Structures
+
+As with all programming languages R represents (think stores) different kinds of data in different objects. It is important at a high level to understand what these different data objects allow us to do. 
+
+## TL;DR
+
+Key takeaway, try to get things to `dataframes`. These are flexible objects and can store most anything we want.
+
+# Vectors
+
+Vectors are one dimensional data objects than can store one _type_ of data.
+
+## Aside
+
+In R we use the `<-` as the assignment operator. Use this to store an object into memory. You can use `alt` + `-` on Windows and `Option` + `-` to automatically insert this operator. When an object is assigned it sits in memory. You will see it in the "Environment Pane" (upper right in the default layout of R Studio). 
+
+## Numeric Vector
+
+Let's built a numeric vector. A shortcut in R is that if you want a sequence of evently spaced digits you can you the colon `:` to make them. e.g.
+
+```{r}
+1:10
+```
+
+Now we can make a vector. We can use the `c()` or concatenate function to joint this sequence into a vector.
+
+```{r}
+# MAke the vector
+numeric_vector <- c(1:10)
+
+# Print the Vector
+numeric_vector
+```
+
+We can also examine the `class` of the vector to see what kind of data exists in it:
+
+```{r}
+class(numeric_vector)
+```
+
+## Character Vectors
+
+Here we can subset the built in data set _letters_ and select the first 10 letters and assign it to a vector. _For extra practice print `letters` in the console to confirm that all 26 english letters are available_
+
+```{r}
+character_vector <- letters[1:10]
+
+character_vector
+```
+
+# Matrices
+
+Matrices are two dimensional versions of vectors. All of the columns must be of the same type. MAtrices are useful for heavy computational tasks, but we often don't use them in social science research (in my experience). Dealing with microarray absolutely.
+
+```{r}
+numeric_matrix <- matrix(data = 1:10, nrow = 5, ncol = 2, byrow = TRUE)
+numeric_matrix
+```
+
+The `byrow` argument allows you to specify if you want the matrix to fill in by row or by column. 
+
+# Dataframe
+
+Dataframes are the most versatile objects in R and allow you to combine vectors of difference types. The important feature is that they all must be the same length.
+
+```{r}
+example_dataframe <- data.frame(numeric_vector= numeric_vector, 
+                                character_vector = character_vector, 
+                                another_number = c(21:30),
+                                another_letter = LETTERS[1:10])
+
+example_dataframe
+
+```
+
+# Lists
+
+Lists are one-dimensional objects (kind of like vectors) which can store _any_ other objects, even other lists.
+
+```{r}
+test_list <- list(
+  example_dataframe = example_dataframe,
+  numeric_vector = numeric_vector,
+  character_vector = character_vector,
+  numeric_matrix = numeric_matrix,
+  inner_list = list(1:10, letters)
+)
+
+test_list
+```
+
+You can subset lists using the `[[]]` syntax by position:
+
+```{r}
+test_list[[1]]
+```
+
+Or by the list name (if it exists):
+
+```{r}
+test_list[["numeric_matrix"]]
+```
+

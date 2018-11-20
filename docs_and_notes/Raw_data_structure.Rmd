@@ -1,0 +1,113 @@
+---
+title: "Raw Data Structure"
+author: "Dan Johnson"
+date: "10/14/2018"
+output: html_document
+---
+
+The initial raw data table is in MS Excel. It contains approximately 11,000 rows of observations.
+
+## Descriptions of each of the column variables.
+
+#### report.id
+R_XX value
+
+#### sort
+Unique numeric value. May be invalid.
+
+#### report.title
+Title of the file from which a comment was extracted. May have student name, but not guaranteed.
+
+#### student
+Unique email address of student who wrote report. Best identifier for author of the paper.
+
+#### course
+Course bins: 1113, 114, 214. Was set automatically by SAWHET.
+
+#### ta
+Instructor marking paper. Was set by drop-down selection then re-checked.
+
+#### lab
+Topic of the lab unit on which report was written. Selected from list by student.
+
+#### tag
+First or second report by the student for the semester. Many students chose incorrectly, so should not use as primary data.
+
+#### type.TA
+Submission = initial version of report
+Revision = revised version of report
+Assigned by TA so more accurate.
+
+#### grade
+Assigned grade from the TA. 
+
+#### grading.time
+Minutes spent by TA grading. WARNING: TAs admit to providing incorrect information.
+
+#### Rank
+Housekeeping data from from initial coding process.
+	
+#### hypothesis
+Hypothesis is present: yes or no. Entry by TA
+
+#### data
+Data present: yes or no. Entry by TA
+
+#### citation.ok
+Citations in introduction and discussion: yes or no. Entry by TA 
+
+#### interpretation
+Data are interpreted: yes or no. Entry by TA
+
+#### organization.ok
+Report is properly organized into 8 sections: yes or no. Entry by TA
+
+#### no.flaws
+Whether report has technical errors: yes or no. Entry by TA
+
+#### writing.ok
+Whether report has writing errors: yes or no. Entry by TA
+
+#### comments.incorporated
+Whether student incorporated comments from submission into revision: yes or no. Entry by TA. Applies to revision versions only. Not all TAs provided data.
+
+#### comment
+Text of the actual extracted comment. Primary data for analysis.
+
+#### revision.dups
+Housekeeping data from coding 
+
+#### dups.in.paper
+Housekeeping data from coding 
+
+#### context.notes
+Personal notes made while coding
+
+##Coded Features
+The next section describes the coded characteristics. Each has well-defined limited choices. Detailed descriptions are provided in the Comments Codebook. 
+
+1. The Abridged dataset contains only the columns described below.
+2. All 11,000 comments have been tagged and cross-checked for Subject, and Structure/Orientation. The initial "fingerprint" of TA comments was created using these two features as a 2x2 array.
+3. Only a sub-sample of 1200 comments have been tagged for Locus, Scope, and Tone.
+
+
+#### ta.comment
+Text of the actual extracted comment. Primary data for analysis.
+
+#### code.subject	
+What is main subject?
+
+#### code.structure
+How is comment structured? Copy correction, etc.
+
+#### code.locus
+Where is locus of control? Corrective, directive, reflective?
+
+#### code.scope
+Can comment carry to other parts of report, beyond report?
+
+#### code.tone
+Is wording likely to be seen as positive, neutral, or negative?
+
+#### code.notes
+Personal notes entered while coding.
