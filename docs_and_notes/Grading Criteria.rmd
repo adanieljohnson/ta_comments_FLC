@@ -1,0 +1,91 @@
+# Lab Report Grading Criteria We Use
+#### Updated Fall 2018
+
+These are the bins-based criteria we have used since August 2017. Some items were added or updated slightly based on results of the first round of analysis of TA comments from Spring 2018. 
+
+## 1. Basic Criteria 
+
+Comments in this category focus on the 5 basic requirements that ALL scientific writing must meet, plus the academic honesty standard. These criteria establish the minimum baseline for whether a report is ready for grading, or is considered incomplete or unacceptably flawed. Reports that fail one or more of these basic criteria are scored as **Unacceptable** and returned.
+
+* Written work represents the student’s own scientific research or effort. No part is copied, fabricated, or falsified.
+* There is a clear rationale, hypothesis, or purpose of the study PRESENT.
+* Written work is complete, appropriately organized for audience, and all essential elements are present. 
+* Summarized data are PRESENT, and data have been analyzed in some way. (If only raw data are presented
+* There is an interpretation of the results.
+* Discussion states clearly whether or not hypothesis is supported and why.
+* Study is based within a larger body of literature. Relevant primary literature is cited in both the Introduction and Discussion.
+
+In operation these criteria leave little room for interpretation. 
+
+* Including the academic honesty standard as a basic criteria elevates it in the discussion of writing expectations.
+* The QUALITY of the statement of purpose is scored later. At the basic level, we only screen for presence or absence.
+* Written work MUST have all required parts; if any are missing, the report is unacceptable. While this seems harsh, it is standard for the field. Also, so long as students have opportunities to revise, they learn very quickly not to do it again.  
+* If ONLY raw data are presented, a report is marked Unacceptable. If both raw and summarized/analyzed data are provided, the report is marked for technical errors. 
+* Discussion states clearly whether or not hypothesis is supported and why. Extended interpretation of results should never be in the Results section.
+* Again, this is based on the standards of the field. All primary research is placed into the context of previous work, then interpreted in the context of other researchers. Reviews, online materials, and lay articles are unacceptable.
+
+
+## 2. Writing Flaws
+
+Comments in this category focus on written communication issues, including general conventions of scientific writing as a genre. It also where we address issues related to use of citations, and cross-referencing figures and tables. Includes all comments on:
+
+* Writing style is appropriate for the target audience.
+* Style, format, organization of writing matches the expectations of a scientific audience.
+* Wording is clear, concise.
+* Language used is precise, and appropriate to scientific audience.
+* Technically presented; avoids use of casual, imprecise, emotional language.
+* Written work is free of major writing errors (spelling, grammar, punctuation.)
+* Citations are presented consistently and professionally throughout the text and in the Works Cited section.
+
+Comments belong here if they refer to:
+
+* Repeated or extraneous information. Writer is not being concise. 
+* Errors in referencing figures, tables. 
+* General word choice. Note that misuse of technical terms may fall in either this or the next two categories, depending on context.
+* Comments of the type “Include a sentence about…”
+* Comments regarding what goes in which sections (beyond the basic 5 criteria)
+* Problems related to general to specific (“hourglass”) structure
+
+
+## 3. Technical and Scientific Flaws
+
+Comments in this category focus mainly on the Methods and Result sections, specifically whether methods are communicated clearly and correctly; data and analyses are clear, appropriate, accurate, and unbiased; and mechanics specific to technical writing and data presentation are executed correctly. Comments about errors in any of the following belong in this category:
+
+* Methods are appropriately defined and explained, given the student’s research question.
+* Why the particular study organism was chosen.
+* The data analysis is clear, appropriate, accurate and unbiased.
+* Statistical summaries are executed, interpreted, and reported correctly.
+* Data are summarized, reported, displayed correctly.
+* Tables and figures are clear, effective, and informative.
+* Technical terms, factual information are stated, used, interpreted correctly.
+
+Comments belong here if they refer to:
+
+* Errors in numbers and units.
+* Reporting raw data.
+* Improper use of scientifically important terms like prove vs. support.
+* Simple errors in summarizing data. Larger errors in interpretation of the body of data as a whole usually belong to the next group.
+
+
+## 4. Logic and Thinking Flaws
+
+This category is not scored separately in our report grading model; for scoring purposes, errors in logic and thinking are treated as technical flaws. That said, it is informative to look at them separately. 
+
+Comments in this category tend to be located in the Introduction and Discussion sections, and focus on: 
+
+* Quality, accuracy of claim-evidence-reasoning chain; 
+* Use of hypothetico-deductive reasoning; 
+* Consistency of arguments made in text with internal, external evidence.
+
+ Comments about errors in any of the following belong in this category:
+ 
+* Written work clearly articulates the student’s thinking regarding research goals.
+* Work is placed in context of RELEVANT scientific literature.
+* Cited literature supports, develops a larger argument.
+* Statement of hypothesis is clear, appropriately organized.
+* Work has a clear thought process connecting parts.
+* Logic that connects the arguments and conclusions is sound, clear, consistent.
+* All parts contribute to understanding outcomes. No distracting arguments.
+* Written work interprets the results skillfully, conservatively.
+* Implications of the findings are placed in a reasonable context.
+* A comment about having a strong, integrated ending statement goes here, BUT if comment is about language rather than thinking, goes under Writing.
