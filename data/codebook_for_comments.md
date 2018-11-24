@@ -592,10 +592,3 @@ Citation format is \__ |||
 (p) ??|Unclear |Need to explain \_x\_ better.|What is connection b/w \_x\_ and \_y\_?
 (p) Tense|Methods are past tense|This sentence should be past tense|What is tense for this section in papers we read?
 
-
-
-## Procedure for Analyzing Comments
-1.	Search the comments for the word “also” as an indicator of comments to split.
-2.	Alphabetize comments to join similarly worded phrases
-3.	Search for keywords
-
