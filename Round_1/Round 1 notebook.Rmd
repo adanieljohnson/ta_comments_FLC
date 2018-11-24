@@ -20,16 +20,13 @@ Research questions I would like to explore within the learning community center 
 The two specific questions I would like to explore first:
 
 1.  Can we use R's text parsing and analysis tools to identify the most informative features for sorting instructor comments into topics and types?
-2.  Assuming #1 is possible, can we script or automate the process of sorting instructor comments into major themes and types?
+2.  Assuming #1 is possible, can we script or automate the process of sorting instructor comments into major themes and types?  
 
-\ 
-
-Our long-range goal in pursuing this project is NOT automated scoring of student writing. Rather, we hope to use categorized instructor comments as a tool for more rapidly diagnosing the most common problems students have. Based on that information we will tailor how we teach writing so it focuses more on those specific student challenges.
-
-\ 
+Our long-range goal in pursuing this project is NOT automated scoring of student writing. Rather, we hope to use categorized instructor comments as a tool for more rapidly diagnosing the most common problems students have. Based on that information we will tailor how we teach writing so it focuses more on those specific student challenges.  
+.  
 
 ### Data Structure
-I have an Excel data table containing ~11,000 data rows, organized into these columns. The data have been de-duplicated already, so that the individual lines represent unique TA comments on student writing.
+I have a CSV data table containing ~11,000 data rows, organized into these columns. The data have been de-duplicated already, so that the individual lines represent unique TA comments on student writing.
 
 Name|Description of What the Column Data Are
 ----------|--------------------------------------------------------------------
@@ -76,12 +73,11 @@ Other Notes|Personal notes entered while coding|Not part of active dataset
 ## Questions I want to ask
 
 1.  Is there a set of characteristics in the text of comments that identifies the **Subject** of the comments with >95% accuracy compared to human readers?
-2.  Is there a set of characteristics in the text of comments that identifies the **Structure** of the comments with >95% accuracy compared to human readers?
-
-\ 
+2.  Is there a set of characteristics in the text of comments that identifies the **Structure** of the comments with >95% accuracy compared to human readers?  
+.  
 
 ## Codebook and Procedures
-###Code Scheme for TA Comments on Lab Reports
+### Code Scheme for TA Comments on Lab Reports
 We evaluating TAs’ comments on student reports to see if and how their comments change as students get more feedback from automated system. 
 
 To build an initial data table, all reports containing TAs’ comments from a single semester were downloaded as MS Word documents. Files were processed using BaSH scripts to extract relevant file data (author, ID#, etc.) and individual TA comments from the raw XML, and write it to a single CSV file. TA comments containing multiple points or suggestions were replicated and edited to produce a working data table with only one comment per entry row. 
@@ -99,9 +95,8 @@ In addition to the qualitative categories above, we coded for:
 *  Response. Did student act on the comment?
 *  Length. How long is a typical comment?
 *  Count. How many comments did the instructor make on average?
-*  Errors. Comment was factually incorrect, or mis-stated grading policies, criteria.
-
-\ 
+*  Errors. Comment was factually incorrect, or mis-stated grading policies, criteria.  
+.  
 
 ####Establishing the Inclusion and Exclusion Criteria
 I assigned TA comments to categories and sub-categories using a codebook established iteratively using two training sets of 120 and 1200 comments selected randomly from the full dataset. 
@@ -116,9 +111,8 @@ To score the full data table, the 1200 scored training comments were rejoined wi
 
 After incorporating the training set back into the main set, I scored the full set of ~12,000 comments. The randomly re-inserted training comments provided a routine reminder of how the key traits had been applied, which further improved scoring consistency. 
 
-**Still need to do:** Have a second reader independently score another sample of ~1,200 randomly selected comments using the coding scheme. In cases of scoring discrepancies, the first and second reader need to compare and discuss scores, then revise the draft set of key characteristics as needed until inter-rater agreement reaches 0.80 or greater. This will become finalized set of key characteristics used for scoring TA comments in all subsequent semesters and for developing the criteria for automated tagging of comments.
-
-\ 
+**Still need to do:** Have a second reader independently score another sample of ~1,200 randomly selected comments using the coding scheme. In cases of scoring discrepancies, the first and second reader need to compare and discuss scores, then revise the draft set of key characteristics as needed until inter-rater agreement reaches 0.80 or greater. This will become finalized set of key characteristics used for scoring TA comments in all subsequent semesters and for developing the criteria for automated tagging of comments.  
+.   
 
 ###Proof of Concept for Identifying Comments Using Text Features
 The goal is to find ways to automate this data processing and analysis. My first approach was to look at word frequencies in sub-groups.
@@ -136,9 +130,8 @@ When I calculated the fraction of ALL comments in each subject area, I found:
 *  25.12% of comments in Subject: Basic Criteria contain this 2-gram
 *  0.47% of comments in Subject: Writing contain this 2-gram
 *  0.17% of comments in Subject: Technical contain this 2-gram
-*  0.09% of comments in Subject: Logic contain this 2-gram. 
-
-\ 
+*  0.09% of comments in Subject: Logic contain this 2-gram.   
+.  
 
 **Example 2:** Similarly the word "fail" is in 41 comments. Of these, 25/41 are Subject: Basic Criteria, 6/41 are Subject: Writing, 4/41 are in Subject: Technical, and 4/41 are in Subject: Logic. 
 
@@ -147,14 +140,13 @@ When I calculated the fraction of ALL comments in each subject area, I found:
 *  11.85% of comments in Subject: Basic Criteria contain this word
 *  0.04% of comments in Subject: Writing contain this word
 *  0.07% of comments in Subject: Technical contain this word
-*  0.35% of comments in Subject: Logic contain this word. 
+*  0.35% of comments in Subject: Logic contain this word.   
+.  
 
-\ 
 
 **Example 3:** Colloquial 
-The term "colloquial" is **unique** to Subject: Writing, and to Structure: Narrative. It is not present in any of the other Subject or Structure groups. 
-
-\ 
+The term "colloquial" is **unique** to Subject: Writing, and to Structure: Narrative. It is not present in any of the other Subject or Structure groups.  
+.  
  
 **Example 4:** Primary Literature is a less clear 2-gram that I am less sure is useful, but it seems like it should be. These are the individual frequencies.
 
@@ -164,8 +156,4 @@ The term "colloquial" is **unique** to Subject: Writing, and to Structure: Narra
 *  Subject: Logic. Literature is 97, primary is 145, out of 2106 terms
 *  Subject: Praise or concern. Literature is 57, primary is 155, out of 413 terms
  
-\  
-
-***
-***
 
