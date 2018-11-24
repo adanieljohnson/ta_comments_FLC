@@ -3,12 +3,7 @@ title: "Notes on Tidy Model"
 output: html_notebook
 ---
 
-The plyr package makes combining .CSV files a straightforward task in R. The
-following code generates a vector of file names in a directory (data/) which
-match a regular expression (ends in .csv). Next we name each element of the
-vector with the name of the file. We do this because __plyr__ will preserve the 
-names in the following step, ensuring that each row in the final data frame is
-labelled with its source. Finally, __ldply( )__ loops over each path, reading in the csv file and combining the results into a single data frame.
+The plyr package makes combining .CSV files a straightforward task in R. The following code generates a vector of file names in a directory (data/) which match a regular expression (ends in .csv). Next we name each element of the vector with the name of the file. We do this because ```plyr``` will preserve the names in the following step, ensuring that each row in the final data frame is labelled with its source. Finally, ```dply( )``` loops over each path, reading in the csv file and combining the results into a single data frame.
 
 ```{r}
 paths <- dir("data", pattern = "\\.csv$", full.names = TRUE)
@@ -30,17 +25,17 @@ __Aggregate__: Collapsing multiple values into a single value (e.g., by summing 
 __Sort__: Changing the order of observations.
 
 
-In R, filtering and transforming are performed by the base R functions __subset( )__ and __transform( )__. These are input and output-tidy. 
+In R, filtering and transforming are performed by the base R functions ```subset( )``` and ```transform( )```. These are input and output-tidy. 
 
-The __aggregate( )__ function performs group-wise aggregation. It is input-tidy. Provided that a single aggregation method is used, it is also output-tidy. 
+The ```aggregate( )``` function performs group-wise aggregation. It is input-tidy. Provided that a single aggregation method is used, it is also output-tidy. 
 
-The __plyr__ package provides tidy __summarise( )__ and __arrange( )__ functions for aggregation and sorting.
+The ```plyr``` package provides tidy ```summarise( )``` and ```arrange( )``` functions for aggregation and sorting.
 
 The four verbs can be, and often are, modified by the "by" preposition. We often need group-wise aggregates, transformations and subsets, to pick the biggest in each group, to average over replicates and so on. Combining each of the four verbs with a by operator allows them to operate on subsets of a data frame at a time. 
 
-Base R possesses a __by( )__ function, which is input-tidy, but not output-tidy, because it produces a list. The __ddply( )__ function from the plyr package is a tidy alternative.
+Base R possesses a ```by( )``` function, which is input-tidy, but not output-tidy, because it produces a list. The ```ddply( )``` function from the plyr package is a tidy alternative.
 
-Other tools are needed when we have multiple datasets. An advantage of tidy data is the ease with which it can be combined with other tidy datasets. All that is needed is a join operator that works by matching common variables and adding new columns. This is implemented in the __merge( )__ function in base R, or the __join( ) function in plyr__. 
+Other tools are needed when we have multiple datasets. An advantage of tidy data is the ease with which it can be combined with other tidy datasets. All that is needed is a join operator that works by matching common variables and adding new columns. This is implemented in the ```merge( )``` function in base R, or the ```join( ) function in plyr```. 
 
 Compare these operators with the difficulty of combining datasets stored in arrays. This task typically requires painstaking alignment before matrix operations can be used, which can can make errors very hard to detect.
 
