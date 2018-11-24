@@ -27,6 +27,7 @@ course
 		114
 		214
 		NA
+
 ta
 	Categorical, string. Name of TA
 
@@ -194,18 +195,5 @@ code.tone
 
 code.notes
 	String. Miscellaneous notes.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
