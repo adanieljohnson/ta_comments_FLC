@@ -1,0 +1,22 @@
+---
+title: "Data_intake_1"
+author: "Dan Johnson"
+date: "11/24/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Call in tidyverse library
+```{r}
+library(tidyverse)
+```
+
+Read in the raw dataset
+```{r}
+base_data <- read_csv("data/coded_full_comments_dataset_Spring18.csv")
+```
+
