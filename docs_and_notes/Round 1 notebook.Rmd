@@ -20,13 +20,11 @@ Research questions I would like to explore within the learning community center 
 The two specific questions I would like to explore first:
 
 1.  Can we use R's text parsing and analysis tools to identify the most informative features for sorting instructor comments into topics and types?
-2.  Assuming #1 is possible, can we script or automate the process of sorting instructor comments into major themes and types?
+2.  Assuming #1 is possible, can we script or automate the process of sorting instructor comments into major themes and types?  
+.  
 
-\ 
-
-Our long-range goal in pursuing this project is NOT automated scoring of student writing. Rather, we hope to use categorized instructor comments as a tool for more rapidly diagnosing the most common problems students have. Based on that information we will tailor how we teach writing so it focuses more on those specific student challenges.
-
-\ 
+Our long-range goal in pursuing this project is NOT automated scoring of student writing. Rather, we hope to use categorized instructor comments as a tool for more rapidly diagnosing the most common problems students have. Based on that information we will tailor how we teach writing so it focuses more on those specific student challenges.  
+.  
 
 ### Data Structure
 I have an Excel data table containing ~11,000 data rows, organized into these columns. The data have been de-duplicated already, so that the individual lines represent unique TA comments on student writing.
@@ -57,10 +55,9 @@ comment|Text of the actual extracted comment
 Revision Dups|Housekeeping data from coding
 Dups in Paper|Housekeeping data from coding 
 Context Notes|Personal notes made while coding
-\ 
+.  
 
-These are the **Coded Characteristics.** Each has well-defined limited choices.
-Check codebook for detailed descriptions.
+These are the **Coded Characteristics.** Each has well-defined limited choices. Check codebook for detailed descriptions.  
 
 Name|Description|Status
 ------------|----------------------------------|-----------------------
@@ -71,14 +68,14 @@ Scope|Can comment carry to other parts of report, beyond report?|Some have been 
 Tone|Is wording likely to be seen as positive, neutral, or negative?|Not done yet
 Other Notes|Personal notes entered while coding|Not part of active dataset
 ***
-\ 
+.  
 
 ## Questions I want to ask
 
 1.  Is there a set of characteristics in the text of comments that identifies the **Subject** of the comments with >95% accuracy compared to human readers?
-2.  Is there a set of characteristics in the text of comments that identifies the **Structure** of the comments with >95% accuracy compared to human readers?
-
-\ 
+2.  Is there a set of characteristics in the text of comments that identifies the **Structure** of the comments with >95% accuracy compared to human readers?  
+.  
+ 
 
 ## Codebook and Procedures
 ###Code Scheme for TA Comments on Lab Reports
@@ -99,9 +96,9 @@ In addition to the qualitative categories above, we coded for:
 *  Response. Did student act on the comment?
 *  Length. How long is a typical comment?
 *  Count. How many comments did the instructor make on average?
-*  Errors. Comment was factually incorrect, or mis-stated grading policies, criteria.
+*  Errors. Comment was factually incorrect, or mis-stated grading policies, criteria.  
+.  
 
-\ 
 
 ####Establishing the Inclusion and Exclusion Criteria
 I assigned TA comments to categories and sub-categories using a codebook established iteratively using two training sets of 120 and 1200 comments selected randomly from the full dataset. 
@@ -116,9 +113,8 @@ To score the full data table, the 1200 scored training comments were rejoined wi
 
 After incorporating the training set back into the main set, I scored the full set of ~12,000 comments. The randomly re-inserted training comments provided a routine reminder of how the key traits had been applied, which further improved scoring consistency. 
 
-**Still need to do:** Have a second reader independently score another sample of ~1,200 randomly selected comments using the coding scheme. In cases of scoring discrepancies, the first and second reader need to compare and discuss scores, then revise the draft set of key characteristics as needed until inter-rater agreement reaches 0.80 or greater. This will become finalized set of key characteristics used for scoring TA comments in all subsequent semesters and for developing the criteria for automated tagging of comments.
-
-\ 
+**Still need to do:** Have a second reader independently score another sample of ~1,200 randomly selected comments using the coding scheme. In cases of scoring discrepancies, the first and second reader need to compare and discuss scores, then revise the draft set of key characteristics as needed until inter-rater agreement reaches 0.80 or greater. This will become finalized set of key characteristics used for scoring TA comments in all subsequent semesters and for developing the criteria for automated tagging of comments.  
+.  
 
 ###Proof of Concept for Identifying Comments Using Text Features
 The goal is to find ways to automate this data processing and analysis. My first approach was to look at word frequencies in sub-groups.
@@ -126,6 +122,8 @@ The goal is to find ways to automate this data processing and analysis. My first
 To test whether this is even possible, all TA comments assigned to each category and sub-category were combined in sub-sets, then frequency tables for single words, bi-grams and tri-grams were created for each subset using Laurence Anthony's TagAnt and ConcAnt tools (http://www.laurenceanthony.net/)  
 
 Uninformative high-frequency terms (i.e., articles, conjunctions, etc.) were deleted then the draft lists from the sub-categories were scanned for duplicate or high-frequency terms that might represent "signifier terms" for a particular category. This approach provided severalproof of concept" examples suggesting this approach would be feasible.
+
+\ 
 
 **Example 1:** When I reviewed the word lists I found that the 2-gram "basic criteria" was informative. The 2-gram phrase "basic criteria" is in 78 comments. Of these, 53/78 are Subject: Basic Criteria, 12/78 are Subject: Writing, 9/78 are in Subject: Technical, and 1/78 are in Subject: Logic. 
 

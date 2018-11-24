@@ -18,16 +18,26 @@ There is another small step before we move on to the fun stuff.  Text mining and
 
 Start RStudio and open the TextMining project you created earlier.
 The next step is to load the tm package as this is not loaded by default. This is done using the library() function like so:
+
 library(tm)
+
 Loading required package: NLP
  
 Dependent packages are loaded automatically – in this case the dependency is on the NLP (natural language processing) package.
-Next, we need to create a collection of documents (technically referred to as a Corpus) in the R environment. This basically involves loading the files created in the TextMining folder into a Corpus object. The tm package provides the Corpus() function to do this. There are several ways to create a Corpus (check out the online help using ? as explained earlier). In a nutshell, the Corpus() function can read from various sources including a directory. That’s the option we’ll use:
+
+Next, we need to create a collection of documents (technically referred to as a Corpus) in the R environment. This basically involves loading the files created in the TextMining folder into a Corpus object. 
+
+The tm package provides the Corpus() function to do this. There are several ways to create a Corpus (check out the online help using ? as explained earlier). 
+
+In a nutshell, the Corpus() function can read from various sources including a directory. That’s the option we’ll use:
+
 #Create Corpus
 docs <- Corpus(DirSource(“C:/Users/Kailash/Documents/TextMining”))
  
 At the risk of stating the obvious, you will need to tailor this path as appropriate.
+
 A couple of things to note in the above. Any line that starts with a # is a comment, and the “<-“ tells R to assign the result of the command on the right hand side to the variable on the left hand side. In this case the Corpus object created is stored in a variable called docs. One can also use the equals sign (=) for assignment if one wants to.
+
 Type in docs to see some information about the newly created corpus:
 docs
 <<VCorpus>>
