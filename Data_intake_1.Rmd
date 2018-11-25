@@ -17,6 +17,32 @@ library(tidyverse)
 
 Read in the raw dataset
 ```{r}
-base_data <- read_csv("data/coded_full_comments_dataset_Spring18.csv")
+base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
+head(base_data)
 ```
+
+```{r}
+unique(base_data$course)
+```
+
+```{r}
+unique(base_data$ta)
+```
+
+```{r}
+unique(base_data$lab)
+```
+
+```{r}
+unique(base_data$student)
+```
+
+```{r}
+unique(base_data$code.subject)
+```
+
+```{r}
+unique(base_data$code.structure)
+```
+
 
