@@ -9,40 +9,174 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
+##Prep
 Call in tidyverse library
 ```{r}
 library(tidyverse)
 ```
 
-Read in the raw dataset
+From *Text Mining with R: A Tidy Approach* (Julia Silge and David Robinson)
+
+>We thus define the tidy text format as being a table with one-token-per-row. A token is a meaningful unit of text, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens. 
+
+>This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix. For tidy text mining, the token that is stored in each row is most often a single word, but can also be an n-gram, sentence, or paragraph. In the tidytext package, we provide functionality to tokenize by commonly used units of text like these and convert to a one-term-per-row format.
+
+My working dataset for analysis is organized with one "instructor comment" as the one token per row in the table. Each instructor comment is an alphanumeric string of multiple words. 
+
+
+
+##Pre-Check Dataset
+BEFORE starting, review data table in Excel:
+
+1.  Check that data table headers are in snake_case.
+2.  Check that data table header names match list in "code_column_names.txt"
+3.  Check that coding vocabulary terms used in coding columns matches criteria in "codebook_for_comments.md"
+4.  Rename .CSV file to format **"coded_full_comments_dataset_SemYear.csv"**
+
+##Import Data
+Read in the raw dataset from .CSV file to a data frame.
+
 ```{r}
 base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
 head(base_data)
 ```
 
+***
+
+##Post-Import Data Checks
+Check that data have been properly coded. 
+
+"Course" should only have entries that correspond to 113, 114, 214, NA. 
 ```{r}
 unique(base_data$course)
 ```
+
+Check that the names of the TAs for the dataset match the TAs assigned to the relevant courses in the semester being analyzed. 
 
 ```{r}
 unique(base_data$ta)
 ```
 
+"Lab" should only have entries that match the limited keywords in codebook.
 ```{r}
 unique(base_data$lab)
 ```
 
+Look at the NUMBER of unique student email addresses. Should be within 2-3% of the combined enrollment of the target courses for the semester.
 ```{r}
 unique(base_data$student)
 ```
 
+Check that the "code.subject" list extracted from the dataset matches allowed terms in codebook.
 ```{r}
 unique(base_data$code.subject)
 ```
 
+Check that the "code.structure" list extracted from the dataset matches allowed terms in codebook.
 ```{r}
 unique(base_data$code.structure)
 ```
 
+
+# Extracting Text of Comments
+Create a single-column data frame of just the comments. Then check that the data was converted to characters not factors.
+```{r}
+base_data_subset21 <- as.data.frame( base_data[,21], drop=FALSE, stringsAsFactors=FALSE)
+class(base_data_subset21[23,1]) #Should report as a character
+```
+
+Create a subset data frame for analysis. Contains **ta.comment** (Col. 21), **code.subject** (Col. 22) and **code.structure** (Col. 23). Again, check that subset data are characters, not factors. 
+```{r}
+base_data_subset_all <- as.data.frame(base_data[,c(21:23)], drop=FALSE, stringsAsFactors=FALSE)
+(base_data_subset_all[33:35,1:3]) 
+#First column should be row numbers, 2nd-4th columns "chr"
+```
+
+
+Create a testing subset of 50-100 rows, and check.
+```{r}
+base_data_subset21_short <-base_data_subset21[c(1:50),]
+base_data_all_short <-base_data_subset_all[c(1:50),]
+base_data_subset21_short
+```
+
+Check other set.
+```{r}
+base_data_all_short
+```
+
+>OKAY SO WHY do I get a dataset of 50 observations of 3 variables with base_data_all_short, but the single column subset21 data only shows up as a value?
+
+```Code:
+base_data_subset21_short <-base_data_subset21[c(1:50),]
+base_data_all_short <-base_data_subset_all[c(1:50),]
+base_data_subset21_short
+base_data_all_short
+```
+***
+
+#HERE IS THE BREAKDOWN ZONE
+
+Have R convert the desired set of extracted data into a tibble.
+```{r}
+text_tibble <- tibble(line = seq_along(data), text = base_data_subset21_short)
+```
+
+You HAVE to use a tibble to tokenize the text lines. Trying to do it straight from the data table will throw an error. Compare:
+
+```{r}
+(base_data_subset21_short) %>% 
+  unnest_tokens(word,text)
+```
+
+```{r}
+(text_tibble) %>% 
+  unnest_tokens(word,text)
+```
+
+The tibble must be a single-column table. See what happens when I try to create a tibble using a 3-column dataset.
+```{r}
+text_tibble_all <- tibble(line = seq_along(data), text = base_data_all_short)
+```
+
+
+NOW I KNOW that the tibble I created is going to have problems, because the data I read in does not include any information about WHICH row the words came from. How do I add the row values?
+
+Is it as simple as creating a count column in the original data, then calling it in?
+
+Alternative: can I append the column with counts using mutate.
+
+
+***
+#Approach ONE: Work backwards from existing sorting to get criteria.
+I have a pre-defined set of traits. Can I build from that?
+
+
+##Step 1.1: Regenerate the groups in two-dimensional array
+
+
+##Step 1.2: Yada
+
+
+##Step 1.3: Yada
+
+
+##Step 1.4: Yada
+
+
+***
+#Approach TWO: Assume no a priori groups, and look for natural clusters. 
+
+
+
+##Step 2.1: Yada
+
+
+##Step 2.2: Yada
+
+
+##Step 2.3: Yada
+
+
+##Step 2.4: Yada
 
