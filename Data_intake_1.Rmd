@@ -140,7 +140,7 @@ text_tibble_all <- tibble(line = seq_along(data), text = base_data_all_short)
 ```
 
 
-NOW I KNOW that the tibble I created is going to have problems, because the data I read in does not include any information about WHICH row the words came from. How do I add the row values?
+NOW I KNOW that the tibble I just created is going to have problems, because the data I read in does not include any information about WHICH row the words came from. How do I add the row values?
 
 Is it as simple as creating a count column in the original data, then calling it in?
 
