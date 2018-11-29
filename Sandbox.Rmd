@@ -1,0 +1,26 @@
+---
+title: "Sandbox"
+author: "Dan Johnson"
+date: "11/28/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Sandbox
+
+
+```{r text}
+
+aes <- 
+  readtext(file = "data/original/actives/plain/*.txt", # read each file .txt
+           docvarsfrom = "filenames", # get attributes from filename
+           docvarnames = c("language", "country", "year", "title", "type", "genre", "imdb_id")) # add the column names we want for each attribute
+
+glimpse(aes) # preview structure of the object
+
+
+```
+
