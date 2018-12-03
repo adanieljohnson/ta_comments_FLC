@@ -1,0 +1,99 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-26 11:05:07
+Author of this lab report is: Catherine Knipp
+ID: R_1luyyDniJgzPxpQ
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: Juvenile Hormone Effects on Manduca sexta Larvae Weight and Development
+
+Abstract:
+Juvenile hormone and ecdysterone play a crucial role in the development of Manduca sexta. Precor, an artificial form of juvenile hormone, can be added to the insects’ diet to manipulate their hormone levels at different stages of their life cycle. This experiment uses Manduca sexta caterpillars, yet to reach their commitment pulse, and treat an experimental group with a diet containing precor to delay their pupation and to show the continuous increase of weight without the natural drop of juvenile hormone levels. Results show that the experimental group did show a greater increase in weight over time and did not pupate after 7 days, contrasting to the control group who showed successful pupation. Conclusions drawn suggest that the organism’s inability to reach its commitment pulse inhibited its ability to pupate while those caterpillars whose juvenile hormone levels naturally dropped were able to pupate successfully. 
+
+Introduction:
+The Manduca sexta, a species of moth native to Northern and Central America is considered a pest in its larval form. Juvenile hormone (JH) and ecdysterone (20E) are two key hormones that play a significant role in the maturation of the Manduca sexta, especially from its 5th larval instar to its pupal form. In particular, these hormones together promote the organism’s ability to reach its commitment pulse. This crucial point is reached when JH levels drop significantly at the end of the 5th larval instar and 20E levels rise [Baker: 2003], indicating that the insect has reached a sufficiently large size with enough nutrients to pupate into its final stage of adulthood. In this lab, Manduca sexta hormone levels are manipulated with precor, an artificial growth hormone that simulates the effects of JH to see whether the addition of the hormone can lead to a delay in pupal development. Precor is added to the diet of 4 trial larvae, while 4 control larvae receive the addition of water to the same diet. Is it hypothesized that the addition of precor to the organism’s natural supply of hormones will simulate an increase in JH levels, thus delaying their commitment pulse and allowing the organisms to continue growth in the 5th larval instar. Specifically, it is predicted that the experimental Manduca sexta will show a greater change of weight over time than that of the control group. 
+
+Materials and Methods:
+For this experiment, 8 Manduca sexta caterpillars around the 11 to 12 weeks of age were obtained and split into 2 groups of 4. One group was assigned to the control group and one to the experimental group. Holes were punctured in each of the enclosures to ensure oxygen circulation; one caterpillar was placed in each enclosure. The control group was treated with a regular diet including 5 drops of water. The experimental group was given the same diet, but with 5 drops of precor mixed in. Each food supply and additional liquid was replaced every 2 to 3 days. All enclosures were kept in an incubator while data was not being recorded. Each caterpillar was weighed every 2 to 3 days and observations were taken based on physical changes of each caterpillar. To test significance of the hypothesis and compare the experimental and control groups, a one tailed two sample t-test was used. 
+
+Results:
+The data in Table 1 shows the difference in weights of the caterpillars, both control and experimental groups, between each data collection. As displayed in Graph 1, both groups, on average, showed over 3 gram increases in weight from Day 0 to Day 3 with the control group growing more than the experimental group. The following data collection on Day 5 shows a smaller weight increase for both groups, each growing less than 3 grams, with the experimental group’s weight increasing more than that of the control group. By the last data collection on Day 7, the control group’s weight decreased over 2 grams while the experimental group continued growing over a gram. In general, both groups showed a smaller increase of weight over time until the experimental group began to lose weight. The two-sample t-test gave a one tailed p-value around 0.24, giving evidence that the data is not statistically significant. 
+
+
+
+Discussion:
+In general, the hypothesis was supported by the data from the caterpillars used for testing. Observations over time revealed that after the 7 days, all 4 larvae from the control group had reached their commitment pulse and pupated. In contrast, all 4 experimental larvae were still in their larval form, with much greater mass than their initial size on Day 0. This evidence is supported by the Manduca sexta’s capacity to drop JH levels at the end of their 5th larval instar just before pupation. The introduction of precor prevented JH levels from dropping significantly, allowing the organisms to keep growing because high JH levels signal a continuation of growth in earlier larval instar stages. In an observation of hormone levels, another experiment found the JH levels dropped almost completely in this crucial point of development [Baker: 2003]. The addition of artificial JH inhibited the drop that signals the end of the 5th larval instar, delaying the pupation of the experimental group and arresting them in a larval form. Graph 1 reveals that over time, both groups did increase in size, but the control group actually decreased between Day 5 and Day 7 before they pupated. This trend suggests that naturally, these insects would get smaller before they form pupae. To test if this weight loss was an error, the experiment could be repeated with a larger population size and record the weight over time of the caterpillars from the beginning of the 5th larval instar to their pupal phase, paying special attention to not only the comparison of net weight change between groups but within the control. The higher net weight change of the experimental group supported the initial hypothesis. However, the statistical test reveals that the results found are not statistically significant. This could result from the small sample size of the experiment. In the future, a higher probability for statistically significant results would require larger sample sizes. 
+
+Literature Cited:
+1. Fred C.Baker, Leslie W.Tsai, Carol C.Reuter, David A.Schooley. In vivo fluctuation of JH, JH acid, and ecdysteroid titer, and JH esterase activity, during development of fifth stadium Manduca sexta. Abstract. Accessed September 24, 2018.
+&lt; https://www.sciencedirect.com/science/article/pii/0020179087901089&gt;
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=graph+1.png&Size=288576&Type=image%2Fpng&F=F_ebTwVMxOljETdap
+
+Figure 2: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=table+1.png&Size=109235&Type=image%2Fpng&F=F_3HLtrieiNx7DG9P
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Graph 1: Weight Change over Time of Manduca Sexta Caterpillars
+Table 1: Difference in Weight Measured from Previous Data Collection in grams*************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+SAWHET did not detect issues in this section.
+Materials and Methods
+SAWHET did not detect issues in this section.
+Results
+SAWHET did not detect issues in this section.
+Discussion
+SAWHET did not detect issues in this section.
+Literature
+SAWHET did not detect issues in this section.

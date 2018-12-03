@@ -1,0 +1,94 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-17 18:11:24
+Author of this lab report is: Ellen Quinlan
+ID: R_1IMDKCV41w6x8Xk
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: Interspecific and Intraspecific behavior patterns in male Betta splendens
+
+Abstract:
+Resource allocation is an important topic in conservation biology. With changing climates it is important to understand how plants will alter their allocation patterns in response to environmental variables. Here we look at the effect of sand on the growth patterns of the root and shoot tissues of Fagopyrum esculentum. The expectation was that the root to shoot length and weight ratios would be much greater in plants grown in the porous sand compared to plants grown in vermiculite in order to compensate for the quick rate of percolation. Our data showed no significant difference in length root to shoot ratio but did show a significant difference in weight root to shoot ratio. This significance, in conjunction with our observation of more roots per plant grown in sand or a sand/vermiculite mix, suggests that in response to a porous soil F. esculentum grows more roots in an attempt to harvest more nutrients from the porous soil. This adaptation shows a beneficial change in resource allocation that allows F. esculentum to best thrive in a changing environment.
+
+Introduction:
+This experiment evaluates the influence of hormones on insect development. Hormones are important chemical components in both insects and mammals that stimulate specific cells or tissues. In humans, hormones play a necessary role in development that is marked by puberty. Puberty marks a human’s physical and chemical transition into adulthood similarly to how molting marks a transition into an adult in insects. Molting is when an insect’s epidermal skin cells secrete a new outer layer of cuticle and the old layer of skin is shed [Johnson: 2018]. This allows the insect to change size and morphology. Molting allows insects to progress from the larva to pupa and adults stages. This is noted in the holometabolous cycle which is demonstrated by the Manduca sexta, the insect of interest in this experiment [Johnson: 8]. These caterpillars are used as the model organism in this experiment because their hormone regulation has been studied extensively and it is simple to manipulate their hormone levels. Hormone activity regulation was first observed with the linden bug as published by the Turkish Journal of Agriculture and Forestry. These bugs had low egg hatch rates and didn’t mature into adults. It was discovered that the paper towels used in jars with the bugs contained juvabione, which is an insect growth regulator (IGR) compound [Tunaz: 2004]. This led to more research regarding IGR’s. In the Manduca sexta, juvenile hormone and ecdysterone are two important hormones involved in development [Johnson: 2018]. Manduca sexta have four stages: egg/embryo, larvae, pupa, and adult. These stages are regulated by juvenile hormone and ecdysterone. This experiment treats the caterpillars with an increased amount of juvenile hormone and evaluates their weight and appearance as a reflection of their development. Similarly to IGR’s, if there are increases or decreases in hormone levels, they should affect the normal development of the insects. Increasing the amount of juvenile hormone in Manduca sexta will prevent or delay the caterpillars from becoming pupae.
+
+Materials and Methods:
+Cultivation of Oat plants  5 Rodeo oat seedlings were planted in 4 pots of vermiculite. 2 pots were placed in a greenhouse in an area under constant exposure to natural light. Another 2 pots were placed in the same greenhouse in an area under a shade cloth to simulate limited exposure to natural light. The plants were watered daily for 2 weeks.   Plant Harvesting and Measurement The plants were harvested after 2 weeks, separated from the vermiculite, washed and dried off. 3 individual Oats were collected from each pot for a total of 12 measurements. Each whole plant was weighed using a standard lab balance. The root was separated from the shoot at the seedling. The seed was included as a part of the root. The weights and lengths of each root and shoot was recorded.  Statistical Analyses  A one-tailed two sample t-test was used to determine differences in the average root:shoot ratios, lengths and weights of the plants grown under constant exposure to light compared to the plants grown under limited exposure to light.
+
+Results:
+The mean root:shoot ratio for the mass of control plants was 0.44 and the mean root:shoot ratio for the mass of experimental plants was 0.4375 (Fig.1). The mean root:shoot ratio for length in the control plants was 0.72 and the mean root:shoot ratio for length in the experimental plants was 0.7525 (Fig.1).  The standard deviation for mass in the control plants was 0.0447 and the standard deviation for mass in experimental plants was 0.0286 (Fig.1).  The standard deviation for length in control plants was 0.0908 and the standard deviation for length in experimental plants was 0.1264 (Fig.1). We used a two-sample t-test to analyze our results. The mean of the length control group was not statistically significantly different than that of the length experimental group (t-stat = 0.3617, df = 26, P = 0.7299). The mean of the weight control group was also not statistically significantly different than that of the weight experimental group (t-stat = 0.8119, df= 6, P = 0.4479). When observing the plants on the final day, there was not much visible difference. They appeared to be around the same height. Also, the leaves of both the experimental and the control plants had the same luminosity and green color. As a result of this experiment, both the control and experimental plants had around the same length and weight (Fig.1). Overall, the control and the experimental plants had the same pattern of growth
+
+Discussion:
+Our hypothesis, that fish in a reduced visibility blue environment would exhibit less aggression than when in a clear environment, was not supported. We observed no significant difference at the .05 level, suggesting that the presence of dye in the environment does not effect aggression in Beta splendens. It is possible that the dye had no effect on the vision of the fish, thus failing to inhibit their ability to identify and interact with other fish. Additionally, past investigations have found color to be a less significant visual cue as fin vibrations and size [Johnson: 1973]. This could suggest that the fish were still able to identify opposing individuals as conspecific males from their shape, behavioral patterns, and fin movements, and thus exhibited normal levels of aggression. Understanding the beta fish’s visual capabilities in the context of environmental variation and the relatedness of vision and behavior could further our understanding of the adaptive functionalities and evolutionary success of eyesight in certain fish. 
+
+Literature Cited:
+Literature Cited Works Cited A.D. Comparative Physiology. Biological Principles Lab Manual. Dept. Biology. Wake Forest University. Winston-Salem NC. Vers. 18.1 (updated Jan. 5, 2016) pp. 5-16. Fulton, Michael H., and Peter B. Key. “Acetylcholinesterase Inhibition in Estuarine Fish and Invertebrates as an Indicator of Organophosphorus Insecticide Exposure and Effects.” Environmental Toxicology and Chemistry. Wiley Periodicals, Inc., 03 Nov. 2009. Web. 30 Mar. 2017 Stefan Reber, Jolanda Stettler, Giuseppe Filosa, Martino Colombo, Daniel Jutzi, Silvia C Lenzken, Christoph Schweingruber, Rémy Bruggmann, Angela Bachi, Silvia ML Barabino, Oliver Mühlemann and Marc‐David Ruepp, Minor intron splicing is regulated by FUS and affected by ALS‐associated FUS mutants, The EMBO Journal, 35, 14, (1504-1521).
+
+Figure 1: no files uploaded
+
+Figure 2: no files uploaded
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Figure Legends: Figure 1: The average weight of the caterpillars are being compared below. Table 1: Change of Weight (in grams)*************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+1. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.2. It appears that you make some predictions about the outcome of your experiment, but it is formulated vaguely. Please rephrase so it is clear what your hypothesis is.
+Materials and Methods
+SAWHET did not detect issues in this section.
+Results
+1. It looks like this section is a bit long. You might have information in this section that belongs to either Materials and Methods or to Discussion. The Results section should only contain the outcomes of the study without any interpretation of the results or how the outcome was obtained. It could also be that your text is a bit repetitive. If so, please revise accordingly.
+Discussion
+1. Your discussion seems too short. The Discussion is where you interpret your results and put the outcomes of the study into a broader context. Typically, it is much longer than the Results section. A short Discussion suggests that you have not interpreted the data in enough detail. Please check then revise and change if needed.
+Literature
+SAWHET did not detect issues in this section.

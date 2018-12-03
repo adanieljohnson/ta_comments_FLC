@@ -1,0 +1,106 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-26 15:52:00
+Author of this lab report is: Shelby Ellis
+ID: R_1qXo8nWLmuF8T9x
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: The Effect of Martin’s IGR on the Growth and Development of Larval Manduca Sexta 
+
+Abstract:
+c
+
+Introduction:
+There is emerging research regarding the use of substances that impact the growth and development of insects. According to the Turkish Journal of Agriculture & Forestry “Growth and development of insects are under the control of hormones, including prothoracicotrophic hormones (PTTH) (brain hormone), ecdysteroids, and juvenile hormones (JH)” [Tanaz: 381]. With this knowledge, it is evident that controlling these hormones will impact the timing and success of molting. Insect growth regulators (IGRs) block the insect’s ability to pupate into an adult by regulating metamorphosis, so the likelihood of survival for these insects drops dramatically. Also, these insects will not be able to reproduce as they will never reach the developmental stage appropriate for reproduction. In order for the juvenile hormone analogs (JHAs) process to be successful, it is crucial that the insects are injected at the beginning of their lives [381]; Tanaz and Uygun write “This is apparent in studies involving the tobacco hornworm larvae, M. sexta,” so this knowledge aids my argument in this experiment that when fed food injected with insect growth regulators, the larval insect will not grow or develop at the same rate as caterpillars not tested with the substance. This research is integral in increasing the sustainability and safety of other organisms and humans. IGRs are different than traditional insecticides as they are not toxic to the insect or other organisms that could potentially come in contact with the substance. The issue with insecticides is prevalent across the world as it contaminates water and “interfere[s] with other physiological processes” [Tanaz: 377]. 
+
+In this experiment, Martin’s IGR, a substance that blocks the processes regulated by juvenile hormones, is used on Manduca Sexta caterpillars to compare their growth with caterpillars not given the hormone, known as the control group. I hypothesize that the caterpillars exposed to Martin’s IGR in their food will weigh less, in grams, than the caterpillars in the control group after two weeks of observation. 
+
+
+Materials and Methods:
+To begin the experiment, eight Manduca Sexta caterpillars with weights ranging from 0.65 g-1.11 g were selected for observation. Each caterpillar was placed in its own rearing container, which the food was placed into with two holes cut into each cubicle, so the caterpillars would have oxygen. All eight caterpillars were fed ten grams of food no matter their placement in either the experimental or control group. The control group’s food had five drops of deionized water mixed in the food while the experimental group had five drops of Martin’s IGR mixed into their food. All caterpillars were kept in the same incubator placed at a controlled temperature range. After fourteen days, we recorded the final mass of each caterpillar after weighing them ten times over the duration of two weeks. To assess the data collected, we performed a Two-Sample T-Test to predict a p-value which determined that our data was statistically significant. 
+
+Results:
+Table 1 shows the differences of mass for each caterpillar, which is the final result of taking the difference in weight gain for each day the caterpillars were weighed. These data show the net total weight gain for each caterpillar. For example, caterpillar one in the experimental group gained 0.153 grams over the course of two weeks. This gain differs drastically from that of caterpillar four in the control group, who gained a totally of 2.30 grams over the duration of the experiment. Finally, the mean difference from each group was taken, so each difference was added then divided by four to account for each caterpillar. 
+
+As is evident in Table 1, the experimental group’s mean difference of mass was significantly lower than that of the control group. The raw data of the differences of means between the four caterpillars of each group shows a slight discrepancy, especially in the experimental group. Caterpillars 1 and 4 had a much smaller difference than the other two in this group. In addition, the caterpillars in the control group also had a collective difference of mass that was widespread.
+
+Also, a Two-Sample T-Test was completed for the data collected, and it determined that the t-statistic for this data is 0.76, the degrees of freedom are 6, and the corresponding p-value is 0.47. The mean of the control group was not statistically significantly different than that of the experimental group. 
+
+
+Discussion:
+Fail to reject the null hypothesis; the data are not statistically significant (there is no difference in means for the groups); we cannot conclude that a significant difference exists 
+This could be because we observed for the caterpillars for too long (some of them began to pupate, which created a drastic difference in mass) 
+
+
+Literature Cited:
+1.	Tunaz, H; Uygun, N. 2004. Insect growth regulators for insect pest control. Turkish Journal of Agriculture & Forestry. 28: 377-387. 
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=Screen+Shot+2018-09-26+at+3.50.27+PM.png&Size=37300&Type=image%2Fpng&F=F_SIXHBkiHAuL8dbj
+
+Figure 2: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=Screen+Shot+2018-09-26+at+3.50.19+PM.png&Size=49457&Type=image%2Fpng&F=F_20UVx5iMiSYVBSS
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Table 1. Average mean difference of mass from both the experimental group and control group. 
+
+Figure 1. Effect of Martin’s IGR on growth of Manduca Sexta caterpillars. Experimental group (green bar) shows a smaller mean weight gain than control group (blue bar). *************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+1. It looks like your Abstract does not contain the results of your experiment. Make sure you briefly state what the primary result and interpretation of your paper is.2. The abstract seems too short. The abstract is a summary of the paper and contains the most important information of EACH section. Make sure that you included a bit of Introduction, Materials and Methods, Results, and Discussion in your abstract.
+Introduction
+1. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.
+Materials and Methods
+1. SAWHET detected that your Materials and Methods section is a bit short. This could indicate that some necessary information is missing. The Materials and Methods section should contain a detailed description of what you did during the study, including chemicals, procedures, and analyses. The intent is to make the research reproducible and transparent. If you are not sure what is sufficient detail, look at primary literature articles for examples.
+Results
+1. It looks like this section is a bit long. You might have information in this section that belongs to either Materials and Methods or to Discussion. The Results section should only contain the outcomes of the study without any interpretation of the results or how the outcome was obtained. It could also be that your text is a bit repetitive. If so, please revise accordingly.
+Discussion
+1. Your discussion seems too short. The Discussion is where you interpret your results and put the outcomes of the study into a broader context. Typically, it is much longer than the Results section. A short Discussion suggests that you have not interpreted the data in enough detail. Please check then revise and change if needed.2. SAWHET could not detect any citations. The Discussion section is where you compare your results with what others have found, so there need to be citations. You are required to cite at least one primary resource (and the lab manual is not a primary resource!), but more usually is better because it shows that you are evaluating your results from different angles.
+Literature
+SAWHET did not detect issues in this section.

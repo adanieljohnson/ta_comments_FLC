@@ -1,0 +1,96 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-25 18:28:10
+Author of this lab report is: Brian Wexler
+ID: R_1dok4IIyuzrUpdx
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: The Enlarging Effects of Ecdysterone Blocker (20E) on the Weight of Manduca sexta Caterpillars 
+
+Abstract:
+Many hormones regulate the timining and development of almost all living organisms. In the Manduca sexta specifically, the two major hormones are Juvenile Hormone (JH) and Ecdysterone which work together to regulate the transition from juvenility to adulthood. In this experiment, we test the effects of what would happen to the eating habits and therefore, weight of the Manduca sexta when an insect growth regulator (IGR) blocks Ecdysterone levels from rising. We suspect it will increase the average weight of the caterpillars, with respect to their initial average weight. To our surprise, the addition of this IGR to their diet resulted in a decrease in their overall weight, which may be due to lab error. 
+
+Introduction:
+Caterpillars in general and especially the Manduca sexta possess a holometabolous life cycle meaning that throughout their lifetime, they will undergo complete metamorphosis and will look significantly different than their juvenile counterpart (1. Johnson, 2018). Throughout this complete change are hormones regulating what they do and for how long. Two of the major hormones involved in this process are known as the Juvenile Hormone (JH) and Ecdysterone, which work together to time nutrition consumption with the transition into adulthood (2. Johnson, 2018). While they are gathering as much food as possible, they are primarily experiencing the effects of Juvenile Hormone (JH) until they have collected enough mass to begin pupation, which is known as the commitment pulse. At the point, JH levels decrease, but do not diminish while Ecdysterone levels increase significantly (3. Johnson, 2018). In this experiment, we will be addressing what will happen to the size (weight measured in grams) of the Manduca sexta caterpillars when a synthetic Insect Growth Regulator (IGR) acts as an Ecdysterone blocker (20E). I hypothesize that an addition of a 20E Ecdysterone blocker will delay the commitment pulse, leading to longer time for nutrition consumption and an overall increase in average weight. 
+
+
+Materials and Methods:
+This experiment consisted of both a control group and a treatment group where only the treatment group receive the independent variable of the 20E Ecdysterone blocker. Each group consisted of 4 Manduca sexta caterpillars for a combined total of 8 caterpillars, where a number (1-4) and a letter (c or t) was assigned to each of them; c corresponds to the control and t to the treatment, respectively. Caterpillars were separated by 2 plastic walls so that there is one plastic container with 4 isolated Manduca sexta each having their own compartment. Each caterpillar received 10 grams of room-temperature, GLH diet food to begin with but were given more food when resources were depleting (when the food was running out). On top of the food, the control group was given exactly 5 transfer-pipet drops of tap water while the treatment group received exactly 5 transfer-pipet drops of the 20E Ecdysterone Blocker. The drops of either water or 20E were replenished each time food was added to the caterpillar’s living area. The weights in grams of each caterpillar was recorded initially before the experiment had begun and were then taken every other day for 12 days. Living conditions remained the same throughout the entirety of the experiment by making sure the same incubator was used. To validate significance, we used a two-sample t test to compare data taken from the 2 groups before and after a treatment: the mean weight of the control and treatment groups initially and after the experiment had concluded. 
+
+Results:
+The general trends of the experiment saw an overall increase in weight general trend for the control group while a decrease in weight for the treatment group. With respect to their initial weights, the average control group weight increased approximately 245.8% (2.39 to 8.28g) while there was a 14.9% (5.13 to 4.37g) decrease in average weight for the group that received the Ecdysterone blocker. Refer to Figure 1 for a visual of the comparison between the average weights before and after the treatment was given (Figure 1). In this figure, it is shown that the initial weights of the control group who ultimately increased their weight were much smaller than those of the treatment group, who ultimately decreased in weight over the 12-day span. The mean of the control group, although, was statistically significant from the mean of the treatment group with a t-stat = 2.59, dF = 46, and P = 0.012). 
+
+Discussion:
+Based on the recorded observations, general trends, and raw data alone, our hypothesis that an addition of an insect growth regulator (IGR) in the form of an Ecdysterone Blocker 20E to the diets of Manduca sexta caterpillars will lead to a delay in the commitment pulse and therefore, an overall increase in the average weight, was rejected. The experimental group which was exposed to the 20E blocker treatment yielded a 14.9% decrease in average weight, ranging from an initial average of 5.13g to a final average of 4.37g. Ecdysterone hormone levels rise significantly when the commitment pulse has been reached, signaling the organism that enough nutrients have been accumulated and is time to begin pupation and ultimately adulthood (4. Johnson, 2018). At the same time, Juvenile Hormone (JH) levels decrease at this point which ends the stage of life that is mostly dedicated to mass gain (5. Johnson, 2018). Theoretically, a hormone that blocks Ecdysterone levels from rising should trigger a delay in the commitment pulse, allowing more time and opportunity to gain nutrients and thus, a larger weight and size. Because the initial weights of the Treatment Group were significantly larger than those of the control group (Refer to Figure 1), we predict that changes in initial weight can be explained by the different stages of larvae the treatment group caterpillars must have been in: if they were further along with their life cycle and thus, close to pupation, a decrease in eating as they begin pupation could explain the negative percent difference. Logically, another study must be performed top confirm this alternate explanation, where caterpillars must be of similar initial mass (weight and size) and larvae stage when the experiment begins. That way, changes in size can be confidently attributed to the changes in hormones (Ecdysterone Blocker). 
+
+Literature Cited:
+1. Johnson AD. Hormone Regulation. Comparative Physiology Manual. Dept. Biology, Wake-Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 12, 2018), pp. 10-13. 2. Johnson AD. Hormone Regulation. Comparative Physiology Manual. Dept. Biology, Wake-Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 12, 2018), pp. 9-12. 3. Johnson AD. Hormone Regulation. Comparative Physiology Manual. Dept. Biology, Wake-Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 12, 2018), pp. 10-13. 4. Johnson AD. Hormone Regulation. Comparative Physiology Manual. Dept. Biology, Wake-Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 12, 2018), pp. 9-11. 5. Johnson AD. Hormone Regulation. Comparative Physiology Manual. Dept. Biology, Wake-Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 12, 2018), pp. 10-13.
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=IMG_1122.jpg&Size=251862&Type=image%2Fjpeg&F=F_2c0CJ027BbbgQQy
+
+Figure 2: no files uploaded
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Figure 1. Initial and Final Average Weights of Experimental and Control Groups *************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+1. It looks like your Abstract does not contain the results of your experiment. Make sure you briefly state what the primary result and interpretation of your paper is.
+Introduction
+1. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.
+Materials and Methods
+SAWHET did not detect issues in this section.
+Results
+SAWHET did not detect issues in this section.
+Discussion
+1. SAWHET detected some issues with your citation format. The correct citation format is: [FirstAuthor: Year]. If you are citing more than two papers, it would be [FirstAuthor: Year][FirstAuthor: Year]. Please revise accordingly.2. SAWHET found detailed information in your Discussion. This could be an indication that you are putting too much information about your results (e.g., effect sizes or p-values, mM values) in this section. Ideally, these details should be stated in the Results section and only generally referred to in the Discussion. For example, instead of saying ‘the p-value was 0.000345’, you can just write ‘the statistically significant result’.
+Literature
+1. It appears you are only citing the lab manual. You are required to have at least one reference to primary literature in your Introduction and Discussion section. The lab manual is not a primary source.

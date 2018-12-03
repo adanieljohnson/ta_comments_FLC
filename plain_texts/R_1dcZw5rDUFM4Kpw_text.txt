@@ -1,0 +1,96 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-25 00:30:11
+Author of this lab report is: Joi Freeman
+ID: R_1dcZw5rDUFM4Kpw
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: Effect of increased juvenile hormone mimic on the development of larval Manduca sexta
+
+Abstract:
+The hormones JH and 20E are critical in the development of Manduca sexta. A drop in JH and spike in 20E leads to metamorphosis. The objective of the study was to determine whether or not manipulating the levels of JH in Manduca sexta’s diet had an effect on its weight. Levels of JH were manipulated by adding a JH mimic to the diet of the treatment group of Manduca Sexta and compared to a control group given distilled water. The mean difference in weight of the treatment group was much higher than the mean difference in weight of the control group. There was a critical point in which JH levels must drop, thus, addition of JH inhibited the pupation of Manduca sexta larvae but did not have a significant effect on the weights of the organisms. 
+
+Introduction:
+Hormones are chemical messengers that have the important job of regulating processes of development such as growth or metamorphosis. Without cues from hormones, development can be interrupted, stunted, or accelerated. In this experiment, we examine the effect of hormones on Manduca Sexta or the tobacco hornworm.  Manduca sexta is a holometabolous organism, meaning larvae engage in a series of instars, or molts before commencing metamorphosis [Johnson: 2018]. Hormones are the chemical signals responsible for driving this process. Research suggests, the initiation of metamorphosis in Manduca Sexta is stimulated by Juvenile Hormone (JH) and Ecydysterone (20E) [Browder: 2001]. JH determines the nature of Manduca Sexta’s molt, while 20E regulates the type of molt [Hiruma: 2003]. The two hormones fluctuate throughout the life span of Manduca Sexta. During the final instar when the larva reaches and appropriate size, the brain is signaled to decrease JH levels, and increase 20E levels [Hiruma: 1998]. This change in hormonal balance is the signal that induces metamorphosis. This study addresses the question of what happens to the development of Manduca sexta when the level of JH is manipulated. We believed that if additional JH was added to Manduca Sexta’s diet, then the mean weight of Manduca Sexta receiving the treatment would be larger than the control group of Manduca Sexta because the treatment group would stay in the larval phase and continue eating, while the control group would develop normally.
+
+Materials and Methods:
+Manduca sexta were raised in an artificial lab setting in which a group of eight organisms of equal size were separated into groups of four and placed into a gated container with two holes punctured on the sides. The containers were labeled “control” or “treatment” and each cell was numbered from one to four. Each organism was placed in an individual cell. Manduca sexta were given a diet of 10 grams of food per cell and were fed every other day. To test the effects of a Juvenile hormone mimic, the treatment group of Manduca sexta received a diet of 10 grams of food and 5 drops of Precor, a JH mimic. The control group was given a diet of 10 grams of food and 5 drops of distilled water. The containers were stored in an incubator set at a constant temperature of 26 degrees. Every other day at 3 PM, the respective weight of each organism was monitored and recorded. After each visit the current weight was subtracted from the weight of the previous check-in. At the end of the experiment, the average weights of the control and treatment groups were calculated for each check-in. These means were used to calculate the overall mean of the control group and treatment group. Finally, the two means were compared using a two-sample t test and the results were analyzed.
+
+Results:
+The mean difference in weight of the control group was 0.88 and the standard deviation was 3.15. The mean difference in weight of the treatment group was 2.33 and the standard deviation was 0.81. At the beginning of the experiment, the weights of both the control and treatment groups were increasing. However, on Day 3, the weights of the control group began to decline and one Manduca sexta in that group pupated. At the same time, the weights of the treatment group kept increasing. On day 7, the weights of the control group were significantly lower than those of the treatment group. Table 1 shows the mean differences in weights of the caterpillars per check in period. One week after day 7, all of the organisms in the control group pupated and the treatment group remained large.
+
+Discussion:
+Figure 1 shows the difference in means between the control and treatment groups. The mean of the control group is much smaller than the mean of the treatment group suggesting that the institution of Precor into Manduca sexta’s diet caused an increase in weight by preventing the organism to engage in the commitment pulse and pupate. However, this is not shown by the results of the two-sample t test. Our results are not statistically significant (t-stat= 0.76, df =4, P= 0.48). Because The P value of 0.48 is larger than the significance level of 0.5, suggesting that there is not enough evidence to conclude that there is not a difference between the mean difference in weights of the control group and the treatment group. This could be due to our sample size or the number of data points we recorded. For the next experiment, we should use more Manduca Sexta, and record their changes in weight more frequently for a longer period of time. These results partially support the hypothesis because the Manduca Sexta in the treatment group did stay in the larval phase and continued to eat while the Manduca Sexta in the control group gained weight for a period of time, lost weight, and then pupated, indicating that JH does have an effect on the larval development and inhibition of pupation in Manduca Sexta, but does not have a significant effect on the weight of the organisms. In a similar study testing the different effects of insecticides that used JH and 20E agonists, the implementation of the insecticide bisacylhydrazine, which acts as a 20E agonist, in the diet of many different lepidopteran larvae, including Manduca Sexta, induced lethal molts. Also, when testing insecticides with JH agonists in the German cockroach Blatella germanica researchers discovered that increased JH led to permanent larvae or sterility of adults [Carlson: 1998]. This study shows the importance of hormones in the development of insects and that if normal levels are manipulated, or critical periods of hormone levels rising or dropping are not met, defects such as sterility or permanent larvae can occur. This is good information to use as the usage of pesticides increases and delays or accelerates the development of insects by disrupting the critical periods in which hormones must fluctuate to advance growth.
+
+Literature Cited:
+Browder M.H, D’Amico L.J, Nijhout H.F. 2001. The role of low levels of juvenile hormone esterase in the metamorphosis of Manduca sexta. Journal of Insect Science. 11: 1-4. Carlson G.R, Dhadialla T.S., Le D.P., 1998. New insecticides with ecdysteriodal and juvenile hormone activity. Annual review of Entomology. 43: 545-569. Hiruma K, Nelson C.A., Riddiford L.M., et al., 2003. Insights into the molecular basis of the hormonal control of molting and metamorphosis from Manduca sexta and Drosophila melanogaster. Insect Biochemistry and Molecular Biology. 33: 1327-1338. Hiruma K, Riddiford L.M,  Shinoda T, et al., 1998. Juvenile hormone prevents ecdysteorid-induced expression of broad complex RNAs in the epidermis of the hornworm Manduca sexta. Developmental Biology. 203: 233-244. A.D Johnson. 2018. Hormone regulation. Comparative Physiology Laboratory Manual. Dept. Biology, Wake Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 2, 2018), pp. 6-13
+
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=Caterpillar+Data.png&Size=31575&Type=image%2Fpng&F=F_31tNNd53curRQTv
+
+Figure 2: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=Screen+Shot+2018-09-25+at+12.17.32+AM.png&Size=89546&Type=image%2Fpng&F=F_1C2CdVPQJijs9lR
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Table 1: Mean difference in weights of Manduca sexta; Figure 1: Mean difference in weight of Manduca sexta*************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+1. It appears that you make some predictions about the outcome of your experiment, but it is formulated vaguely. Please rephrase so it is clear what your hypothesis is.
+Materials and Methods
+SAWHET did not detect issues in this section.
+Results
+1. It seems like you might not have included the outcome of your statistical tests in the Results section. If you did any statistical analyses, please state what your parameters and p-values were. (If you did not need to perform any statistical analysis, you can ignore this comment.)
+Discussion
+1. SAWHET found detailed information in your Discussion. This could be an indication that you are putting too much information about your results (e.g., effect sizes or p-values, mM values) in this section. Ideally, these details should be stated in the Results section and only generally referred to in the Discussion. For example, instead of saying ‘the p-value was 0.000345’, you can just write ‘the statistically significant result’.
+Literature
+SAWHET did not detect issues in this section.

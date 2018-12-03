@@ -1,0 +1,104 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-26 21:27:20
+Author of this lab report is: Elizabeth Woollen
+ID: R_0eqZDDQ0nG2obuh
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: The Effects of the IGR Precor on Larval Stage Manduca sexta
+
+Abstract:
+Juvenile hormone (JH) regulates the type of molt during the development of Manduca sexta. Insect growth regulators (IGR) affect JH by either mimicking or inhibiting JH’s natural function. Precor is an IGR that mimics JH function. We decided to investigate the effects on larval Manduca sexta in order to monitor the effects the Precor had on weight and larval development. The control was fed a diet based on manufacturer instructions and the experimental had drops of Precor added to it. All other variables were kept constant. Data was analyzed using a one-tail T test which proved that the data collected was insignificant. The reason was because one caterpillar died during the trial which altered statistical calculations. Scientists can use this collected data in order to better understand the effects of IGRs that mimic JH.
+
+
+Introduction:
+Manduca sexta, the horn caterpillar, is an insect in the Order Lepidoptera which includes butterflies and moths.. Juvenile hormone (JH) regulates the type of molt during the development of Manduca sexta. The hormone exerts “biochemical restraint” on cellular transformation which cause metamorphosis of an insect to take place [Williams : 1965]. Insect growth regulators (IGR) affect JH by either mimicking or inhibiting JH’s natural function [Johnson : 2018]. Precor is a type of IGR that mimics JH. We decided to determine the effects of Precor of early larval stage Manduca sexta. Manduca sexta is the ideal organism to experiment with because we know a lot about the average life cycle and maturation process of these insects. When JH levels drop very low and Ecdysterone levels rise, the larva reaches the commitment pulse where it begins to pupate. We hypothesize if the Manduca sexta are given Precor with their food that they will continue to gain weight. This is a plausible hypothesis because the Precor will mimic the role of JH and the Manduca sexta will not reach their commitment pulse and will not pupate. By not pupating, the larva will continue to eat and gain weight
+
+Materials and Methods:
+There was one treatment group and one control group. Eight Manduca sexta caterpillars somewhere between the third and fourth larval stage were selected and divided into two groups of four. Each caterpillar was placed into its own separate rearing jar. Each caterpillar was fed one of two diets. The 4 control caterpillars received ten grams of Great Lakes Manduca diet (GLM) prepared according to manufacturer instructions with three drops of water. The 4 experimental caterpillars received ten grams of GLM diet with three drops of Precor added in place of the water. Initial weight measurements of all eight caterpillars were taken in grams. Measurements were taken every other day for two weeks and recorded. Food was changed when it had dried out. Observations of all caterpillars were recorded as well. To evaluate the data recorded, a one-tail T test was used. 
+
+
+Results:
+The control and experimental caterpillars appeared similar in size and shape for a week, but the control group developed black spots/lines on their backs. All the caterpillars ate well except for the caterpillar in the experimental group that appeared diseased and later died. At the beginning of the second week, both groups appeared at rest/immobile. When disturbed, the control did not move whereas the experimental squirmed violently when disturbed. At the end of the two weeks, all of the caterpillars in the control group had pupated while none of the experimental caterpillars did. Those that did pupate gained weight more slowly toward the end and ultimately lost weight once pupation had begun. The mean change in weight for the control was 5.32g ∓ 0.93g. The mean change in weight for the experimental was 8.1g ∓ 2.80g. As shown in Figure 1, there is a change in weight between the control and the experimental groups and that it is not significant. The p-value that was calculated was 0.06. 
+
+
+Discussion:
+We hypothesized that if the Manduca sexta were given Precor with their food that they would continue to gain weight. Our hypothesis was supported because the experimental group did continue to gain weight, but statistically the results could not be seen as significant because the p value calculated was too high. The reason that our p value was too high was because the experimental group had one caterpillar die. When the caterpillar died the mean was divided by three instead of four which altered the statistics. JH mimics are known to disrupt embryonic and larval insect development [Payen : 1977]. As seen by the fact that the control group did go through pupation and the experimental group did not shows that the Precor did its job as a JH mimic and disrupted the larval development. 
+
+
+Literature Cited:
+Johnson AD. Comparative Physiology. Biological Principles Laboratory Manual. Dept. Biology, Wake Forest University, Winston–Salem, NC. Vers. 18.2 (updated August 21, 2018), pp. 6-15.
+Payen G. and Costlow J. Effects of a Juvenile Hormone Mimic in Male and Female Gametogenesis of the Mud-Crab, Rhithropanopeus Harrisii (Gould) (Brachyura : Xanthidae).Duke University Marine Laboratory, Beaufort, North Carolina. (April 1977) pp. 199
+Williams C. The Juvenile Hormone of Insects. Nature 178. (28 July 1956) pp. 212-213
+
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=BIO+114+Caterpillar.png&Size=54846&Type=image%2Fpng&F=F_1pxNO5FsjlQtqm7
+
+Figure 2: no files uploaded
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Figure 1. Average Change in Weight of Manduca sexta
+The average change in weight of the control and experimental groups of caterpillars are shown in Figure 1 with the standard deviation error bars. 
+*************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+SAWHET did not detect issues in this section.
+Materials and Methods
+SAWHET did not detect issues in this section.
+Results
+SAWHET did not detect issues in this section.
+Discussion
+1. Your discussion seems too short. The Discussion is where you interpret your results and put the outcomes of the study into a broader context. Typically, it is much longer than the Results section. A short Discussion suggests that you have not interpreted the data in enough detail. Please check then revise and change if needed.
+Literature
+SAWHET did not detect issues in this section.

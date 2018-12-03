@@ -1,0 +1,98 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-26 00:47:39
+Author of this lab report is: Joe  McPherson 
+ID: R_1dGqBEEWv4fj74Y
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: Title: How Ecdysterone Impacts Development, in Terms of Weight, on Manduca Sexta Caterpillars
+
+Abstract:
+Abstract: The main objective of this experiment was to determine the effects of ecdysterone (20E) on the development of Manduca Sexta caterpillars. Based on the fact that the rise and fall of 20E is crucial to signaling the commitment pulse (which informs caterpillars to pupate), our group anticipated that overexposure to 20E would cause the caterpillar to never receive the commitment pulse, thus causing the caterpillar to never pupate and continue eating food. Therefore, we hypothesized that the caterpillar would see an average increase in weight after being exposed to 20E. We split 8 caterpillars into 4 groups. The control group received food mixed with distilled water, and the treatment group received food mixed with ecdysterone. We measured the weights of each caterpillar every two days, for two weeks, and calculated the average weights over the time period. At the end of the experiment, it was observed that the treatment group saw an average decrease in weight, while the control group saw an average increase in weight. Therefore, our hypothesis was not supported. Rather, we observed that the caterpillars exposed to 20E pupated earlier than the caterpillars not exposed to 20E.
+
+Introduction:
+Introduction: Many of the moths and caterpillars that we see in our state fall under the classification Manduca sexta (Johnson AD: 2018). These caterpillars exhibit multiple stages, including molting, that eventually allow their transformation into moths. These different stages allow observers to clearly measure how development is impacted by hormones, such as Ecdysterone. Ecdysterone (20E) is a hormone found in insects, in particular caterpillars, that regulates the timing of molting in caterpillars (Johnson AD: 2018). While caterpillars are in the 4th larval stage there is a sharp decrease in 20E, followed by a small increase of 20E in the 5th larval stage that initiates the commitment pulse (Johnson AD: 2018). This commitment pulse signals the caterpillar to pupate (Johnson AD: 2018). What happens if a caterpillar is exposed to increased amounts of 20E? According to a study completed by NASA, the gradual exposure of Manduca sexta tissues to ecdysteroids may have contributed to an increase in flight-muscle growth (Tischler, ME; Wu, M; Cook, P; Hodsden, S: 1990). Considering that 20E is a form of ecdysteroid, perhaps it could cause an increase in weight in caterpillars. We hypothesize that as caterpillars are exposed to additional 20E, the average weight of the caterpillars will increase. We hypothesize this because we think that overexposure to 20E will cause the caterpillars to miss the commitment pulse, allowing the caterpillars to continue eating even though they are ready to pupate. Add this to the notion that ecdysteroids may cause increases in muscle mass, and there is clear reason to expect an average increase in weight. 
+
+Materials and Methods:
+Materials and Methods: 8 Manduca sexta caterpillars are divided in 2 groups of 4 caterpillars. Each caterpillar is placed in its own cell (each container should have four cells) and given a number between 1 and 8 (poke 2 air holes in each cell). The first group of caterpillars (numbered 1-4) should be designated as the control group, each caterpillar receiving a standard serving of 10 grams of caterpillar food mixed with 3-10 drops of distilled water. The second group of caterpillars (numbered 5-8) should be designated as the treatment group, each caterpillar receiving a modified serving of 10 grams of caterpillar food and 3-10 drops of 20E. Keep both groups in the same incubator for two weeks, checking the weight of each caterpillar every two days (the initial weight of each caterpillar should be recorded prior to starting the experiment)(You may need to make more food for both groups over the two weeks, as well as clean the old food/poop out of the containers). After two weeks, the average difference in weights, from start to finish (or death), should be used for hypothesis testing. A two-sample T-test will be used for statistical procedures. 
+
+Results:
+In our experiment, both groups saw an initial increase in average weight. However, after day 3 the treatment group began to experience a decline in average weight. This trend continued until the conclusion of the experiment. Contrasting this, the control group saw an increase in average weight for the majority of the experiment. At the time of conclusion, the control group had a significantly higher average weight than that of the treatment group (all of this is best portrayed by Graph 1). The control group also saw the largest change in weight from the start of the experiment to the end of the experiment (shown in Table 1). Statistical testing concluded that the mean of the control group was statistically significantly different than that of the experimental group (t-stat=2.59, df=46, P=0.0128).
+
+Discussion:
+Based on the decline in average weight of the treatment group, we can conclude that the data did not support our hypothesis that caterpillars exposed to 20E would see an increase in average weight. we observed that the caterpillars in the treatment group pupated earlier than those in the control group, thus causing the decrease in weight that was recorded for the treatment group. Although it can’t be proven in this experiment, our results hint at the idea that 20E may actually cause pupation to occur earlier in caterpillars. This phenomenon was observed by an experiment done by the U.S. Department of Agriculture as Manduca sexta tissues were exposed to ecdysterone, and these tissues resembled tissues undergoing “larval-pupal transformation” as well as “pupal-adult transformation.” (Judy, K; Marks, E: 1970). In our experiment, the only possible source of error would be the mistake of choosing caterpillars at different stages of their larvae stages. Some caterpillars were significantly larger (by weight) than other caterpillars, thus perhaps causing pupations to occur earlier or later despite the caterpillar’s exposure to 20E. Therefore, the experiment should be repeated using caterpillars that are almost identical in size and larvae stage to rule out the possibility of age playing a role in pupation. Although no conclusion could be made about the correlation between additional exposure to 20E and the weight of Manduca sexta caterpillars, it is known that this hormone is pertinent in the development of Manduca sexta caterpillars. Without this hormone, we would not see many (if any) of the beautiful moths and butterflies that we see today. 
+
+Literature Cited:
+1.	Johnson AD. Comparative Physiology. Biology 114 Laboratory Manual. Dept. Biology, Wake Forest University, Winston-Salem, NC. Vers. 18.2 (updated August 2, 2018), pp 6,11,12. 
+2.	Tischler, M. E.; Wu, M.; Cook, P.; Hodsden, S. Ecdysteroids Affect in Vivo Proten Metabolism of the Flight Muscle of the Tobacco Hornworm (Manduca sexta). University of Arizona, Department of Biochemistry, Tucson 85724, U.S. Accessed September 25, 2018. 
+3.	Judy, K.; Marks, E. Effects of Ecdysterone in Vitro on Hindgut and Hemocytes of Manduca sexta (Lepidoptera). U.S. Department of Agriculture, Fargo, North Dakota 58102. Accessed September 25, 2018.
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=manducalab.jpg&Size=16318&Type=image%2Fjpeg&F=F_vpBZzp43U4n8EHD
+
+Figure 2: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=manducagraph1.jpg&Size=19867&Type=image%2Fjpeg&F=F_4ODeU2HgFWEaMLf
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Table 1: Average values (in grams) of weights of Control and Treatment Groups, with recorded changes in weight change from beginning to end of experiment, as well as standard deviation of data. 
+Graph 1: Graph of average values of caterpillar weights over the course of the experiment. *************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+1. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.
+Materials and Methods
+1. SAWHET found text that looks like you might have written the Materials and Methods section like a recipe in a cookbook or the lab manual instruction. Materials and Methods should be composed mainly in the past tense and describe what was done. It should not be every step that somebody else needs to do to reproduce the experiment. Even though both styles would get the necessary information across, recipe style is not used in scientific papers. If you need examples, check the methods of the articles you used.2. SAWHET detected that your Materials and Methods section is a bit short. This could indicate that some necessary information is missing. The Materials and Methods section should contain a detailed description of what you did during the study, including chemicals, procedures, and analyses. The intent is to make the research reproducible and transparent. If you are not sure what is sufficient detail, look at primary literature articles for examples.3. It seems like you did not include statistical analyses in your paper. In case you did, make sure you state which tests you used in the Materials and Methods section. Also, please give enough detail about the test, for example, whether it was a one- or two-tailed T-test or what your significance cutoff value (e.g., alpha value) was. If you have this information in the Results section instead, take it out and put it in Methods. The Results should only contain the outcome of the tests, not details about the analysis.
+Results
+SAWHET did not detect issues in this section.
+Discussion
+1. SAWHET detected some issues with your citation format. The correct citation format is: [FirstAuthor: Year]. If you are citing more than two papers, it would be [FirstAuthor: Year][FirstAuthor: Year]. Please revise accordingly.
+Literature
+SAWHET did not detect issues in this section.

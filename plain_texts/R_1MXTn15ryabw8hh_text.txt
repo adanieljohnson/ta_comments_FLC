@@ -1,0 +1,100 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a revision of a previous lab report.
+Date submitted: 2018-09-27 02:07:47
+Author of this lab report is: Annirudh Nagaram
+ID: R_1MXTn15ryabw8hh
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: The effect of Precor, a Juvenile Hormone analog, on the development of Manduca Sexta Caterpillars.
+
+Abstract:
+The Manduca Sexta caterpillar is an important model organism, because it is representative of many species and can be studied easily in the lab. Hormones play a vital role in controlling the growth and development of insects, including the Manduca Sexta caterpillar. I hypothesized that if 7 drops of precor, a Juvenile Hormone analog, was added to the food of Manduca Sexta it would gain more weight than a control group fed only food mixed with 7 drops of water. We created two groups of 4 caterpillars each, with the experimental groups getting precor and the control groups getting water. We measured the weight of the caterpillars every other day, for a period of a week. The results of the experiment were not statistically significant, leading us to accept the null hypothesis. Our results lead us to believe that JH has an impact on the feeding habits of the Manduca Sexta research. With further research and more samples we could expand our understanding further and be able to understand the further implications of the effect of hormones on the development of the Manduca sexta. 
+
+Introduction:
+Manduca Sexta is an insect in the order Lepidoptera, is a common pest of plants as larvae. The Manduca Sexta is very important in the field of biology for being a model organism, contributing massively to the field of physiology by being able to study insect endocrinology and development (Byron:2017). A model organism is broadly defined as species that are representative of a wide range of species and therefore are a vital tool in studying biological processes. The reason that the Manduca Sexta is a valuable model organism is because researchers have sequenced their genome and are able to breed them in a controlled laboratory setting. Manduca Sexta provides crucial information about how Insect development systems function. The Manduca Sexta itself goes through holometabolous development, which entails that the organism undergoes complete metamorphosis and that the adult insect is greatly different from the larvae (Byron: 2017). An important part of the timing of transformation from larva to pupa to adult, known as molting, is determined by the concentrations of hormones within the insect’s body. If the correct balance of hormones is not in its body, the molting process would be disrupted, and the animal would not develop properly. Two important hormones in the Manduca Sexta are Ecdysterone(20E) and Juvenile Hormone (JH). There is a crucial period in the insect’s development as they transition from larva to pupa called the commitment pulse, which is largely governed by an increase in levels of 20E and a decrease in JH. Both of those actions are critical because if the levels of JH do not decrease and the levels of 20E do not increase simultaneously then the caterpillar will stay in its juvenile stage (Johnson: 11). In this lab, we will use precor, a chemical called methoprene a JH analog, to see how its presence in the food of the Manduca Sexta will affect the weight of the caterpillar larvae over time. Precor is a registered as a pesticide by the EPA and has been known to halt the development of insects (EPA: 2001). Will the precor have the effect of a pesticide on the Manduca Sexta? Will the presence of Precor alter the weight of the caterpillars over time? In this experiment the independent variable is quantity of precor fed to the caterpillars and the dependent variable is the change in weight of the caterpillars over time. I would hypothesize that, if precor was added to the diet of the caterpillars it would increase the levels of JH, increasing the weight of the caterpillars but ultimately stopping them from pupating.
+
+Materials and Methods:
+For our experiment we separated 8 caterpillars into 2 groups of 4. The control and experimental groups were each placed into separate containers. Each caterpillar was given 10 grams of food, with the control group getting 7 drops of water mixed into their food and the experimental group getting 7 drops of precor mixed into their food. When weighing the caterpillars, we were careful to individually weigh each 10 grams and mix the drops of either precor or water, to ensure that each caterpillar contained an even amount of the treatment or the water. For one week, we weighed the caterpillars every other day, and changed their food. In our statistical analysis, we used a two tailed- T test as we were comparing a change in a measurement variable, the weight of the caterpillars, that was the same in two different groups. The two tailed- T test resulted in a p value of 0.75 and therefore means that our results were not statistically significant.
+
+Results:
+Our results demonstrate that both control and experimental groups grew but that on average the treatment group increased at a faster rate. As indicated by figure 1, the control group had an average growth rate of 2.12 grams per day from September 6 to September 12, whereas the experimental group had an average growth rate of 2.40 grams per day. All the individual caterpillars grew, except for one caterpillar that died. Initially, for the first two days of the experiment the control group grew faster, on average at a rate of 1.37 grams per day versus the experimental groups average growth rate at 1.05 grams per day. However, over the next two days the growth rate of treatment increased more than the growth rate of the control, with control growing at a rate of 2.46 grams per day and the experimental growing at 2.99 grams per day. By the end of the experiment we had no caterpillars that pupated, with no definitive evidence that any of the caterpillars had reached a commitment pulse. 
+
+Discussion:
+We can conclude that we can accept the null hypothesis that the larvae given 7 drops of precor in their food will not gain more weight than the control group given 7 drops of water in the food. Although we did see that the experimental group did in fact grow at a higher rate in comparison to the control group, that data was ruled not to be statistically significant by the significant test, as we got a p value of 0.74, so we cannot accept the alternate hypothesis. One important factor that influenced our results was the death of control caterpillar one. We predict that it died sometime in between September 6 and September 8 and therefore, did not grow for most of the experiment. Since the growth rate of that caterpillar was close to 0 for a large duration of the experiment, it undoubtedly decreased the overall average growth rate of the control group.  This factor influences our results because we do not have an accurate representation of how one caterpillar in the control group behaved, begging the question of how the data would have been different if the caterpillar had lived. Our findings indicate that the addition of precor alters the level of JH in would alter the feeding habits of the Manduca sexta, a conclusion that is supported by our data. This an important conclusion to make because, as a model organism the physiology of the Manduca Sexta contains important lessons for a wider range of species, giving us great insight into their function (Byron: 2017). Another important factor to consider is that after the week that we ran our experiment we found that the three caterpillars in the control group had pupated whereas none of the caterpillars in the experimental group had pupated. This indicates that next time the study is conducted it should be conducted over a longer timeline, which would likely yield more accurate results. For the future, the addition of more living replicates will broaden the sample size and increase the likelihood of ensuring significant results. Overall, this experiment was invaluable in understanding the effects of hormones on the development of insects and has many broader implications for how the development of insects can be precisely controlled at different stages. 
+
+Literature Cited:
+1.	Morgan A. Byron and Jennifer L. Gillet- Kaufman. Tobacco Hornworms. University of Florida. Accessed September 26, 2018 &lt;http://entnemdept.ufl.edu/creatures/field/tobacco_hornworm.htm&gt;
+2.	Leonelli S., Ankeny RA. 2013. What makes a model organism. Endeavor. 37: 209-212. 
+
+3.	Johnson AD. Cell Structure. Biological Principles Laboratory Manual. Dept. Biology, Wake Forest University, Winston–Salem, NC. Vers. 16.1 (updated May 1, 2016), pp. 5–15.
+
+4.	Pesticide Fact Sheet. Environmental Protection Agency. Accessed September 26, 2018.  &lt; https://www3.epa.gov/pesticides/chem_search/reg_actions/reregistration/fs_PC-105401_1-Jun-01.pdf&gt;
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=graph+picture_biolab.jpg&Size=34990&Type=image%2Fjpeg&F=F_1IXmxZahSe8eduN
+
+Figure 2: no files uploaded
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Figure 1. The average growth rate of control and experimental groups over a week*************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+1. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.
+Materials and Methods
+1. SAWHET detected that your Materials and Methods section is a bit short. This could indicate that some necessary information is missing. The Materials and Methods section should contain a detailed description of what you did during the study, including chemicals, procedures, and analyses. The intent is to make the research reproducible and transparent. If you are not sure what is sufficient detail, look at primary literature articles for examples.
+Results
+1. It seems like you might not have included the outcome of your statistical tests in the Results section. If you did any statistical analyses, please state what your parameters and p-values were. (If you did not need to perform any statistical analysis, you can ignore this comment.)
+Discussion
+1. SAWHET detected some issues with your citation format. The correct citation format is: [FirstAuthor: Year]. If you are citing more than two papers, it would be [FirstAuthor: Year][FirstAuthor: Year]. Please revise accordingly.2. SAWHET found detailed information in your Discussion. This could be an indication that you are putting too much information about your results (e.g., effect sizes or p-values, mM values) in this section. Ideally, these details should be stated in the Results section and only generally referred to in the Discussion. For example, instead of saying ‘the p-value was 0.000345’, you can just write ‘the statistically significant result’.
+Literature
+SAWHET did not detect issues in this section.

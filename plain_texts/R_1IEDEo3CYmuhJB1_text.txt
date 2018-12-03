@@ -1,0 +1,97 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-25 23:50:08
+Author of this lab report is: Ana Rivas-Chavez
+ID: R_1IEDEo3CYmuhJB1
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: Effects of 20E Blockers on the Weight of Manduca Sexta Caterpillars
+
+Abstract:
+The purpose of this experiment is to introduce Insect Growth Regulators (IGRs) to the diet of Manduca Sexta caterpillars and record how it comes into play with other hormones to affect their weight. One of the caterpillar’s main hormones is Ecdysterone (20E). It is part of the family of steroid hormones which is in charge of regulating the timing of molting during insect development. We hypothesize that if a 20E blocker is introduced to a Manduca caterpillar’s diet, then the Manduca will spend a longer time in it’s caterpillar stage and increase in weight. Eight Manduca Sexta caterpillars were chosen and divided into two groups of four each. We fed each caterpillar one of two diets. The caterpillars were monitored every other day for two weeks in order to record the weight (in grams) of each caterpillar and to replenish their food as needed. The group of caterpillars that had a control diet without the 20E blocked displayed a significant increase in weight while the treatment group of caterpillars who had the 20E blocker added to their diet showed a decrease in weight. Given the results, our hypothesis has been proven incorrect and we cannot infer that the 20E blocker causes an increase in weight by extending the Manduca Sexta’s caterpillar phase.
+
+Introduction:
+The purpose of this experiment is to introduce Insect Growth Regulators (IGRs) to the diet of Manduca Sexta caterpillars and record how it comes into play with other hormones to affect their weight. One of the caterpillar’s main hormones is Ecdysterone (20E). It is part of the family of steroid hormones which is in charge of regulating the timing of molting during insect development. Before the commitment pulse, which indicates that the caterpillar is large enough to pupate and form a normal sized moth, there is a small rise in the 20E level. What would happen to the caterpillar’s weight if we could delay their commitment pulse? Since the “first step in the moulting process… is initiated by ecdysterone” (Jenkin and Hinton, 1996: Wigglesworth, 1973), we will introduce an IGR that acts as a 20E blocker to the diet of these caterpillars. We hypothesize that if a 20E blocker is introduced to a Manduca caterpillar’s diet, then the Manduca will spend a longer time in it’s caterpillar stage and increase in weight. 
+
+Materials and Methods:
+Eight Manduca Sexta caterpillars were chosen and divided into two groups of four each. Each caterpillar was then placed into its own separate container. We fed each caterpillar one of two diets. Diet 1 was composed of 10 grams each of unaltered Manduca diet with five drops of water. Diet 2 was composed of 10 grams each of Manduca diet with five drops of the 20E blocker. The treatment caterpillars were all labeled with the numbers 1,2,3, and 4 while the control group caterpillars were labeled 1c,2c,3c, and 4c. Caterpillars 1c through 4c were the control group which were fed ‘Diet 1’ while caterpillars 1 through 4 were part of the experimental group and were fed ‘Diet 2’. All caterpillars were kept in the same incubator in a 12 light:12 dark cycle. The caterpillars were monitored every other day for two weeks in order to record the weight (in grams) of each caterpillar and to replenish their food as needed.
+
+
+Results:
+There is an observable pattern seen within both groups of Manduca Sexta caterpillars. The group of caterpillars that had a control diet without the 20E blocked displayed a significant increase in weight as they started with a mean weight of 2.40g and ended with a mean weight of 8.28g. This means that there was a 245.82% increase in the weight of the control group. There was a standard deviation of P=0.03, which means that the data is relevant.On the other hand, the treatment group of caterpillars who had the 20E blocker added to their diet showed a decrease in weight. They started with an average 5.13g and ended with an average 4.37g. These results are significant because P=0.02. The one sample test resulted in a p-value of 1.52E-5.  
+
+Discussion:
+Given the results, our hypothesis has been proven incorrect and we cannot infer that the 20E blocker causes an increase in weight by extending the Manduca Sexta’s caterpillar phase. Our hypothesis was proven incorrect. We did observe within the other groups that whenever the caterpillar got closer to the commitment pulse, their weight tended to decrease. We believed our results may have been skewed because our caterpillars in the treatment group were noticeably larger than the caterpillars in the control group. Previous experiments have shown that when a larva grows up to 5g, then it begins to decide when to pupate. Multiple caterpillars in our treatment group had a starting weight higher than 5g, which could have affected our results. Additionally, the treatment group caterpillars were of a dull earthy color (brown and green) while the control group caterpillars were of a bright green color. This leads us to believe that the treatment group caterpillars were in a more advanced larva stage than the caterpillars in the control group. With further testing, our results could potentially demonstrate that the 20E blocker led to a prolonged caterpillar phase after a decrease in weight.
+
+Literature Cited:
+1. Johnson AD. Comparative Physiology Bio 114. Laboratory Manual. Dept. Biology, Wake Forest University, Winston–Salem, NC. Vers. 16.1 (updated May 1, 2016), pp. 6–16.
+2. Nijhout HF. Control of Moulting and Metamorphosis in the Tobacco Worm. The Biological Laboratories, Harvard University, Cambridge, MA. (Received January 25,1974), pp. 493. &lt;http://jeb.biologists.org/content/jexbio/61/2/493.full.pdf&gt;
+3. Riddiford LM. Curtis AT. Hormonal Control of Epidermal Detachment During the Final Feeding Stage of the Tobacco Hornworm Larva. Department of Zoology, University of Washington, Seattle, WA. (Revised November 23, 1977), pp. 561. &lt;https://www.sciencedirect.com/science/article/pii/0022191078900598&gt;
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=Screen+Shot+2018-09-25+at+11.45.20+PM.png&Size=94626&Type=image%2Fpng&F=F_1HeQGtTqUA9VgGj
+
+Figure 2: no files uploaded
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Mean Changes in Weight of Manduca Sexta Caterpillars*************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+1. It looks like you are using words like ‘correct’, ‘proven’ or ‘wrong’ to describe the outcome or outlook of your experiment. This implies that experiments can be either correct or wrong and that hypotheses can be proven. All we can do with experiments is to support or reject a hypothesis. Also, data that contradict a hypothesis are not wrong, they just do not support our thinking.
+Introduction
+1. The introduction seems to be a bit short. The Introduction and Discussion are the longest sections of a scientific paper. The Introduction should introduce the reader to the topic, give reasons why the experiment was conducted, what the study organisms are, and what outcome the authors expect and why. Make sure you gave enough attention to this section and revise if necessary.2. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.
+Materials and Methods
+1. It seems like you did not include statistical analyses in your paper. In case you did, make sure you state which tests you used in the Materials and Methods section. Also, please give enough detail about the test, for example, whether it was a one- or two-tailed T-test or what your significance cutoff value (e.g., alpha value) was. If you have this information in the Results section instead, take it out and put it in Methods. The Results should only contain the outcome of the tests, not details about the analysis.
+Results
+1. SAWHET did not find any reference to figures or tables in your Result section. If you do not have graphs or figures that display your results, please think carefully if there is a good reason why not. Usually, all scientific papers have outcomes graphically represented in graphs or figures. If you have figures and graphs, make sure you point to them in your Results section.
+Discussion
+1. SAWHET could not detect any citations. The Discussion section is where you compare your results with what others have found, so there need to be citations. You are required to cite at least one primary resource (and the lab manual is not a primary resource!), but more usually is better because it shows that you are evaluating your results from different angles.2. It looks like you are using words like ‘correct’, ‘proven’ or ‘wrong’ to describe the outcome or outlook of your experiment. This is problematic because it implies that experiments can be either correct or wrong and that hypotheses can be proven. All we can do with experiments is to support or reject a hypothesis. Also, data that oppose a hypothesis are not wrong, they just do not support our thinking.
+Literature
+SAWHET did not detect issues in this section.

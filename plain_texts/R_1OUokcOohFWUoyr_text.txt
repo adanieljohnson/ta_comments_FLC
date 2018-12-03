@@ -1,0 +1,95 @@
+*************************************************************************
+Number of lab report in semester: first
+This is a submission.
+Date submitted: 2018-09-27 00:42:51
+Author of this lab report is: Ilse Schaeffner
+ID: R_1OUokcOohFWUoyr
+Course number: 114
+TA: Ellen Quinian
+*************************************************************************
+Title: The Effect of Precor on the Growth and Development of Manduca Sexta Larvae
+
+Abstract:
+Manduca sexta, known as the Tobacco Hornworm, is recognized as a pest among tobacco and vegetable such as tomatoes. Despite their harmful effects on these crops, once the insect matures to adulthood, it feeds instead on nectar. The effects of pests on crops worldwide has influenced scientists to explore the effects of hormone-based pesticides, some of which include methoprene, a known juvenile hormone mimicker, and is known by the brand name Precor. To understand the effect of Precor on the growth and development of Manduca sexta larva, several caterpillars were exposed to small doses of Precor in order to demonstrate its effect on the average weight change. It was hypothesized that if Manduca sexta were exposed to Precor in late larval stages, then they would experience a greater average weight change than unexposed caterpillars. Due to extraneous factors, our results come out to be slightly skewed, with a p value above 0.05, making our results insignificant. 
+
+Introduction:
+Manduca sexta are a species of insects that are well known to be a pest among crops in the United States. During their larval stages, Manduca sexta, known commonly as the Tobacco Hornworm, feed upon tobacco and other crops, such as tomatoes. Once matured to adulthood, however, the Manduca sexta no longer feed on crops; they become harmless and feed on plant nectar. Manduca sexta undergo metamorphosis in order to pupate and molt into their adult form. This process involves the hormones juvenile hormone (JH) and ecdysterone (20E). JH, produced by the insect’s corpus allata, are present through all instars of the larval Manduca sexta, whereas 20E is produced by the prothoracic glands [1]. Between the fourth and fifth instar of its larval stages, the level of JH in the insect drops off substantially, and 20E experiences a slight increase [1]. This event, known as the commitment pulse, indicates that the insect has enough resources to undergo metamorphosis [1]. Without this momentous change in the insect’s hormone levels, the insect will not pupate and mature to adulthood [1]. Precor, a known JH mimicker, is commonly used as a pesticide especially for flea control [2] Precor is also known for its pesticidal effects on Collembola [3]. Juvenoids [2] such as Precor work as by altering the endocrine function of pest populations and suppress the proliferation and reproduction of pests in adulthood [3]. It was hypothesized that if Manduca sexta are exposed in late larval stages to Precor, then they will express a greater average change in weight than unexposed Manduca sexta. 
+
+Materials and Methods:
+To begin the experiment, eight late-larval Manduca sexta caterpillars were selected and their initial weights were taken. They were separated into two groups, a control and a Precor treatment group, each containing four caterpillars. Two plastic containers, one labeled “control” and the other labeled “treatment,” were each divided into four subdivisions in which the caterpillars were placed individually. Each caterpillar was fed one of two diets. Those in the control group were fed the traditional Great Lakes Manduca (GLM) diet (10g) with 3 drops of water, whereas those in the treatment group were fed the GLM diet (10g) with 3 drops of Precor. The control and treatment groups, in their respective containers, were kept in an incubator kept at constant temperature. Caterpillar weights were measured and recorded 5 times over the course of 14 days. As caterpillars ate their food, it was replaced accordingly, feeding the control group 10 grams of the GLM diet with 3 drops of water, and the treatment group 10 grams of the GLM diet with 3 drops of Precor. To test the result of the experiment, a two-tailed T-test was conducted to determine whether the results were significant. 
+
+Results:
+To measure the effects of Precor on the average weight change of Manduca sexta caterpillars, The initial weight was subtracted from the final weight of each individual caterpillar to find the individual weight differences, from which the control group values were averaged and the treatment group values were averaged, yielding an average weight change in the control group, and an average weight change in the treatment group. To determine the significance of the results, a two-tailed T-test was performed, and the two-tailed P-value was determined to be p=0.114821. Figure 1 displays the average weight changes among the control and treatment groups, and the standard deviations within each. 
+
+Discussion:
+The data shows an increased average weight difference among the treatment group, however the two-tailed p-value of 0.114821 represents a nonsignificant result due to its high likelihood of our results being due to chance. The hypothesis predicted a difference in average weight changes among the two groups, however due to the p-value, the data is inconclusive. It is important to note that the data from the experiment was likely impacted by the death of one of our treatment group individuals. This left 3 treatment caterpillars, as opposed to the four control caterpillars. Observations of the individual caterpillar also noted that there was one treatment caterpillar that appeared to be substantially smaller than the other two. This likely led to the extreme standard deviation in the treatment group, and skewed the average weight change as well. Based on our knowledge of JH, Precor, and the hormone composition of Manduca sexta, we can infer that exposure of larval Manduca sexta caterpillars will ultimately impact the growth and development of the organisms by maintaining high levels of JH thus forcing the exposed caterpillar to skip the commitment pulse. Based on the extensive use of Precor as a pesticide and preventing the development of insects that are pests in adulthood [2], we inferred that Precor would maintain larval Manduca sexta, which would ultimately keep them in their “pest” stage. The effects of JH and JH mimickers are well studied and known to largely impact matured adult insects and their ability to reproduce [3], so the effect of Precor on pre-mature Manduca sexta was important in understanding the role of JH in insect development. 
+
+Literature Cited:
+1.Johnson AD. Hormone Regulation. Biological Principles Laboratory Manual. Dept. Biology, Wake Forest University, Winston-Salem, NC. Vers. 18.2 (updated 8/2/18) pp.5-15. 2.Staal GB. 1982. Insect control with growth regulators Interfering with the endocrine system. Zoecon Research Laboratory. 31: 15-23. 3. Campiche S., Becker-van Slooten K., Ridreau C., Tarradellas. 2006. Effects of insect growth regulators on the nontarget soil arthropod Folsomia candida (Collembola). Ecotoxicology and Environmental Safety. 63: 216-225.
+
+
+Figure 1: https://wakeforest.qualtrics.com/WRQualtricsControlPanel/File.php?Filename=Screen+Shot+2018-09-26+at+9.33.39+PM.jpg&Size=37872&Type=image%2Fjpeg&F=F_DcVu9IWzJjhsQgx
+
+Figure 2: no files uploaded
+
+Figure 3: no files uploaded
+
+Figure 4: no files uploaded
+
+Figure 5: no files uploaded
+
+Figure 6: no files uploaded
+
+Figure 7: no files uploaded
+
+Figure 8: no files uploaded
+
+Figure 9: no files uploaded
+
+Figure 10: no files uploaded
+
+Figure 11: no files uploaded
+
+Figure 12: no files uploaded
+
+Figure 13: no files uploaded
+
+Figure 14: no files uploaded
+
+Figure 15: no files uploaded
+
+Figure 16: no files uploaded
+
+Figure 17: no files uploaded
+
+Figure 18: no files uploaded
+
+Figure 19: no files uploaded
+
+Figure 20: no files uploaded
+
+Figure Legends: 
+Figure 1. Effect of Precor on average weight change (in grams) of Manduca sexta. Average weight change among the treatment group individuals was greater than average weight change among the control group individuals. Standard deviation was greater among the treatment group with a value of 2.7972665, whereas the control group had a standard deviation of 0.9306046. *************************************************************************
+
+
+
+Feedback from SAWHET:
+Disclaimer:
+This section contains feedback that was automatically created by SAWHET, the lab report submission software of the Biology Department.
+SAWHET is trained to detect the most common problems found in lab reports, and give you useful feedback. Please read through the comments carefully, and think about the advice. Sometimes though, SAWHET makes mistakes and flags something as a problem when it is not. In that case, you can just ignore the comment.
+Also, please remember that SAWHET is only programmed to give you advice about the most common errors found in lab reports. It catches mainly errors in organization and format. Other issues such as flaws in how you report data and scientific writing problems will be commented on by your TA. Think of SAWHET and your TA as a team dedicated to helping you write better.
+
+Title
+SAWHET did not detect issues in this section.
+Abstract
+SAWHET did not detect issues in this section.
+Introduction
+1. SAWHET detected some issues with your citation format. The correct citation format is: [LastnameFirstAuthor: Year], for example [Smith: 2002]. If you are citing more than two papers, it would be [LastnameFirstAuthor: Year][LastnameFirstAuthor: Year]. Please revise accordingly.
+Materials and Methods
+1. It seems like you did not include statistical analyses in your paper. In case you did, make sure you state which tests you used in the Materials and Methods section. Also, please give enough detail about the test, for example, whether it was a one- or two-tailed T-test or what your significance cutoff value (e.g., alpha value) was. If you have this information in the Results section instead, take it out and put it in Methods. The Results should only contain the outcome of the tests, not details about the analysis.
+Results
+SAWHET did not detect issues in this section.
+Discussion
+1. SAWHET detected some issues with your citation format. The correct citation format is: [FirstAuthor: Year]. If you are citing more than two papers, it would be [FirstAuthor: Year][FirstAuthor: Year]. Please revise accordingly.2. SAWHET found detailed information in your Discussion. This could be an indication that you are putting too much information about your results (e.g., effect sizes or p-values, mM values) in this section. Ideally, these details should be stated in the Results section and only generally referred to in the Discussion. For example, instead of saying ‘the p-value was 0.000345’, you can just write ‘the statistically significant result’.
+Literature
+SAWHET did not detect issues in this section.

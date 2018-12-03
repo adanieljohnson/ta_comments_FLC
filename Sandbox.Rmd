@@ -9,18 +9,50 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Sandbox
+#Progress Report
 
+1.	Need to clarify where/how best to provide a shared site.
+Problem I have is that I am using confidential data in private repo. Should I:
+
+* Document activities in the Default website space.
+* Pull data and munge in a private repo folder to create public dataset, then call in the de-identified data only?
+
+2.  Where do you want us to conduct the actual analyses? In: 
+
+* Default website repo
+*	A repo with Mike's data-specific file and folder structure
+* Other location?
+
+3.	How deep do you want us to go on documenting process?
+
+*	All raw work?
+*	Notes and scribbles in .rmd
+*	Train of thought journals?
+
+4.  I have questions in Data_intake_1.Rmd.
+
+
+## R Sandbox
 
 ```{r text}
 
 aes <- 
-  readtext(file = "data/original/actives/plain/*.txt", # read each file .txt
+  readtext(file = "plain_texts/*.txt", # read each file .txt
            docvarsfrom = "filenames", # get attributes from filename
            docvarnames = c("language", "country", "year", "title", "type", "genre", "imdb_id")) # add the column names we want for each attribute
 
 glimpse(aes) # preview structure of the object
+```
 
 
+```{r}
+library(tidytext)
+library(readtext)
+```
+
+
+
+```{r}
+text_files_list <- readtext(file = "plain_texts/*.txt")
 ```
 

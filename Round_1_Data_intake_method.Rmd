@@ -82,7 +82,7 @@ unique(base_data$code.structure)
 Create a single-column data frame of just the comments. Then check that the data was converted to characters not factors.
 ```{r}
 base_data_subset21 <- as.data.frame( base_data[,21], drop=FALSE, stringsAsFactors=FALSE)
-class(base_data_subset21[23,1]) #Should report as a character
+class(base_data_subset21[23,1]) #Should report as "character"
 ```
 
 Create a subset data frame for analysis. Contains **ta.comment** (Col. 21), **code.subject** (Col. 22) and **code.structure** (Col. 23). Again, check that subset data are characters, not factors. 
@@ -107,7 +107,8 @@ base_data_all_short
 
 >OKAY SO WHY do I get a dataset of 50 observations of 3 variables with base_data_all_short, but the single column subset21 data only shows up as a value?
 
-```Code:
+```{r}
+Code:
 base_data_subset21_short <-base_data_subset21[c(1:50),]
 base_data_all_short <-base_data_subset_all[c(1:50),]
 base_data_subset21_short
@@ -116,6 +117,8 @@ base_data_all_short
 ***
 
 #HERE IS THE BREAKDOWN ZONE
+
+**May be part of bigger question: why do some commands output as values, others as data frames?**
 
 Have R convert the desired set of extracted data into a tibble.
 ```{r}
@@ -129,6 +132,7 @@ You HAVE to use a tibble to tokenize the text lines. Trying to do it straight fr
   unnest_tokens(word,text)
 ```
 
+with:
 ```{r}
 (text_tibble) %>% 
   unnest_tokens(word,text)
@@ -145,6 +149,14 @@ NOW I KNOW that the tibble I just created is going to have problems, because the
 Is it as simple as creating a count column in the original data, then calling it in?
 
 Alternative: can I append the column with counts using mutate.
+
+OR
+
+Is the problem that I am trying to create all this from a dataframe/TIBBLE, and I need to read it in as VALUES list of character strings? If THIS is the problem, then why does the previous problem of 
+
+    (base_data_subset21_short)  VERSUS  (text_tibble)
+
+occur?
 
 
 ***
