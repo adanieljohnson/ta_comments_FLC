@@ -41,5 +41,56 @@ Compare these operators with the difficulty of combining datasets stored in arra
 
 
 
+The plyr package makes combining .CSV files a straightforward task in R. The
+following code generates a vector of file names in a directory (data/) which
+match a regular expression (ends in .csv). Next we name each element of the
+vector with the name of the file. We do this because plyr will preserve the 
+names in the following step, ensuring that each row in the final data frame is
+labelled with its source. Finally, ldply() loops over each path, reading in 
+the csv file and combining the results into a single data frame.
+
+> paths <- dir("data", pattern = "\\.csv$", full.names = TRUE)
+> names(paths) <- basename(paths)
+> ldply(paths, read.csv, stringsAsFactors = FALSE)
+
+Once you have a single table, you can perform additional tidying as needed.
+
+Data Manipulation
+	Filter		subsetting or removing observations based on some condition.
+
+	Transform	adding or modifying variables. These modifications can involve either a single variable (e.g., log-transformation), or multiple variables (e.g., computing density from weight and volume).
+
+	Aggregate:	 collapsing multiple values into a single value (e.g., by summing or taking means).
+
+	Sort: 		changing the order of observations.
+
+All these operations are made easier when there is a consistent way to refer to variables. Tidy data provides this because each variable resides in its own column.
+
+
+In R, filtering and transforming are performed by the base R functions subset() and transform(). These are input and output-tidy. 
+
+The aggregate() function performs group-wise aggregation. It is input-tidy. Provided that a single aggregation method is used, it is also output-tidy. 
+
+The plyr package provides tidy summarise() and arrange() functions for aggregation and sorting.
+
+The four verbs can be, and often are, modified by the "by" preposition. We often need group-wise aggregates, transformations and subsets, to pick the biggest in each group, to average over replicates and so on. Combining each of the four verbs with a by operator allows them to operate on subsets of a data frame at a time. Base R possesses a by() function, which is input-tidy, but not output-tidy, because it produces a list. The ddply() function from the plyr package is a tidy alternative.
+
+Other tools are needed when we have multiple datasets. An advantage of tidy data is the ease with which it can be combined with other tidy datasets. All that is needed is a join operator that works by matching common variables and adding new columns. This is implemented in the merge() function in base R, or the join() function in plyr. Compare these operators with the difficulty of combining datasets stored in arrays. This task typically requires painstaking alignment before matrix operations can be used, which can can make errors very hard to
+detect.
+
+
+
+
+
+Visualization
+
+
+
+Modeling
+
+
+
+
+
 
 
