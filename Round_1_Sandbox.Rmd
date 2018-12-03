@@ -1,5 +1,5 @@
 ---
-title: "Sandbox"
+title: "Round 1 Sandbox and Notes for Updates"
 author: "Dan Johnson"
 date: "11/28/2018"
 output: html_document
@@ -29,12 +29,12 @@ Problem I have is that I am using confidential data in private repo. Should I:
 *	Notes and scribbles in .rmd
 *	Train of thought journals?
 
-4.  I have questions in Data_intake_1.Rmd.
+4.  I have specific R coding questions in Round_1_Data_intake_method.Rmd.
 
 
 ## R Sandbox
 
-```{r text}
+```{text}
 
 aes <- 
   readtext(file = "plain_texts/*.txt", # read each file .txt
