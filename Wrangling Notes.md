@@ -1,5 +1,70 @@
 
 
+scrap_names.csv is a dummy file for testing join methods
+
+TA_and_Student_IDs.csv is the file that maps student emails and TA names to their unique ID numbers.
+
+http://www.unit-conversion.info/texttools/random-string-generator/
+
+A random alphanumeric generator. Took 3 seconds to generate 10,000 non-repeating 8-character strings to use for random IDs.
+
+
+
+unique.record
+Sp18.00001
+Sp18.00002
+
+
+unique.record	Set each semester, adds unique ID per record
+report.id
+						sort (can drop)
+report.title
+						student (need to de-identify)
+course
+						ta (need to de-identify)
+lab
+						tag (student enters, but is incorrect)
+type.TA
+grade.TA
+grading.time
+						Rank (can drop)
+
+hypothesis.ok
+data.ok
+citation.ok
+interpretation.ok
+organization.ok
+techflaws.ok
+writing.ok
+comments.incorporated
+
+ta.comment
+
+code.subject
+code.structure
+code.locus
+code.scope
+code.tone
+code.notes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 http://www.sthda.com/english/wiki/tidyr-crucial-step-reshaping-data-with-r-for-easier-analyses
 
 gather()
