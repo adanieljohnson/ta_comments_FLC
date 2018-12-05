@@ -34,6 +34,54 @@ Problem I have is that I am using confidential data in private repo. Should I:
 
 ## R Sandbox
 
+.r
+source(".")
+
+
+
+Model for Pipelines
+
+Name of file format: Pipeline_NameOfProcess_ver#.r
+
+Build with source(".") files
+  Each calls a piece of a larger process.
+  
+  
+Use .gitignore to set what does NOT get moved to GitHub
+
+https://help.github.com/articles/ignoring-files/
+
+https://git-scm.com/docs/gitignore
+
+
+
+Rio
+https://github.com/leeper/rio
+
+
+Amazon Redshift
+
+Use R Plumber to build API for database access.
+https://www.rplumber.io/
+
+
+Use mutate and row_number to create TA and studnt name substitutions, then  join to combine and anonymize.
+
+Classify the texts I have already using Naive Bayes
+
+Book: Teacher Written Commentary
+Lynn Goldstein
+
+https://www.press.umich.edu/6737/teacher_written_commentary_in_second_language_writing_classrooms
+
+
+  
+
+
+
+
+  
+  
 ```{text}
 
 aes <- 

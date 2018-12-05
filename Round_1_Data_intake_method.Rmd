@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Call in tidyverse library
 ```{r}
 library(tidyverse)
+library(tidytext)
 ```
 
 From *Text Mining with R: A Tidy Approach* (Julia Silge and David Robinson)
@@ -108,10 +109,9 @@ base_data_all_short
 >OKAY SO WHY do I get a dataset of 50 observations of 3 variables with base_data_all_short, but the single column subset21 data only shows up as a value?
 
 ```{r}
-Code:
 base_data_subset21_short <-base_data_subset21[c(1:50),]
 base_data_all_short <-base_data_subset_all[c(1:50),]
-base_data_subset21_short
+#base_data_subset21_short
 base_data_all_short
 ```
 ***
@@ -122,26 +122,17 @@ base_data_all_short
 
 Have R convert the desired set of extracted data into a tibble.
 ```{r}
-text_tibble <- tibble(line = seq_along(data), text = base_data_subset21_short)
+text_tibble <- tibble(line = seq_along(data), text = base_data_all_short)
 ```
 
 You HAVE to use a tibble to tokenize the text lines. Trying to do it straight from the data table will throw an error. Compare:
 
 ```{r}
-(base_data_subset21_short) %>% 
-  unnest_tokens(word,text)
+base_data_subset21 %>% 
+  unnest_tokens(word,ta.comment)
 ```
 
-with:
-```{r}
-(text_tibble) %>% 
-  unnest_tokens(word,text)
-```
 
-The tibble must be a single-column table. See what happens when I try to create a tibble using a 3-column dataset.
-```{r}
-text_tibble_all <- tibble(line = seq_along(data), text = base_data_all_short)
-```
 
 
 NOW I KNOW that the tibble I just created is going to have problems, because the data I read in does not include any information about WHICH row the words came from. How do I add the row values?
@@ -163,6 +154,7 @@ occur?
 #Approach ONE: Work backwards from existing sorting to get criteria.
 I have a pre-defined set of traits. Can I build from that?
 
+Do it using naive Bayes. 
 
 ##Step 1.1: Regenerate the groups in two-dimensional array
 
