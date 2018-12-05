@@ -34,29 +34,156 @@ Problem I have is that I am using confidential data in private repo. Should I:
 
 ## R Sandbox
 
-.r
-source(".")
+Development plan should be to build the workflow using Jerid's "pipeline" template. 
 
+Model for a pipeline is to have a standard file name format like:
 
+Pipeline_NameOfProcess_ver#.r
 
-Model for Pipelines
+It calls scripts directly using ```source("xxx.r")``` lines.  
 
-Name of file format: Pipeline_NameOfProcess_ver#.r
+This resembles how I am working already, building individual steps as blocks that can be assembled and organized many ways.
+
+Think of the documentation of a pipeline as saying where each block begins and ends. What are its inputs, outputs?
+
 
 Build with source(".") files
   Each calls a piece of a larger process.
   
-  
-Use .gitignore to set what does NOT get moved to GitHub
-
-https://help.github.com/articles/ignoring-files/
-
-https://git-scm.com/docs/gitignore
+Keeping Confidentiality  
+  Use .gitignore to set what does NOT get moved to GitHub
+    https://help.github.com/articles/ignoring-files/
+    https://git-scm.com/docs/gitignore
 
 
 
-Rio
-https://github.com/leeper/rio
+##Using Rio for data input
+
+  https://rdrr.io/cran/rio/man/import.html
+
+  https://riptutorial.com/r/example/1580/importing-data-with-rio
+
+  https://github.com/leeper/rio
+
+
+##Tools
+
+http://www.unit-conversion.info/texttools/random-string-generator/
+
+A random alphanumeric generator. Took 3 seconds to generate 10,000 non-repeating 8-character strings to use for random IDs.
+
+
+##Modifications to Data Tables Names, Added Data Files
+
+**scrap_names.csv** is a dummy file for testing join methods
+
+**TA_and_Student_IDs.csv** is the file that maps student emails and TA names to their unique ID numbers. If I can keep it behind privacy wall, the dataset will be de-identifiable using ID values only.
+
+In main dataset:
+```
+Added "unique.record". Set each semester, adds unique ID for each comment record. Format is Sp18.00001, Sp18.00002,...
+
+  Modified column names:
+    report.id
+						sort (can drop)
+    report.title
+						student (Still need to de-identify)
+    course
+						ta (Still need to de-identify)
+    lab
+						tag (Student enters, but is potentially incorrect)
+    type.TA
+    grade.TA
+    grading.time
+						Rank (can drop)
+
+    hypothesis.ok
+    data.ok
+    citation.ok
+    interpretation.ok
+    organization.ok
+    techflaws.ok
+    writing.ok
+    comments.incorporated
+
+    ta.comment
+
+    code.subject
+    code.structure
+    code.locus
+    code.scope
+    code.tone
+    code.notes
+```
+
+
+
+
+http://www.sthda.com/english/wiki/tidyr-crucial-step-reshaping-data-with-r-for-easier-analyses
+
+gather()
+Collapse multiple columns into key-value pairs. Collapse columns into rows.
+
+spread()
+Separate a set of key-value pairs into multiple columns. Spread rows into columns.
+
+
+
+separate()
+Separate one column into several at a defined character
+
+unite()
+Unite multiple columns into one using some kind of character to connect. Think connecting words in columns using "\_" to write snake\_case.
+
+
+https://r4ds.had.co.nz/tidy-data.html
+
+
+
+gather(data, key, value, ...)
+	Data is the data frame
+	Key, value are names of the two columns being used to create output.
+	... specifies columns to gather. 
+	
+```
+my_data2 <- gather(my_data,
+                   key = "arrest_attribute",
+                   value = "arrest_estimate",
+                   -state)
+my_data2
+```
+Sorry but key-value pairs is not making sense to me. 
+	Is it that k/v pairs are not the strict two-part data structures I am thinking about from RDS, and more a way to think bout the data as it moves? Is the alternative way to think about it that first column is coming from the table header (key) and appropriate value for that row comes along? If so, then we can predict that for every data line, the anchor will be replicated one time for each key column.
+	YES, the variable NAMES are what is referred to as the key column.
+
+
+
+There are three interrelated rules which make a dataset tidy:
+```
+    Each variable must have its own column.
+    Each observation must have its own row.
+    Each value must have its own cell.
+```
+
+Use JOIN to take two separate tables of data and combine them. Use GATHER to reorganize existing data.
+
+
+complete() takes a set of columns, and finds all unique combinations. It then ensures the original dataset contains all those values, filling in explicit NAs where necessary.
+
+There’s one other important tool that you should know for working with missing values. Sometimes when a data source has primarily been used for data entry, missing values indicate that the previous value should be carried forward:
+
+treatment <- tribble(
+  ~ person,           ~ treatment, ~response,
+  "Derrick Whitmore", 1,           7,
+  NA,                 2,           10,
+  NA,                 3,           9,
+  "Katherine Burke",  1,           4
+)
+
+You can fill in these missing values with fill(). It takes a set of columns where you want missing values to be replaced by the most recent non-missing value (sometimes called last observation carried forward).
+
+
+
 
 
 Amazon Redshift

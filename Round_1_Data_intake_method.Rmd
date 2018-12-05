@@ -29,30 +29,72 @@ My working dataset for analysis is organized with one "instructor comment" as th
 ##Pre-Check Dataset
 BEFORE starting, review data table in Excel:
 
-1.  Check that data table headers are in snake_case.
-2.  Check that data table header names match list in "code_column_names.txt"
+1.  Export to a .CSV file named as **"coded_full_comments_dataset_SemYear.csv"**
+2.  Check that data table headers are in snake_case.
 3.  Check that coding vocabulary terms used in coding columns matches criteria in "codebook_for_comments.md"
-4.  Rename .CSV file to format **"coded_full_comments_dataset_SemYear.csv"**
+4.  Check that data table header names match list below, which also should be in "code_column_names.txt"
+
+```
+ Modified column names:
+    report.id
+    report.title
+						student (Still need to de-identify)
+    course
+						ta (Still need to de-identify)
+    lab
+						tag (Student enters, but is potentially incorrect)
+    type.TA
+    grade.TA
+    grading.time
+
+    hypothesis.ok
+    data.ok
+    citation.ok
+    interpretation.ok
+    organization.ok
+    techflaws.ok
+    writing.ok
+    comments.incorporated
+
+    ta.comment
+
+    code.subject
+    code.structure
+    code.locus
+    code.scope
+    code.tone
+    code.notes
+```
+
 
 ##Import Data
-Read in the raw dataset from .CSV file to a data frame.
+Read in the raw dataset from .CSV file to a data frame with name "base_data".
 
 ```{r}
 base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
 head(base_data)
 ```
 
+##De-Identify TAs and Students in base_data
+In progress.
+
+```{r}
+#
+#
+#
+```
+
 ***
 
-##Post-Import Data Checks
+##Run Post-Import Data Checks
 Check that data have been properly coded. 
 
-"Course" should only have entries that correspond to 113, 114, 214, NA. 
+"Course" column should only have entries that correspond to 113, 114, 214, NA. 
 ```{r}
 unique(base_data$course)
 ```
 
-Check that the names of the TAs for the dataset match the TAs assigned to the relevant courses in the semester being analyzed. 
+Check that the names of the TAs for the dataset match the TAs assigned to the relevant courses in the semester being analyzed. Also check that no TA names appear twice, which would mean their name has been entered two or more ways.
 
 ```{r}
 unique(base_data$ta)
@@ -63,7 +105,7 @@ unique(base_data$ta)
 unique(base_data$lab)
 ```
 
-Look at the NUMBER of unique student email addresses. Should be within 2-3% of the combined enrollment of the target courses for the semester.
+Look at the NUMBER of unique student email addresses. Should be within 5% of (but not over) the combined enrollment of the target courses for the semester.
 ```{r}
 unique(base_data$student)
 ```
@@ -80,55 +122,46 @@ unique(base_data$code.structure)
 
 
 # Extracting Text of Comments
-Create a single-column data frame of just the comments. Then check that the data was converted to characters not factors.
+Create a single-column data frame of just the comments. Then check that the data was written to the file as characters not factors.
 ```{r}
-base_data_subset21 <- as.data.frame( base_data[,21], drop=FALSE, stringsAsFactors=FALSE)
-class(base_data_subset21[23,1]) #Should report as "character"
+base_data_column21 <- as.data.frame( base_data[,21], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 21 is the ta.commment column
+class(base_data_column21[23,1]) #Should report as "character"
 ```
 
-Create a subset data frame for analysis. Contains **ta.comment** (Col. 21), **code.subject** (Col. 22) and **code.structure** (Col. 23). Again, check that subset data are characters, not factors. 
+Also create a separate data frame for analysis. Contains **ta.comment** (Col. 21), **code.subject** (Col. 22) and **code.structure** (Col. 23). Again, check that written in data are characters, not factors. 
 ```{r}
-base_data_subset_all <- as.data.frame(base_data[,c(21:23)], drop=FALSE, stringsAsFactors=FALSE)
-(base_data_subset_all[33:35,1:3]) 
-#First column should be row numbers, 2nd-4th columns "chr"
+base_data_3columns <- as.data.frame(base_data[,c(21:23)], drop=FALSE, stringsAsFactors=FALSE)
+(base_data_3columns[33:35,1:3]) 
+#First column should be row numbers, 2nd to 4th columns of class "chr"
 ```
 
-
-Create a testing subset of 50-100 rows, and check.
+Create a testing subset of 50-100 rows, and check first set...
 ```{r}
-base_data_subset21_short <-base_data_subset21[c(1:50),]
-base_data_all_short <-base_data_subset_all[c(1:50),]
-base_data_subset21_short
+base_data_column21_short <-base_data_column21[c(1:50),]
+base_data_3columns_short <-base_data_3columns[c(1:50),]
+base_data_column21_short
 ```
 
-Check other set.
+...then check other set.
 ```{r}
-base_data_all_short
+base_data_3columns_short
 ```
 
->OKAY SO WHY do I get a dataset of 50 observations of 3 variables with base_data_all_short, but the single column subset21 data only shows up as a value?
-
-```{r}
-base_data_subset21_short <-base_data_subset21[c(1:50),]
-base_data_all_short <-base_data_subset_all[c(1:50),]
-#base_data_subset21_short
-base_data_all_short
-```
 ***
 
-#HERE IS THE BREAKDOWN ZONE
+#HERE IS THE former BREAKDOWN ZONE
 
 **May be part of bigger question: why do some commands output as values, others as data frames?**
 
 Have R convert the desired set of extracted data into a tibble.
 ```{r}
-text_tibble <- tibble(line = seq_along(data), text = base_data_all_short)
+text_tibble <- tibble(line = seq_along(data), text = base_data_3columns_short)
 ```
 
 You HAVE to use a tibble to tokenize the text lines. Trying to do it straight from the data table will throw an error. Compare:
 
 ```{r}
-base_data_subset21 %>% 
+base_data_column21 %>% 
   unnest_tokens(word,ta.comment)
 ```
 
