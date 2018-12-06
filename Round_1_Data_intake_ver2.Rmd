@@ -1,5 +1,5 @@
 ---
-title: "Round 1 Data Intake Method"
+title: "Round 2 for Data Intake Method"
 author: "Dan Johnson"
 date: "11/24/2018"
 output: html_document
@@ -9,196 +9,326 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##General Approach and Initial Dataset
-The following excerpt from *Text Mining with R: A Tidy Approach* (Julia Silge and David Robinson) summarizes how extended text (in this case, TA comments) can be organized as a tidy matrix.*All emphases are mine.*
 
->We thus define the tidy text format as being a table with one-token-per-row. A token is a **meaningful unit of text**, such as a word, that we are interested in using for analysis, and tokenization is the process of splitting text into tokens. 
-
->This one-token-per-row structure is in contrast to the ways text is often stored in current analyses, perhaps as strings or in a document-term matrix. For tidy text mining, the token that is stored in each row is most often a single word, **but can also be an n-gram, sentence, or paragraph** . In the tidytext package, we provide functionality to tokenize by commonly used units of text like these and convert to a one-term-per-row format.
-
-My initial working dataset is an Excel table with one column of "TA comments" extracted from student lab reports. Each TA comment is stored as a separate row of the table, and is a mixed alphanumeric string of one or more words, numbers, and punctuation. Other columns record the report, student, and TA IDs; grade assigned to the report; other standardized information about the original report from which the comment was extracted; and the hand-coded subject and structure of each comment. Using tidy format (versus other text models) better maintains the relationships between individual comments and metadata, which simplifies subsequent analysis. 
 
 ##Preparing and Pre-Checking the Initial Dataset
-Call in tidyverse library
+Call in tidyverse library, then read in the raw dataset from .CSV file to a data frame with name "base_data".
+
 ```{r Libraries}
 library(tidyverse)
 library(tidytext)
 library(dplyr)
 library(tidyr)
-```
+library(ggplot2)
 
-BEFORE starting, review data table in Excel:
-
-1.  Export to a .CSV file with name formatted as **"coded_full_comments_dataset_SemYear.csv"**
-2.  Check that coding vocabulary terms used in coding columns matches criteria in "codebook_for_comments.md"
-3.  Check that data table headers are in snake_case, and match list below. The same list is in the file "code_column_names.txt"
-
-Column Number|Column Name
-------------|----------------------
-1|unique.record
-2|report.id
-3|sort
-4|report.title
-5|student
-6|course
-7|ta
-8|lab
-9|tag
-10|type.TA
-11|grade.TA
-12|grading.time
-13|Rank
-14|hypothesis.ok
-15|data.ok
-16|citation.ok
-17|interpretation.ok
-18|organization.ok
-19|techflaws.ok
-20|writing.ok
-21|comments.incorporated
-22|ta.comment
-23|code.subject
-24|code.structure
-25|code.locus
-26|code.scope
-27|code.tone
-28|code.notes
-
-
-
-##Import Data
-Read in the raw dataset from .CSV file to a data frame with name "base_data".
-
-```{r}
 base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
 head(base_data)
 ```
 
-***
-
-##IN PROGRESS: De-Identify TAs and Students in base_data
-For this step I need to mutate "base_data" to create a new file where TA names and student email addresses are replaced with pre-assigned de-identifiers.
-
-I have created a set of uniform anonymous identifiers and put them in a CSV file. From there I can import them to create lookup tables for de-identifying TAs' names and student email addresses. 
-
-This code block reads in the raw dataset containing TA names, student email addresses, and corresponding anonymous IDs, from CSV file then generates TWO data frames.
-
-```{r}
-TA_identifiers <- read_csv(file='data/ID_lookup.csv')[1:15,2:1]
-#assumes Cols. 1-2 are the TA_IDs and TA names, and are not the full range of rows, so we only want rows 1-15.
-class(TA_identifiers) #Should report as "tbl_df"
-```
-
-```{r}
-Student_identifiers <- read_csv(file='data/ID_lookup.csv')[,5:4]
-#assumes Cols. 4-5 are the Student_IDs and Student email addresses.
-class(Student_identifiers) #Should report as "tbl_df"
-```
-
-**Everything works up to here, but I cannot get next step of lookup process to work. I tried several methods, and none of the elegant ones seem to work. **
-
-I used this Stack Overflow thread as my starting point:
-
-https://stackoverflow.com/questions/35636315/replace-values-in-a-dataframe-based-on-lookup-table
-
-Text copied from the user who posed problem:  
-
-I am having some trouble replacing values in a dataframe. I would like to replace values based on a separate table. Below is an example of what I am trying to do.
-
-I have a table where every row is a customer and every column is an animal they purchased. Lets call this dataframe Original_table.
-
-> Original_table
-#       P1     P2     P3
-# 1    cat lizard parrot
-# 2 lizard parrot    cat
-# 3 parrot    cat lizard
-
-I also have a table that I will reference called lookUp.
-
-> lookUp
-#      pet   class
-# 1    cat  mammal
-# 2 lizard reptile
-# 3 parrot    bird
-
-What I want to do is create a new table called new with a function replaces all values in table with the class column in lookUp.
-
-What readers recommended:
-
-1. Use JOIN to take two separate tables of data and combine them. Use GATHER to reorganize existing data. 
-
-```
-library(dplyr)
-library(tidyr)
-Original_table %>%
-   gather(key = "pet") %>%
-   left_join(lookUp, by = "pet") %>%
-   spread(key = pet, value = class)
-```
-Above mechanism failed. **Unsure how to modify and implement. **
-
-None of the other recommended methods seemed to work either. 
-
-
-I have this UGLY HACK TO GENERATE WHAT I NEED in a single column tibble. 
-1. Create one column of TAs, then using **lapply,** loop over column and match values to the look up table. 
-2. Store in list, then convert list to tibble.
-3. Unfinished step is to merge back in; that command is missing.
-
-```{r}
-deidentified_data2<-base_data$ta #Extract just TA name from base_data
-
-deidentified_data2 <- lapply(base_data$ta, function(x) TA_identifiers$TA_ID[match(x, TA_identifiers$ta)]) #Loop over column and replace.
-
-deidentified_data3 <- tibble(line = seq_along(data), text = deidentified_data2) #tibble-izer; converts the list into a tibble.
-```
-
-
-##Run Post-Import Data Checks
-These checks ensure data have been properly coded and columns all contain valid entries. 
-
-"Course" column should only have entries that correspond to 113, 114, 214, NA. 
-```{r}
-unique(base_data$course)
-```
-
-"TAs" column should match the TAs assigned to the relevant courses in the semester being analyzed. Check that no TA names appear twice, which would mean their name has been entered two or more ways.
-
-```{r}
-unique(base_data$ta)
-```
-
-"Lab" should only have entries that match the limited keywords in codebook.
-```{r}
-unique(base_data$lab)
-```
-
-Look at the NUMBER of unique student email addresses. Should be within 5% of (but not over) the combined enrollment of the 3 target courses for the semester.
-```{r}
-unique(base_data$student)
-```
-
-Check that the "code.subject" list extracted from the dataset matches allowed terms in codebook.
-```{r}
-unique(base_data$code.subject)
-```
-
-Check that the "code.structure" list extracted from the dataset matches allowed terms in codebook.
-```{r}
-unique(base_data$code.structure)
-```
-
-
-## Extract and Tokenize Text of Comments
-This block tokenizes the whole set of comments, and keeps other meta-data intact and attached to the tokens. In the new version of base_data, a new column at FAR RIGHT called "word" contains all words in the "ta.comment" column.
-
-Post-check: Column 28 now has title "word", "ta.comment" has been removed. Other data should have duplicated along with the words for each unnested comment. 
-
+##ALL Comments
 ```{r}
 base_data_tokenized <- base_data %>% 
   unnest_tokens(word,ta.comment)
+
+base_data_tokenized2 <-base_data_tokenized %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.all <- base_data_tokenized2 %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2 <- base_data_tokenized2 %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.all$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2 %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("All Words in All Subjects") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_ALL.png")
 ```
 
+###Basic Criteria
+```{r}
+base_data_tokenized2.basic <- subset(base_data_tokenized, code.subject == "1. Basic Criteria", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.basic <- base_data_tokenized2.basic %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.basic <- base_data_tokenized2.basic %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.basic$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.basic %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Basic Criteria") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Basic.png")
+
+```
+
+###Writing Quality
+```{r}
+base_data_tokenized2.writing <- subset(base_data_tokenized, code.subject == "2. Writing Quality", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.writing <- base_data_tokenized2.writing %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.writing <- base_data_tokenized2.writing %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.writing$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.writing %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Writing") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Writing.png")
+
+```
+
+###Technical
+```{r}
+base_data_tokenized2.technical <- subset(base_data_tokenized, code.subject == "3. Technical and Scientific", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.technical <- base_data_tokenized2.technical %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.technical <- base_data_tokenized2.technical %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.technical$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.basic %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Technical") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Technical.png")
+
+```
+
+###Logic and Thinking
+```{r}
+base_data_tokenized2.logic <- subset(base_data_tokenized, code.subject == "4. Logic and Thinking", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.logic <- base_data_tokenized2.logic %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.logic <- base_data_tokenized2.logic %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.logic$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.logic %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Logic") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Logic.png")
+
+```
+
+###Praise or Concern
+```{r}
+base_data_tokenized2.praise <- subset(base_data_tokenized, code.subject == "5. Praise or Concern", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.praise <- base_data_tokenized2.praise %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.praise <- base_data_tokenized2.praise %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.praise$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.praise %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Praise") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Praise.png")
+
+```
+
+###Misconduct
+```{r}
+base_data_tokenized2.misconduct <- subset(base_data_tokenized, code.subject == "6. Misconduct", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.misconduct <- base_data_tokenized2.misconduct %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.misconduct <- base_data_tokenized2.misconduct %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.misconduct$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.misconduct %>%
+  dplyr::filter(n > 0.1) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Misconduct") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Misconduct.png")
+
+```
+
+###Narrative
+```{r}
+base_data_tokenized2.narrative <- subset(base_data_tokenized, code.subject == "12. Narrative Comments", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.narrative <- base_data_tokenized2.narrative %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.narrative <- base_data_tokenized2.narrative %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.narrative$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.narrative %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("Narrative") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_Narrative.png")
+
+```
+
+###Scientific Names
+```{r}
+base_data_tokenized2.sciname <- subset(base_data_tokenized, code.subject == "Scientific Name", select = (1:28)) %>% 
+  anti_join(stop_words) %>% 
+  count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.sciname <- base_data_tokenized2.sciname %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2.sciname <- base_data_tokenized2.sciname %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.sciname$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2.sciname %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("SciNames") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_SciName.png")
+
+```
+
+
+
+Already HAVE text correctly organized. Just need to filter and pull rows I want.
+
+
+In Jane Austen example, term is in "word", and "author" lists Names.
+
+MY data have word in Column 28 of table, and comment.subject items in Column 22.
+
+Can pull straight using FILTER in dplyer.
+
+https://dplyr.tidyverse.org/reference/filter.html
+
+
+This pulls the table rows I want to compare.
+```{r}
+frequency <- filter(base_data_tokenized, code.subject=="1. Basic Criteria" |code.subject=="2. Writing Quality"|code.subject=="3. Technical and Scientific"|code.subject=="4. Logic and Thinking")
+```
+
+
+```{r}
+frequency %>% 
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  count(code.subject, word) %>%
+  group_by(code.subject) %>% 
+  mutate(proportion = n/sum(n)) %>% 
+  select(-n) %>% spread(code.subject, proportion) %>% 
+  gather(code.subject, proportion,`2. Writing Quality`:`3. Technical and Scientific`:`4. Logic and Thinking`)
+
+frequency
+```
+
+
+```{r}
+library(scales)
+
+ggplot(frequency, aes(x = proportion, y = n, color = abs(`Jane Austen` - proportion))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), low = "darkslategray4", high = "gray75") +
+  facet_wrap(~author, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "Jane Austen", x = NULL)
+```
+
+***
+***
 
 ##Summarize Word Frequencies in FULL Set of Comments
 Take all comments from base_data, unnest tokens, filter stopwords, count and sort remaining terms, then writing back to a new datatable called 'sortedwords.comments.all'.  
