@@ -204,11 +204,9 @@ base_data_tokenized <- base_data %>%
 ##Summarizing Word Frequencies in ONE Set of Comments
 Create 'sortedwords.comments.all' by taking all comments from base_data, unnesting tokens, filtering stopwords, counting and sorting, then writing back to a new datatable. Then calculate TOTAL words and store. Calculate fractional frequencies and store using mutate.
 
-base_data_tokenized
-
 ```{r}
-# library(dplyr)
-# library(tidytext)
+library(dplyr)
+library(tidytext)
 
 sortedwords.comments.all <- base_data_tokenized %>%
   filter(!word %in% stop_words$word,
@@ -223,48 +221,14 @@ total_words.all <- sortedwords.comments.all %>%
 
 #Mutate table to calculate then append fractional word frequency in the text.
 sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
-  fraction = n/total_words.all$total
-)
+  all.fraction = (n*100)/total_words.all$total
+  )
 ```
 
 
-```{r}
-# library(dplyr)
-# library(tidytext)
-
-sortedwords.comments.all <- base_data %>%
-  unnest_tokens(word, ta.comment) %>%
-  filter(!word %in% stop_words$word,
-         !word %in% str_remove_all(stop_words$word, "'"),
-         str_detect(word, "[a-z]")) %>%
-  count(word, word, sort = TRUE) %>%
-  ungroup()
-
-#Calculate the number of words in total in the subset
-total_words.all <- sortedwords.comments.all %>% 
-  summarize(total = sum(n))
-
-#Mutate table to calculate then append fractional word frequency in the text.
-sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
-  fraction = n/total_words.all$total
-)
-```
-
-Let's see this data graphically
+This block extracts the full sets of data for unnested tokens of each of the coded subject groups. 
 
 ```{r}
-ggplot(sortedwords.comments.all.fraction, aes(fraction)) +
-  geom_histogram(show.legend = FALSE, bins=300)
-
-```
-
-
-This block extracts the full sets of data text lines for unnested tokens of each of the coded subject groups. 
-
-```{r}
-base_data_tokenized <- base_data %>% 
-  unnest_tokens(word,ta.comment)
-
 #Pull SUBSETs of tokenized data based on code.subject: 
 base_data_tokenized.basic <- subset(base_data_tokenized, code.subject == "1. Basic Criteria", select = (1:28))
 base_data_tokenized.writing <- subset(base_data_tokenized, code.subject == "2. Writing Quality", select = (1:28))
@@ -276,8 +240,8 @@ base_data_tokenized.narrative <- subset(base_data_tokenized, code.subject == "12
 base_data_tokenized.sciname <- subset(base_data_tokenized, code.subject == "Scientific Name", select = (1:28))
 ```
 
-MODEL FOR HOW TO Remove the stopwords, count words in group, and calculate frequencies.
 
+Need to repeat or reiterate to remove the stopwords, count words in each sub-group, and calculate frequencies.
 
 ```{r}
 sortedwords.basic <- base_data_tokenized.basic %>%
@@ -293,19 +257,99 @@ total_words.basic <- sortedwords.basic %>%
 
 #Mutate table to calculate then append fractional word frequency in the text.
 sortedwords.basic.fraction <- sortedwords.basic %>% as_tibble() %>% mutate(
-  fraction = (n*100)/total_words.basic$total
+  basic.fraction = (n*100)/total_words.basic$total
 )
 ```
 
+```{r}
+sortedwords.writing <- base_data_tokenized.writing %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.writing <- sortedwords.writing %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.writing.fraction <- sortedwords.writing %>% as_tibble() %>% mutate(
+  writing.fraction = (n*100)/total_words.writing$total
+)
+```
+
+```{r}
+sortedwords.technical <- base_data_tokenized.technical %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.technical <- sortedwords.technical %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.technical.fraction <- sortedwords.technical %>% as_tibble() %>% mutate(
+  technical.fraction = (n*100)/total_words.technical$total
+)
+```
+
+```{r}
+sortedwords.logic <- base_data_tokenized.logic %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.logic <- sortedwords.logic %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.logic.fraction <- sortedwords.logic %>% as_tibble() %>% mutate(
+  logic.fraction = (n*100)/total_words.logic$total
+)
+```
+
+Next I need to join the individual data tables 
+  tables are sortedwords.NNN.fraction 
+  column names are NNN.fraction
+  Join BY column named "word"
+
+```{r}
+total <- merge(sortedwords.comments.all.fraction,sortedwords.writing.fraction,by="word") 
+total2 <- merge(total,sortedwords.technical.fraction,by="word")
+total3 <- merge(total2,sortedwords.logic.fraction,by="word")
+#rename lines that were possibly confusing
+names(total3)[2] <- "all.count"
+names(total3)[4] <- "writing.count"
+names(total3)[6] <- "technical.count"
+names(total3)[8] <- "logic.count"
+
+#Mutate table to calculate then append fractional word frequency in the text.
+total4 <- total3 %>% as_tibble() %>% mutate(
+  writing.wt = (writing.count *100)/all.count
+)
+
+total5 <- total4 %>% as_tibble() %>% mutate(
+  technical.wt = (technical.count *100)/all.count
+)
+
+total6 <- total5 %>% as_tibble() %>% mutate(
+  logic.wt = (logic.count *100)/all.count
+)
+
+```
 
 
+To Do Next:
+  WARNING: Words that are MISSING from any subset cause the full set to be pruned. I am losing the unique words this way.
 
-
-
-
-
-
-
+Now I need to cross-graph the weights for each word relative to others. 
 
 
 
