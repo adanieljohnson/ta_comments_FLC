@@ -14,6 +14,8 @@ Call in tidyverse library
 ```{r}
 library(tidyverse)
 library(tidytext)
+library(dplyr)
+library(tidyr)
 ```
 
 From *Text Mining with R: A Tidy Approach* (Julia Silge and David Robinson)
@@ -25,7 +27,6 @@ From *Text Mining with R: A Tidy Approach* (Julia Silge and David Robinson)
 My working dataset for analysis is organized with one "instructor comment" as the one token per row in the table. Each instructor comment is an alphanumeric string of multiple words. 
 
 
-
 ##Pre-Check Dataset
 BEFORE starting, review data table in Excel:
 
@@ -34,37 +35,37 @@ BEFORE starting, review data table in Excel:
 3.  Check that coding vocabulary terms used in coding columns matches criteria in "codebook_for_comments.md"
 4.  Check that data table header names match list below, which also should be in "code_column_names.txt"
 
-```
- Modified column names:
-    report.id
-    report.title
-						student (Still need to de-identify)
-    course
-						ta (Still need to de-identify)
-    lab
-						tag (Student enters, but is potentially incorrect)
-    type.TA
-    grade.TA
-    grading.time
+Column Number|Column Name
+------------|----------------------
+1|unique.record
+2|report.id
+3|sort
+4|report.title
+5|student
+6|course
+7|ta
+8|lab
+9|tag
+10|type.TA
+11|grade.TA
+12|grading.time
+13|Rank
+14|hypothesis.ok
+15|data.ok
+16|citation.ok
+17|interpretation.ok
+18|organization.ok
+19|techflaws.ok
+20|writing.ok
+21|comments.incorporated
+22|ta.comment
+23|code.subject
+24|code.structure
+25|code.locus
+26|code.scope
+27|code.tone
+28|code.notes
 
-    hypothesis.ok
-    data.ok
-    citation.ok
-    interpretation.ok
-    organization.ok
-    techflaws.ok
-    writing.ok
-    comments.incorporated
-
-    ta.comment
-
-    code.subject
-    code.structure
-    code.locus
-    code.scope
-    code.tone
-    code.notes
-```
 
 
 ##Import Data
@@ -75,16 +76,83 @@ base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
 head(base_data)
 ```
 
+***
+
 ##De-Identify TAs and Students in base_data
-In progress.
+**In progress.**
+
+In this step I need to mutate "base_data" to create a new file where TA names and student email addresses are replaced with pre-assigned de-identifiers.
+
+First I created a set of uniform anonymous identifiers, put them in a CSV, and can import them to serve as the lookup tables for TAs, student emails. This code reads in the raw dataset containing TA names, student email addresses, and corresponding anonymous IDs, from xxx.CSV file and creates TWO data frames.
 
 ```{r}
-#
-#
-#
+TA_identifiers <- read_csv(file='data/ID_lookup.csv')[1:15,2:1]
+#assumes Cols. 1-2 are the TA_IDs and TA names, and are not the full range of rows, so we only want rows 1-15.
+class(TA_identifiers) #Should report as "tbl_df"
 ```
 
-***
+```{r}
+Student_identifiers <- read_csv(file='data/ID_lookup.csv')[,5:4]
+#assumes Cols. 4-5 are the Student_IDs and Student email addresses.
+class(Student_identifiers) #Should report as "tbl_df"
+```
+
+Okay so far. Problem is I cannot get next step of lookup process to work. I tried several methods, and none of the elegant ones seem to work. I used this Overflow as my starting point:
+
+https://stackoverflow.com/questions/35636315/replace-values-in-a-dataframe-based-on-lookup-table
+
+Suggestions:
+1. Use JOIN to take two separate tables of data and combine them. Use GATHER to reorganize existing data. Unclear how to implement. 
+
+2. From a usergroup:
+I am having some trouble replacing values in a dataframe. I would like to replace values based on a separate table. Below is an example of what I am trying to do.
+
+I have a table where every row is a customer and every column is an animal they purchased. Lets call this dataframe Original_table.
+
+> Original_table
+#       P1     P2     P3
+# 1    cat lizard parrot
+# 2 lizard parrot    cat
+# 3 parrot    cat lizard
+
+I also have a table that I will reference called lookUp.
+
+> lookUp
+#      pet   class
+# 1    cat  mammal
+# 2 lizard reptile
+# 3 parrot    bird
+
+What I want to do is create a new table called new with a function replaces all values in table with the class column in lookUp.
+
+What readers recommended:
+
+*Option A:*
+```
+library(dplyr)
+library(tidyr)
+Original_table %>%
+   gather(key = "pet") %>%
+   left_join(lookUp, by = "pet") %>%
+   spread(key = pet, value = class)
+```
+
+Above mechanism failed. None of other recommended methods seemed to work. 
+
+
+This alternative IS UGLY BUT GENERATES WHAT I NEED in a single column tibble. 
+1. Create one column of TAs, then using **lapply,** loop over column and match values to the look up table. 
+2. Store in list, then convert list to tibble.
+3. Need to merge back in; that command is missing.
+
+```{r}
+deidentified_data2<-base_data$ta #Extract just TA name from base_data
+
+deidentified_data2 <- lapply(base_data$ta, function(x) TA_identifiers$TA_ID[match(x, TA_identifiers$ta)]) #Loop over column and replace.
+
+deidentified_data3 <- tibble(line = seq_along(data), text = deidentified_data2) #tibble-izer; converts the list into a tibble.
+```
+
 
 ##Run Post-Import Data Checks
 Check that data have been properly coded. 
@@ -121,66 +189,237 @@ unique(base_data$code.structure)
 ```
 
 
-# Extracting Text of Comments
-Create a single-column data frame of just the comments. Then check that the data was written to the file as characters not factors.
-```{r}
-base_data_column21 <- as.data.frame( base_data[,21], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 21 is the ta.commment column
-class(base_data_column21[23,1]) #Should report as "character"
-```
 
-Also create a separate data frame for analysis. Contains **ta.comment** (Col. 21), **code.subject** (Col. 22) and **code.structure** (Col. 23). Again, check that written in data are characters, not factors. 
-```{r}
-base_data_3columns <- as.data.frame(base_data[,c(21:23)], drop=FALSE, stringsAsFactors=FALSE)
-(base_data_3columns[33:35,1:3]) 
-#First column should be row numbers, 2nd to 4th columns of class "chr"
-```
+## Extracting Text of Comments
+The first option to break down the text of comments is to tokenize the whole set at once. This leaves the other meta-data intact and attached to the tokens. This command block creates a new version of base_data that has the new column at FAR RIGHT called "word" that contains all words in the "ta.comment" column.
 
-Create a testing subset of 50-100 rows, and check first set...
-```{r}
-base_data_column21_short <-base_data_column21[c(1:50),]
-base_data_3columns_short <-base_data_3columns[c(1:50),]
-base_data_column21_short
-```
-
-...then check other set.
-```{r}
-base_data_3columns_short
-```
-
-***
-
-#HERE IS THE former BREAKDOWN ZONE
-
-**May be part of bigger question: why do some commands output as values, others as data frames?**
-
-Have R convert the desired set of extracted data into a tibble.
-```{r}
-text_tibble <- tibble(line = seq_along(data), text = base_data_3columns_short)
-```
-
-You HAVE to use a tibble to tokenize the text lines. Trying to do it straight from the data table will throw an error. Compare:
+After running, check that Column 28 has title "word", that "ta.comment" has been removed, and other lines have duplicated along with the words for each unnested comment. 
 
 ```{r}
-base_data_column21 %>% 
+base_data_tokenized <- base_data %>% 
   unnest_tokens(word,ta.comment)
 ```
 
 
+##Summarizing Word Frequencies in ONE Set of Comments
+Create 'sortedwords.comments.all' by taking all comments from base_data, unnesting tokens, filtering stopwords, counting and sorting, then writing back to a new datatable. Then calculate TOTAL words and store. Calculate fractional frequencies and store using mutate.
+
+base_data_tokenized
+
+```{r}
+# library(dplyr)
+# library(tidytext)
+
+sortedwords.comments.all <- base_data_tokenized %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.all <- sortedwords.comments.all %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
+  fraction = n/total_words.all$total
+)
+```
 
 
-NOW I KNOW that the tibble I just created is going to have problems, because the data I read in does not include any information about WHICH row the words came from. How do I add the row values?
+```{r}
+# library(dplyr)
+# library(tidytext)
 
-Is it as simple as creating a count column in the original data, then calling it in?
+sortedwords.comments.all <- base_data %>%
+  unnest_tokens(word, ta.comment) %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
 
-Alternative: can I append the column with counts using mutate.
+#Calculate the number of words in total in the subset
+total_words.all <- sortedwords.comments.all %>% 
+  summarize(total = sum(n))
 
-OR
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
+  fraction = n/total_words.all$total
+)
+```
 
-Is the problem that I am trying to create all this from a dataframe/TIBBLE, and I need to read it in as VALUES list of character strings? If THIS is the problem, then why does the previous problem of 
+Let's see this data graphically
 
-    (base_data_subset21_short)  VERSUS  (text_tibble)
+```{r}
+ggplot(sortedwords.comments.all.fraction, aes(fraction)) +
+  geom_histogram(show.legend = FALSE, bins=300)
 
-occur?
+```
+
+
+This block extracts the full sets of data text lines for unnested tokens of each of the coded subject groups. 
+
+```{r}
+base_data_tokenized <- base_data %>% 
+  unnest_tokens(word,ta.comment)
+
+#Pull SUBSETs of tokenized data based on code.subject: 
+base_data_tokenized.basic <- subset(base_data_tokenized, code.subject == "1. Basic Criteria", select = (1:28))
+base_data_tokenized.writing <- subset(base_data_tokenized, code.subject == "2. Writing Quality", select = (1:28))
+base_data_tokenized.technical <- subset(base_data_tokenized, code.subject == "3. Technical and Scientific", select = (1:28))
+base_data_tokenized.logic <- subset(base_data_tokenized, code.subject == "4. Logic and Thinking", select = (1:28))
+base_data_tokenized.praise <- subset(base_data_tokenized, code.subject == "5. Praise or Concern", select = (1:28))
+base_data_tokenized.misconduct <- subset(base_data_tokenized, code.subject == "6. Misconduct", select = (1:28))
+base_data_tokenized.narrative <- subset(base_data_tokenized, code.subject == "12. Narrative Comments", select = (1:28))
+base_data_tokenized.sciname <- subset(base_data_tokenized, code.subject == "Scientific Name", select = (1:28))
+```
+
+MODEL FOR HOW TO Remove the stopwords, count words in group, and calculate frequencies.
+
+
+```{r}
+sortedwords.basic <- base_data_tokenized.basic %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.basic <- sortedwords.basic %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.basic.fraction <- sortedwords.basic %>% as_tibble() %>% mutate(
+  fraction = (n*100)/total_words.basic$total
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+***
+***
+
+
+###Alternative Options
+For other types of analyses I might want to extract text using other methods shown below:
+
+**Option 1.**  Create a single-column data frame of just the comments. Then check that the data was written to the file as characters not factors.
+```{r}
+base_data_comments <- as.data.frame(base_data[,22], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 22 is the ta.commment column
+class(base_data_comments[23,1]) #Should report as "character"
+```
+
+**Option 2.** Create a NEW data frame for analysis. Contains **ta.comment** (Col. 22), **code.subject** (Col. 23) and **code.structure** (Col. 24). Again, check that written in data are characters, not factors. 
+```{r}
+base_data_3columns <- as.data.frame(base_data[,c(22:24)], drop=FALSE, stringsAsFactors=FALSE)
+(base_data_3columns[33:35,1:3]) 
+#First column should be row numbers, 2nd to 4th columns of class "chr"
+```
+
+**Option 3.** Import comments as subset blocks
+This is an ugly set of steps to create dataframes for analysis. The output subsets of data from the full base_data table can be analyzed as separate groups. Only benefit I see is they are COMPLETELY INDEPENDENT of one another.
+```{r}
+#The columns to be included in each subset table
+colnames.base_data <-  c("unique.record","ta.comment","code.subject","code.structure")
+# These first lines create a subset table for ALL lines in the table.
+base_data_3columns.all <- subset(base_data, select = colnames.base_data)
+base_data_comments.all <- as.data.frame(base_data_3columns.all[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+# The first line of each pair from here down creates subset tables based on what is in the "code.subject" data column. The second line of each pair extracts just the TA comments so they can be tokenized.
+base_data_3columns.basic <- subset(base_data, code.subject == "1. Basic Criteria", select = colnames.base_data)
+base_data_comments.basic <- as.data.frame(base_data_3columns.basic[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.writing <- subset(base_data, code.subject == "2. Writing Quality", select = colnames.base_data)
+base_data_comments.writing <- as.data.frame(base_data_3columns.writing[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.technical <- subset(base_data, code.subject == "3. Technical and Scientific", select = colnames.base_data)
+base_data_comments.technical <- as.data.frame(base_data_3columns.technical[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.logic <- subset(base_data, code.subject == "4. Logic and Thinking", select = colnames.base_data)
+base_data_comments.logic <- as.data.frame(base_data_3columns.logic[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.praise <- subset(base_data, code.subject == "5. Praise or Concern", select = colnames.base_data)
+base_data_comments.praise <- as.data.frame(base_data_3columns.praise[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.misconduct <- subset(base_data, code.subject == "6. Misconduct", select = colnames.base_data)
+base_data_comments.misconduct <- as.data.frame(base_data_3columns.misconduct[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.narrative <- subset(base_data, code.subject == "12. Narrative Comments", select = colnames.base_data)
+base_data_comments.narrative <- as.data.frame(base_data_3columns.narrative[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+
+base_data_3columns.sciname <- subset(base_data, code.subject == "Scientific Name", select =  colnames.base_data)
+base_data_comments.sciname <- as.data.frame(base_data_3columns.sciname[,2], drop=FALSE, stringsAsFactors=FALSE) #assumes Col. 2 is the ta.commment column
+```
+
+This second series of commands creates tokenized words lists for all comments together, and token subsets for each comments subset.
+```{r}
+base_data_comments.all.tokens <- base_data_comments %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.basic.tokens <- base_data_comments.basic %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.writing.tokens <- base_data_comments.writing %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.technical.tokens <- base_data_comments.technical %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.logic.tokens <- base_data_comments.logic %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.praise.tokens <- base_data_comments.praise %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.misconduct.tokens <- base_data_comments.misconduct %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.narrative.tokens <- base_data_comments.narrative %>% 
+  unnest_tokens(word,ta.comment)
+base_data_comments.sciname.tokens <- base_data_comments.sciname %>% 
+  unnest_tokens(word,ta.comment)
+
+#Display the last set of tokens to show process finished.
+base_data_comments.sciname.tokens
+```
+
+
+***
+
+# Tokenizing Text of Comments
+Create a single-column data frame of just the comments for ALL lines. Then check that the data was written to the file as characters not factors.
+
+
+
+####If you must convert data to a Tibble:
+To make tokenizing work you must convert the desired set of extracted data into a tibble. You HAVE to use a tibble to tokenize text lines. Trying to do it straight from a values table will throw an error.
+
+```
+base_data_comments_50_tibble <- tibble(line = seq_along(data), text = base_data_comments_50(c[,2])) #tibble-izer
+
+#base_data_comments_50_tibble %>% 
+#  unnest_tokens(word,ta.comment)
+```
+unique.record, code.subject, code.structure
+base_data
+
+
+***
+***
+
+##FWIW
+This command uses a tibble with 3 data columns, and successfully unnests the tokens. It is messy because the other columns are duplicated, BUT at least it is possible to wrangle a multi-column tibble for tokenization.
+```{r}
+Abase_data_3columns.sciname.tokens <- base_data_3columns.sciname %>% 
+  unnest_tokens(word,ta.comment)
+```
+
 
 
 ***

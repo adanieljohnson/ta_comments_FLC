@@ -31,7 +31,7 @@ I have an Excel data table containing ~11,000 data rows, organized into these co
 
 Name|Assigned|Description of What the Column Data Are
 ----------|----------|----------------------------------------------------------
-record.id|PI assigned|Unique line identifier for each data line in tables. SemesterYear.##### (example: Sp18.00012 is line 12 in dataset from Spring '18)
+unique.record|PI assigned|Unique line identifier for each data line in tables. SemesterYear.##### (example: Sp18.00012 is line 12 in dataset from Spring '18)
 report.id|Qualtrics|R_XX value
 sort|PI| (Can drop) Original sorting value. Duplicates of this number indicate a complex comment was split
 report.title|Mixed|Title of the file from which a comment was extracted
@@ -73,6 +73,14 @@ code.tone|Is wording likely to be seen as positive, neutral, or negative?|Not do
 code.notes|Personal notes entered while coding|Not part of active dataset
 ***
 ####\   
+
+## Support Data for De-Identification
+I created a separate .xlsx file then exported to .csv that has the ACTUAL names of TAs and ACTUAL emails for students. There are two de-identifier columns: 
+
+1.  There are 500 non-repeated unique IDs for TAs in format: **TA_7lL5KRzf**
+2.  There are 10,000 non-repeated unique IDs for students in format: **Std_H6n5PxOy**
+3.  There are additional columns for recording students, course IDs, and TAs for each semester from Spring'18 through Spring'20.
+
 
 ## Questions I want to ask
 
