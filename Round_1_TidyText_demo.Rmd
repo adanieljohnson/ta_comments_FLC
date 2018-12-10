@@ -108,6 +108,15 @@ tidy_bronte %>%
   count(word, sort = TRUE)
 ```
 
+data(stop_words)
+
+tidy_books <- tidy_books %>%
+  anti_join(stop_words)
+
+tidy_books %>%
+  count(word, sort = TRUE) 
+
+
 ```{r}
 library(tidyr)
 

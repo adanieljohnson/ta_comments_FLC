@@ -25,6 +25,279 @@ base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
 head(base_data)
 ```
 
+Already HAVE text correctly organized. Just need to filter and pull rows I want.
+
+
+```{r}
+# This pulls the table rows I want to compare.
+frequency <- filter(base_data, code.subject=="1. Basic Criteria" |code.subject=="2. Writing Quality"|code.subject=="3. Technical and Scientific"|code.subject=="4. Logic and Thinking")
+
+# This step tokenizes phrases, removes stop words
+base_data_tokenized <- frequency %>% 
+  unnest_tokens(word,ta.comment) %>% 
+  anti_join(stop_words)
+```
+
+```{r}
+#Groups by code.subject
+base_data_tokenized_sorted <- base_data_tokenized
+
+
+
+```
+
+
+
+#sort by mpg (ascending) and cyl (descending)
+newdata <- mtcars[order(mpg, -cyl),]
+
+
+
+  group_by(comment.subject) %>%
+  mutate(proportion = n / sum(n)) %>% 
+  select(-n) %>% 
+  spread(comment.subject, proportion) %>% 
+  gather(comment.subject, proportion, `2. Writing Quality`:`3. Technical and Scientific`:`4. Logic and Thinking`)
+
+In Jane Austen example, term is in "word", and "author" lists Names.
+
+MY data have "word"" in Column 28 of table, and "comment.subject" items in Column 22.
+
+Can pull straight using FILTER in dplyer.
+
+https://dplyr.tidyverse.org/reference/filter.html
+
+```{r}
+base_data_tokenized.counts <-- base_data_tokenized %>% 
+  count(comment.subject, word, sort=TRUE) 
+#FAILS
+```
+
+
+
+
+
+```{r}
+sortedwords.comments.all <- base_data_tokenized %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+
+#Calculate the number of words in total in the subset
+total_words.all <- sortedwords.comments.all %>% 
+  summarize(total = sum(n))
+
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
+  all.fraction = (n*100)/total_words.all$total
+  )
+#Works
+```
+
+
+
+
+sort(unique(base_data_tokenized$code.subject))
+
+
+##Summarize Word Frequencies in FULL Set of Comments
+Take all comments from base_data, unnest tokens, filter stopwords, count and sort remaining terms, then writing back to a new datatable called 'sortedwords.comments.all'.  
+
+Calculate TOTAL words and store. Then calculate fractional frequencies for each word and store using mutate.
+
+
+##Summarize Word Frequencies in Subsets of Comments Based on 'Subject'
+Take subsets of comments from base_data_tokenized using code.subject as separating characteristic.
+```{r}
+#Pull SUBSETs of tokenized data based on code.subject: 
+base_data_tokenized.basic <- subset(base_data_tokenized, code.subject == "1. Basic Criteria", select = (1:28))
+base_data_tokenized.writing <- subset(base_data_tokenized, code.subject == "2. Writing Quality", select = (1:28))
+base_data_tokenized.technical <- subset(base_data_tokenized, code.subject == "3. Technical and Scientific", select = (1:28))
+base_data_tokenized.logic <- subset(base_data_tokenized, code.subject == "4. Logic and Thinking", select = (1:28))
+base_data_tokenized.praise <- subset(base_data_tokenized, code.subject == "5. Praise or Concern", select = (1:28))
+base_data_tokenized.misconduct <- subset(base_data_tokenized, code.subject == "6. Misconduct", select = (1:28))
+base_data_tokenized.narrative <- subset(base_data_tokenized, code.subject == "12. Narrative Comments", select = (1:28))
+base_data_tokenized.sciname <- subset(base_data_tokenized, code.subject == "Scientific Name", select = (1:28))
+```
+
+
+For each subset, filter stopwords, count words and total, then calculate frequencies.
+
+```{r}
+sortedwords.basic <- base_data_tokenized.basic %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.basic <- sortedwords.basic %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.basic.fraction <- sortedwords.basic %>% as_tibble() %>% mutate(
+  basic.fraction = (n*100)/total_words.basic$total
+)
+```
+
+```{r}
+sortedwords.writing <- base_data_tokenized.writing %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.writing <- sortedwords.writing %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.writing.fraction <- sortedwords.writing %>% as_tibble() %>% mutate(
+  writing.fraction = (n*100)/total_words.writing$total
+)
+```
+
+
+
+
+
+
+
+%>%
+  group_by(comment.subject) %>%
+  mutate(proportion = n / sum(n)) %>% 
+  select(-n) %>% 
+  spread(comment.subject, proportion) %>% 
+  gather(comment.subject, proportion, `2. Writing Quality`:`3. Technical and Scientific`:`4. Logic and Thinking`)
+```
+
+tidy_books %>%
+  count(word, sort = TRUE) 
+
+library(tidyr)
+
+frequency <- bind_rows(mutate(tidy_bronte, author = "Brontë Sisters"),
+                       mutate(tidy_hgwells, author = "H.G. Wells"), 
+                       mutate(tidy_books, author = "Jane Austen")) %>% 
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  count(author, word) %>%
+  group_by(author) %>%
+  mutate(proportion = n / sum(n)) %>% 
+  select(-n) %>% 
+  spread(author, proportion) %>% 
+  gather(author, proportion, `Brontë Sisters`:`H.G. Wells`)
+
+```
+
+```{r}
+library(scales)
+
+# expect a warning about rows with missing values being removed
+ggplot(frequency, aes(x = proportion, y = `Jane Austen`, color = abs(`Jane Austen` - proportion))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), low = "darkslategray4", high = "gray75") +
+  facet_wrap(~author, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "Jane Austen", x = NULL)
+```
+
+
+```{r}
+base_data_tokenized %>% 
+  mutate(word = str_extract(word, "[a-z']+")) %>%
+  count(code.subject, word) %>%
+  group_by(code.subject) %>% 
+  mutate(proportion = n/sum(n)) %>% 
+  select(-n) %>% spread(code.subject, proportion) %>% 
+  gather(code.subject, proportion,`2. Writing Quality`:`3. Technical and Scientific`:`4. Logic and Thinking`)
+
+base_data_tokenized
+```
+
+
+```{r}
+library(scales)
+
+ggplot(frequency, aes(x = proportion, y = n, color = abs(`Jane Austen` - proportion))) +
+  geom_abline(color = "gray40", lty = 2) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  scale_color_gradient(limits = c(0, 0.001), low = "darkslategray4", high = "gray75") +
+  facet_wrap(~author, ncol = 2) +
+  theme(legend.position="none") +
+  labs(y = "Jane Austen", x = NULL)
+```
+
+ 
+ 
+  
+    count(word, sort=TRUE)
+
+#Calculate the total number of words in total in the subset
+total_words.all <- base_data_tokenized2 %>% 
+  summarize(total = sum(n))
+
+#Mutate table. Calculate fractional word frequency in the text, and replace raw count.
+base_data_tokenized2 <- base_data_tokenized2 %>% as_tibble() %>% mutate(
+  n = (n*100)/total_words.all$total
+  )
+
+#Plot words in declining frequency
+base_data_tokenized2 %>%
+  dplyr::filter(n > 0.5) %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  xlab("All Words in All Subjects") +
+  ylab("% of all words") +
+  coord_flip()
+ggsave("Frequency_ALL.png")
+```
+
+
+
+```{r}
+library(dplyr)
+library(tidytext)
+
+sortedwords.comments.all <- base_data_tokenized %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.all <- sortedwords.comments.all %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
+  all.fraction = (n*100)/total_words.all$total
+  )
+```
+
+
+
+
+
+*** 
+
+*** 
+
+
 ##ALL Comments
 ```{r}
 base_data_tokenized <- base_data %>% 
@@ -281,51 +554,6 @@ ggsave("Frequency_SciName.png")
 
 
 
-Already HAVE text correctly organized. Just need to filter and pull rows I want.
-
-
-In Jane Austen example, term is in "word", and "author" lists Names.
-
-MY data have word in Column 28 of table, and comment.subject items in Column 22.
-
-Can pull straight using FILTER in dplyer.
-
-https://dplyr.tidyverse.org/reference/filter.html
-
-
-This pulls the table rows I want to compare.
-```{r}
-frequency <- filter(base_data_tokenized, code.subject=="1. Basic Criteria" |code.subject=="2. Writing Quality"|code.subject=="3. Technical and Scientific"|code.subject=="4. Logic and Thinking")
-```
-
-
-```{r}
-frequency %>% 
-  mutate(word = str_extract(word, "[a-z']+")) %>%
-  count(code.subject, word) %>%
-  group_by(code.subject) %>% 
-  mutate(proportion = n/sum(n)) %>% 
-  select(-n) %>% spread(code.subject, proportion) %>% 
-  gather(code.subject, proportion,`2. Writing Quality`:`3. Technical and Scientific`:`4. Logic and Thinking`)
-
-frequency
-```
-
-
-```{r}
-library(scales)
-
-ggplot(frequency, aes(x = proportion, y = n, color = abs(`Jane Austen` - proportion))) +
-  geom_abline(color = "gray40", lty = 2) +
-  geom_jitter(alpha = 0.1, size = 2.5, width = 0.3, height = 0.3) +
-  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
-  scale_x_log10(labels = percent_format()) +
-  scale_y_log10(labels = percent_format()) +
-  scale_color_gradient(limits = c(0, 0.001), low = "darkslategray4", high = "gray75") +
-  facet_wrap(~author, ncol = 2) +
-  theme(legend.position="none") +
-  labs(y = "Jane Austen", x = NULL)
-```
 
 ***
 ***

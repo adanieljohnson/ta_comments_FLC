@@ -200,6 +200,7 @@ base_data_tokenized <- base_data %>%
 ```
 
 
+
 ##Summarize Word Frequencies in FULL Set of Comments
 Take all comments from base_data, unnest tokens, filter stopwords, count and sort remaining terms, then writing back to a new datatable called 'sortedwords.comments.all'.  
 
