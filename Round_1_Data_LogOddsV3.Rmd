@@ -54,8 +54,8 @@ base_data_tokenized_sorted2 <- base_data_tokenized %>%
   group_by(code.subject) %>%
   count(code.subject, word, sort=TRUE) %>% 
   left_join(base_data_tokenized %>% 
-              group_by(code.subject) %>% 
-              summarise(total = n())) %>%
+  group_by(code.subject) %>% 
+  summarise(total = n())) %>%
   mutate(freq = n/total)
 ```
 
@@ -126,7 +126,7 @@ base_data_tokenized_sorted3 <- base_data_tokenized %>%
   spread(code.subject, proportion) %>% 
   gather(code.subject, proportion, `3. Technical and Scientific`:`4. Logic and Thinking`)
 
-# THE ERROR IS HERE! If I change "3. Technical and Scientific"  to "2. Writing Quality", the structure of the tibble breaks. It goes from the correctly sorted 4 columns to incorrectly sorted 3 columns. It is NOT A TYPO. 
+# THERE IS AN ERROR HERE I CANNOT DEBUG! If I change "3. Technical and Scientific"  to "2. Writing Quality", the structure of the tibble breaks. It goes from the correctly sorted 4 columns to incorrectly sorted 3 columns. It is NOT A TYPO; I cannot use a different order, or any other format. 
 
 ```
 

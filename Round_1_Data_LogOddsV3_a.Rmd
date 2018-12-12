@@ -1,0 +1,198 @@
+---
+title: "Log Odds for Word Usage Method"
+author: "Dan Johnson"
+date: "11/24/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Preparing and Pre-Checking the Initial Dataset
+
+Call in tidyverse, other libraries.
+```{r Libraries}
+library(tidyverse)
+library(tidytext)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+```
+
+CSV file named "base_data.csv" already has correctly organized text and meta-data. First block reads in CSV, then filters and pulls rows and columns to a new working file.
+
+```{r}
+# Read CSV.
+base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
+
+# Isolate table rows to compare.
+frequency_writing <- filter(base_data, code.subject=="3. Technical and Scientific"|code.subject=="2. Writing Quality"|code.subject=="4. Logic and Thinking")
+
+#Reduce larger dataframe to just 3 required columns of data  
+frequency_writing.subcolumns <- frequency_writing %>% select(1, 22:23)
+```
+
+Next block tokenizes the TA comments as individual words and removes stop words.
+
+```{r}
+# Tokenize phrases, remove stop words listed in standard reference file.
+base_data_tokenized <- frequency_writing.subcolumns %>% 
+  unnest_tokens(word,ta.comment) %>% 
+  anti_join(stop_words)
+```
+
+At this point the tibble has "Unique.Record" in column 1, "code.subject" in column 2, and the unnested "word" in column 3. All columns are class = "character". Stop words from the R "stop_words" data file have been removed.
+
+##Run 1: Comparing Techncial and Logic Word Frequencies Against Writing Quality
+
+```{r}
+#Create groups by code.subject, calculates proportional frequency in each group.
+#Final step creates 5 columns: code.subject, n, word, total, frequency.
+base_data_tokenized_sorted2 <- base_data_tokenized %>% 
+  group_by(code.subject) %>%
+  count(code.subject, word, sort=TRUE) %>% 
+  left_join(base_data_tokenized %>% 
+  group_by(code.subject) %>% 
+  summarise(total = n())) %>%
+  mutate(freq = n/total)
+```
+
+
+```{r}
+base_data_tokenized_sorted2b <- base_data_tokenized_sorted2 %>% 
+  select(code.subject, word, freq) %>% 
+  spread(code.subject, freq) %>%
+  arrange(`2. Writing Quality`,`3. Technical and Scientific`)
+```
+
+
+```{r}
+ggplot(base_data_tokenized_sorted2b, aes(`2. Writing Quality`,`3. Technical and Scientific`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+## Writing versus Technical
+
+```{r}
+word_ratios23 <- base_data_tokenized %>%
+  count(word, code.subject) %>%
+  group_by(word) %>%
+  filter(sum(n) >= 10) %>%
+  ungroup() %>%
+  spread(code.subject, n, fill = 0) %>%
+  mutate_if(is.numeric, funs((. + 1) / (sum(.) + 1))) %>%
+  mutate(logratio = log(`2. Writing Quality`/`3. Technical and Scientific`)) %>%
+  arrange(desc(logratio))
+```
+
+
+```{r}
+word_ratios23 %>% 
+  arrange(abs(logratio))
+```
+
+
+```{r}
+word_ratios23 %>%
+  group_by(logratio < 0) %>%
+  top_n(20, abs(logratio)) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, logratio)) %>%
+  ggplot(aes(word, logratio, fill = logratio < 0)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  ylab("log odds ratio (Writing-top/Technical-bottom)") +
+  scale_fill_discrete(name = "", labels = c("2. Writing Quality", "3. Technical and Scientific"))
+  ggsave("Logplot_2vs3.png", width = 6, height = 10)
+
+```
+
+
+## Technical versus Logic
+
+```{r}
+word_ratios34 <- base_data_tokenized %>%
+  count(word, code.subject) %>%
+  group_by(word) %>%
+  filter(sum(n) >= 10) %>%
+  ungroup() %>%
+  spread(code.subject, n, fill = 0) %>%
+  mutate_if(is.numeric, funs((. + 1) / (sum(.) + 1))) %>%
+  mutate(logratio = log(`3. Technical and Scientific`/`4. Logic and Thinking`)) %>%
+  arrange(desc(logratio))
+```
+
+
+```{r}
+word_ratios34 %>% 
+  arrange(abs(logratio))
+```
+
+
+```{r}
+word_ratios34 %>%
+  group_by(logratio < 0) %>%
+  top_n(20, abs(logratio)) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, logratio)) %>%
+  ggplot(aes(word, logratio, fill = logratio < 0)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  ylab("log odds ratio (Technical-top/Logic-bottom)") +
+  scale_fill_discrete(name = "", labels = c("3. Technical and Scientific","4. Logic and Thinking"))
+  ggsave("Logplot_3vs4.png", width = 6, height = 10)
+
+```
+
+
+## Writing versus Logic
+
+```{r}
+word_ratios24 <- base_data_tokenized %>%
+  count(word, code.subject) %>%
+  group_by(word) %>%
+  filter(sum(n) >= 10) %>%
+  ungroup() %>%
+  spread(code.subject, n, fill = 0) %>%
+  mutate_if(is.numeric, funs((. + 1) / (sum(.) + 1))) %>%
+  mutate(logratio = log(`2. Writing Quality`/`4. Logic and Thinking`)) %>%
+  arrange(desc(logratio))
+```
+
+
+```{r}
+word_ratios24 %>% 
+  arrange(abs(logratio))
+```
+
+
+```{r}
+word_ratios24 %>%
+  group_by(logratio < 0) %>%
+  top_n(20, abs(logratio)) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, logratio)) %>%
+  ggplot(aes(word, logratio, fill = logratio < 0)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  ylab("log odds ratio (Writing-top/Logic-bottom)") +
+  scale_fill_discrete(name = "", labels = c("2. Writing Quality", "4. Logic and Thinking"))
+  ggsave("Logplot_2vs4.png", width = 6, height = 10)
+
+```
+
+
+***
+***
+
+
+
+
+
