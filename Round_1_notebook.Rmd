@@ -9,78 +9,73 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Background Overview
-I am interested in understanding how students learn to write in biology, and how we can improve that process. Currently I have an NSF-sponsored project to assess whether scripted instruction and automated feedback can accelerate student growth as writers. 
+We are interested in understanding how students learn to write in biology, and how we can apply insights from data science towards improving that process.
 
-As part of the project, we are identifying the main writing problems that students have by extracting and compiling the comments that instructors write on student lab reports. We use specific terms, phrases, or other features within instructors' comments to categorize the comments into their topics (writing issues, technical errors, logical flaws, etc.), types (copyediting, prescriptive, reflective) and other categories.
+Currently we have an NSF-sponsored project to assess whether scripted instruction and automated feedback can accelerate student growth as writers. We are identifying the most common writing problems that students have by extracting and qualitatively coding comments that instructors write on lab reports. Instructors' comments are categorized by topic (writing issues, technical errors, logical flaws, etc.), structure (copyediting, prescriptive, reflective) and other categories based on specific terms, phrases, or other features within the text of the comment.
  
-This analysis is very informative but impractical to do regularly because the datasets are very large; last semester's dataset contained >11,000 text-based comments plus metadata. 
- 
-Research questions I would like to explore within the learning community center on how we can extract meaning from these datasets more rapidly and reliably. 
+This analysis is informative but impractical for routine use, given a single semester's dataset contains >11,000 text-based comments plus metadata. Inter-rater reliability and consistency over time also are major concerns. 
 
-The two specific questions I would like to explore first:
+The goals for this Faculty Learning Community (FLC) project are to design, evaluate and document an automated procedure for classifying text-based TA comments quickly and reliably. Looking beyond the current project, we hope to use automated text categorization of instructor comments to identify the most frequent writing problems students have **as a group** (not just individually), then adjust writing training objectives so they focus specifically on those issues first.  
 
-1.  Can we use R's text parsing and analysis tools to identify the most informative features for sorting instructor comments into topics and types?
-2.  Assuming #1 is possible, can we script or automate the process of sorting instructor comments into major themes and types?  
-.  
+####\     
 
-Our long-range goal in pursuing this project is NOT automated scoring of student writing. Rather, we hope to use categorized instructor comments as a tool for more rapidly diagnosing the most common problems students have. Based on that information we will tailor how we teach writing so it focuses more on those specific student challenges.  
-.  
+## Initial De-Identification and Data Structure
+The baseline dataset is an Excel table containing ~11,000 de-duplicated data rows and 28 data columns. Data structure is tidy, in each row represents ONE unique TA comment on student writing. Metadata and assigned coding is stored in separate columns.
 
-### Data Structure
-I have an Excel data table containing ~11,000 data rows, organized into these columns. The data have been de-duplicated already, so that the individual lines represent unique TA comments on student writing.
+To anonymize the original dataset, a separate file (ID_lookup.xlsx) was created containing identifiable names of TAs and email addresses for students.  Two additional columns of random identifiers were created: 
 
-Name|Assigned|Description of What the Column Data Are
-----------|----------|----------------------------------------------------------
-unique.record|PI assigned|Unique line identifier for each data line in tables. SemesterYear.##### (example: Sp18.00012 is line 12 in dataset from Spring '18)
-report.id|Qualtrics|R_XX value
-sort|PI| (Can drop) Original sorting value. Duplicates of this number indicate a complex comment was split
-report.title|Mixed|Title of the file from which a comment was extracted
-student|WFU|(Still need to de-identify) Unique email address of student who wrote report
-course|PI or TA|Course bins: 1113, 114, 214
-ta|PI|(Still need to de-identify) Instructor marking paper
-lab|PI|Topic of the lab on which report was written
-tag|Student|First or second of semester. Observed that students often enter incorrectly. Revalidate 
-type.TA|TA|Submission or revision version. Observed that students often enter incorrectly. Revalidate
-grade.TA|TA|Assigned grade from the TA
-grading.time|TA|Entered by TA, in minutes, or minutes.seconds
-Rank|PI|(Can drop) Housekeeping data from coding. Used with Sort#
-hypothesis.ok|TA|Yes or no for hypothesis present
-data.ok|TA|Yes or no for data present
-citation.ok|TA|Yes or no for citations in introduction and discussion
-interpretation.ok|TA|Yes or no for data are interpreted
-organization.ok|TA|Yes or no for properly organized into 8 sections
-techflaws.ok|TA|Yes or no for whether report has technical errors
-writing.ok|TA|Yes or no for whether report has writing errors
-comments.incorporated|TA|Yes or no for whether student incorporated comments from submission into revision.
-ta.comment|TA|Text of the actual extracted comment
-code.subject|PI|below
-code.structure|PI|below
-code.locus|PI|below
-code.scope|PI|below
-code.tone|PI|below
-code.notes|PI|below
+1.  500 non-repeated unique IDs for TAs in format: **TA_7lL5KRzf**
+2.  10,000 non-repeated unique IDs for students in format: **Std_H6n5PxOy**
+
+Individual TAs and student emails were paired with corresponding random IDs, then both TA names and student email addresses replaced using an Excel LOOKUP function. 
+
+The finalized data table imported from the .CSV file is organized as follow:
+
+
+Col#|Name|Assigned By|Description of Column Data
+-----|--------|----------|----------------------------------------------------------
+1|unique.record|PI|Unique line identifier for each data line in tables. SemesterYear.##### (example: Sp18.00012 is line 12 in dataset from Spring '18)
+2|report.id|Qualtrics|R_XX value
+3|sort|PI| (Can drop) Original sorting value. Duplicates of this number indicate a complex comment was split
+4|report.title|Mixed|Title of the file from which a comment was extracted. **Data are deleted from anonymized dataset.**
+5|student|PI|Each student was assigned an anonymous, unique ID that can be traced back to a WFU-issued email address for the student who wrote report. Format is **"Std_H6n5PxOy"** (this ID is equivalent to "NA").
+6|course|PI or TA|Course bins: 1113, 114, 214
+7|ta|PI|Each TA or instructor marking student papers was assigned an anonymous, unique ID that can be traced back to that ibstructor. Format is **"TA_7lL5KRzf"** (this ID is equivalent to "NA").
+8|lab|PI|Topic of the lab on which report was written
+9|tag|Student|First or second of semester. Observed that students often enter incorrectly. Revalidate 
+10|type.TA|TA|Submission or revision version. These are unreliable; we found that students often enter incorrectly. Revalidate before analysis
+11|grade.TA|TA|Assigned grade from the TA
+12|grading.time|TA|Entered by TA, in minutes, or minutes.seconds
+13|Rank|PI|Housekeeping data from de-duplication process. 
+14|hypothesis.ok|TA|Is a hypothesis present, Yes or No?
+15|data.ok|TA|Are data present, Yes or No?
+16|citation.ok|TA|Are there citations in introduction and discussion, Yes or No?
+17|interpretation.ok|TA|Are the data interpreted, Yes or No?
+18|organization.ok|TA|Is report properly organized into 8 sections, Yes or No?
+19|techflaws.ok|TA|Is report free of technical errors, Yes or No?
+20|writing.ok|TA|Is report free of writing errors, Yes or No?
+21|comments.incorporated|TA|If a revision, did student incorporate comments from submission into revision, Yes or No?
+22|ta.comment|TA|Text of the actual extracted comment made by the TA.
+23|code.subject|PI|Described in next table
+24|code.structure|PI|\ ''
+25|code.locus|PI|\ ''
+26|code.scope|PI|\ ''
+27|code.tone|PI|\ ''
+28|code.notes|PI|\ ''
 ####\  
 
-These are the **Coded Characteristics.** Each has well-defined limited vocabulary of choices. Check codebook file for detailed descriptions.  
+**Coded Characteristics** are encoded using a limited set of choices. Topics and choice vocabulary are described in detail in **codebook_for_comments.md**.  
 
-Name|Description|Status
+Name|Description|Status in Sp18 D'set
 ------------|----------------------------------|-----------------------
-code.subject|What is main subject?|Complete
-code.structure|How is comment structured? Copy correction, etc.|Complete
+code.subject|What is main subject?|Completed
+code.structure|How is comment structured? Copy correction, etc.|Completed
 code.locus|Where is locus of control? Corrective, directive, reflective?|Partial
 code.scope|Can comment carry to other parts of report, beyond report?|Some have been done
 code.tone|Is wording likely to be seen as positive, neutral, or negative?|Not done yet
 code.notes|Personal notes entered while coding|Not part of active dataset
 ***
 ####\   
-
-## Support Data for De-Identification
-I created a separate .xlsx file then exported to .csv that has the ACTUAL names of TAs and ACTUAL emails for students. There are two de-identifier columns: 
-
-1.  There are 500 non-repeated unique IDs for TAs in format: **TA_7lL5KRzf**
-2.  There are 10,000 non-repeated unique IDs for students in format: **Std_H6n5PxOy**
-3.  There are additional columns for recording students, course IDs, and TAs for each semester from Spring'18 through Spring'20.
-
 
 ## Questions I want to ask
 
