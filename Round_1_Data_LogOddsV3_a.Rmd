@@ -25,7 +25,7 @@ CSV file named "base_data.csv" already has correctly organized text and meta-dat
 
 ```{r}
 # Read CSV.
-base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
+base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18anon.csv')
 
 # Isolate table rows to compare.
 frequency_writing <- filter(base_data, code.subject=="3. Technical and Scientific"|code.subject=="2. Writing Quality"|code.subject=="4. Logic and Thinking")

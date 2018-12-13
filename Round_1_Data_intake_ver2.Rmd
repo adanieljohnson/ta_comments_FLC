@@ -25,7 +25,7 @@ CSV file named "base_data.csv" already has correctly organized text and meta-dat
 
 ```{r}
 # Read CSV.
-base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18.csv')
+base_data <- read_csv(file='data/coded_full_comments_dataset_Spring18anon.csv')
 head(base_data)
 
 # Isolate table rows to compare.
@@ -64,7 +64,6 @@ base_data_tokenized_sorted <- base_data_tokenized %>%
 This structure is needed in order to compare word (in Column 1) frequencies for 1. Basic Criteria (Column 2) as Y values against the frequencies of those same words (in Column 4) as X axes. Which subset of the X values to use is coded in Column 3.
 
 ## Analysis
-
 These three steps determine the Pearson correlation between the frequency of words in Basic Criteria versus the other three groups.
 
 ```{r}

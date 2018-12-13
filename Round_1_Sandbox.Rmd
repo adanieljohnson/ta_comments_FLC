@@ -204,6 +204,84 @@ https://www.press.umich.edu/6737/teacher_written_commentary_in_second_language_w
 
   
 
+***
+
+##IN PROGRESS: De-Identify TAs and Students in base_data
+For this step I need to mutate "base_data" to create a new file where TA names and student email addresses are replaced with pre-assigned de-identifiers.
+
+I have created a set of uniform anonymous identifiers and put them in a CSV file. From there I can import them to create lookup tables for de-identifying TAs' names and student email addresses. 
+
+This code block reads in the raw dataset containing TA names, student email addresses, and corresponding anonymous IDs, from CSV file then generates TWO data frames.
+
+```{r}
+TA_identifiers <- read_csv(file='data/ID_lookup.csv')[1:15,2:1]
+#assumes Cols. 1-2 are the TA_IDs and TA names, and are not the full range of rows, so we only want rows 1-15.
+class(TA_identifiers) #Should report as "tbl_df"
+```
+
+```{r}
+Student_identifiers <- read_csv(file='data/ID_lookup.csv')[,5:4]
+#assumes Cols. 4-5 are the Student_IDs and Student email addresses.
+class(Student_identifiers) #Should report as "tbl_df"
+```
+
+**Everything works up to here, but I cannot get next step of lookup process to work. I tried several methods, and none of the elegant ones seem to work. **
+
+I used this Stack Overflow thread as my starting point:
+
+https://stackoverflow.com/questions/35636315/replace-values-in-a-dataframe-based-on-lookup-table
+
+Text copied from the user who posed problem:  
+
+I am having some trouble replacing values in a dataframe. I would like to replace values based on a separate table. Below is an example of what I am trying to do.
+
+I have a table where every row is a customer and every column is an animal they purchased. Lets call this dataframe Original_table.
+
+> Original_table
+#       P1     P2     P3
+# 1    cat lizard parrot
+# 2 lizard parrot    cat
+# 3 parrot    cat lizard
+
+I also have a table that I will reference called lookUp.
+
+> lookUp
+#      pet   class
+# 1    cat  mammal
+# 2 lizard reptile
+# 3 parrot    bird
+
+What I want to do is create a new table called new with a function replaces all values in table with the class column in lookUp.
+
+What readers recommended:
+
+1. Use JOIN to take two separate tables of data and combine them. Use GATHER to reorganize existing data. 
+
+```
+library(dplyr)
+library(tidyr)
+Original_table %>%
+   gather(key = "pet") %>%
+   left_join(lookUp, by = "pet") %>%
+   spread(key = pet, value = class)
+```
+Above mechanism failed. **Unsure how to modify and implement. **
+
+None of the other recommended methods seemed to work either. 
+
+
+I have this UGLY HACK TO GENERATE WHAT I NEED in a single column tibble. 
+1. Create one column of TAs, then using **lapply,** loop over column and match values to the look up table. 
+2. Store in list, then convert list to tibble.
+3. Unfinished step is to merge back in; that command is missing.
+
+```{r}
+deidentified_data2<-base_data$ta #Extract just TA name from base_data
+
+deidentified_data2 <- lapply(base_data$ta, function(x) TA_identifiers$TA_ID[match(x, TA_identifiers$ta)]) #Loop over column and replace.
+
+deidentified_data3 <- tibble(line = seq_along(data), text = deidentified_data2) #tibble-izer; converts the list into a tibble.
+```
 
 
 

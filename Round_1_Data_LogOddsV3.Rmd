@@ -154,7 +154,7 @@ cor.test(data = base_data_tokenized_sorted3[base_data_tokenized_sorted3$code.sub
 
 
 
-###Compare Distributions of Words Visually
+###Visual Comparison of Word Distributions 
 
 If the words used by TAs in comments are not different between the categories, the slopes of the lines in the three comparison graphs should be close to 1, with intercepts approaching zero. If there are differences in usage, the plots should not intercept at (0,0), and there should be an offset of word frequencies from X, Y baselines.
 
