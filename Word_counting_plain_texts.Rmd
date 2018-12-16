@@ -1,0 +1,66 @@
+---
+title: "Word Counting Plain Text Files"
+author: "Dan Johnson"
+date: "12/16/2018"
+output: html_document
+---
+This notebook documents the basic method for extracting 1-, 2-, and 3-grams from a plain text file, and generating raw counts and fractional frequencies.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Setup}
+library(tidyverse)
+library(tidytext)
+library(readtext)
+```
+
+```{r List of single words, stop words deleted}
+# Read in .txt file, then unnest words into tokens
+setwd("~/Dropbox/Coding_Tools/R_Environment/R_Projects/ta_comments_FLC/data")
+text_0<-readtext("Cancer_site_text.txt")
+text_1<-text_0 %>% 
+  unnest_tokens(word,text) %>% 
+  anti_join(stop_words)
+
+# Count words, summarize as raw counts and frequencies
+text_1_tokenized_sorted <- text_1 %>% 
+  count(word, word, sort=TRUE) %>% 
+  mutate(proportion = n / sum(n))
+
+```
+
+```{r List bigrams}
+setwd("~/Dropbox/Coding_Tools/R_Environment/R_Projects/ta_comments_FLC/data")
+text_0<-readtext("Cancer_site_text.txt")
+text_2<-text_0 %>% 
+  unnest_tokens(ngram, text, token = "ngrams", n = 2)
+
+# Count bigrams, summarize as raw counts and frequencies. Change to "sort=TRUE" to get lists in declining frequency order.
+text_2_tokenized_sorted <- text_2 %>% 
+  count(ngram, ngram, sort=FALSE) %>% 
+  mutate(proportion = n / sum(n))
+
+```
+
+```{r List tri-grams}
+setwd("~/Dropbox/Coding_Tools/R_Environment/R_Projects/ta_comments_FLC/data")
+text_0<-readtext("Cancer_site_text.txt")
+text_3<-text_0 %>% 
+  unnest_tokens(ngram, text, token = "ngrams", n = 3)
+
+# Count trigrams, summarize as raw counts and frequencies. Change to "sort=TRUE" to get lists in declining frequency order.
+text_3_tokenized_sorted <- text_3 %>% 
+  count(ngram, ngram, sort=FALSE) %>% 
+  mutate(proportion = n / sum(n))
+
+```
+
+***
+
+Next tasks:
+
+*  Prune out all lines in n-grams that begin OR end with stop words.
+*  Identify 
+
