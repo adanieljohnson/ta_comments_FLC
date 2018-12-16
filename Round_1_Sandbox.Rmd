@@ -11,20 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Progress Report
 
-1.	Need to clarify where/how best to provide a shared site.
-Problem I have is that I am using confidential data in private repo. Should I:
-
-* Document activities in the Default website space.
-* Pull data and munge in a private repo folder to create public dataset, then call in the de-identified data only?
-
-2.  Where do you want us to conduct the actual analyses? In: 
-
-* Default website repo
-*	A repo with Mike's data-specific file and folder structure
-* Other location?
-
-3.	How deep do you want us to go on documenting process?
-
 *	All raw work?
 *	Notes and scribbles in .rmd
 *	Train of thought journals?
@@ -964,39 +950,4 @@ Abase_data_3columns.sciname.tokens <- base_data_3columns.sciname %>%
   unnest_tokens(word,ta.comment)
 ```
 
-
-
-***
-#Approach ONE: Work backwards from existing sorting to get criteria.
-I have a pre-defined set of traits. Can I build from that?
-
-Do it using naive Bayes. 
-
-##Step 1.1: Regenerate the groups in two-dimensional array
-
-
-##Step 1.2: Yada
-
-
-##Step 1.3: Yada
-
-
-##Step 1.4: Yada
-
-
-***
-#Approach TWO: Assume no a priori groups, and look for natural clusters. 
-
-
-
-##Step 2.1: Yada
-
-
-##Step 2.2: Yada
-
-
-##Step 2.3: Yada
-
-
-##Step 2.4: Yada
 

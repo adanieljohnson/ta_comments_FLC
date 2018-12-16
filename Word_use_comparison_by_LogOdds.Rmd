@@ -398,7 +398,220 @@ word_ratios2v4 %>%
 
 ```
 
+##Direct Comparison Using Only Words Appearing in All Subsets of Comments
+I think this is less informative, but it does let me see the data more clearly.
 
+Basic strategy is to take all comments from base_data, unnest tokens, filter stopwords, count and sort remaining terms, then write back to a new datatable called 'sortedwords.comments.all'.  Calculate TOTAL words and store. Then calculate fractional frequencies for each word and store using mutate.
+
+```{r}
+library(dplyr)
+library(tidytext)
+
+sortedwords.comments.all <- base_data_tokenized %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.all <- sortedwords.comments.all %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.comments.all.fraction <- sortedwords.comments.all %>% as_tibble() %>% mutate(
+  all.fraction = (n*100)/total_words.all$total
+  )
+```
+
+
+##Summarize Word Frequencies in Subsets of Comments Based on 'Subject'
+Take subsets of comments from base_data_tokenized using code.subject as separating characteristic.
+```{r}
+#Pull SUBSETs of tokenized data based on code.subject: 
+base_data_tokenized.basic <- subset(base_data_tokenized, code.subject == "1. Basic Criteria", select = (1:28))
+base_data_tokenized.writing <- subset(base_data_tokenized, code.subject == "2. Writing Quality", select = (1:28))
+base_data_tokenized.technical <- subset(base_data_tokenized, code.subject == "3. Technical and Scientific", select = (1:28))
+base_data_tokenized.logic <- subset(base_data_tokenized, code.subject == "4. Logic and Thinking", select = (1:28))
+base_data_tokenized.praise <- subset(base_data_tokenized, code.subject == "5. Praise or Concern", select = (1:28))
+base_data_tokenized.misconduct <- subset(base_data_tokenized, code.subject == "6. Misconduct", select = (1:28))
+base_data_tokenized.narrative <- subset(base_data_tokenized, code.subject == "12. Narrative Comments", select = (1:28))
+base_data_tokenized.sciname <- subset(base_data_tokenized, code.subject == "Scientific Name", select = (1:28))
+```
+
+
+For each subset, filter stopwords, count words and total, then calculate frequencies.
+
+```{r}
+sortedwords.basic <- base_data_tokenized.basic %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.basic <- sortedwords.basic %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.basic.fraction <- sortedwords.basic %>% as_tibble() %>% mutate(
+  basic.fraction = (n*100)/total_words.basic$total
+)
+```
+
+```{r}
+sortedwords.writing <- base_data_tokenized.writing %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.writing <- sortedwords.writing %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.writing.fraction <- sortedwords.writing %>% as_tibble() %>% mutate(
+  writing.fraction = (n*100)/total_words.writing$total
+)
+```
+
+```{r}
+sortedwords.technical <- base_data_tokenized.technical %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.technical <- sortedwords.technical %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.technical.fraction <- sortedwords.technical %>% as_tibble() %>% mutate(
+  technical.fraction = (n*100)/total_words.technical$total
+)
+```
+
+```{r}
+sortedwords.logic <- base_data_tokenized.logic %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]")) %>%
+  count(word, word, sort = TRUE) %>%
+  ungroup()
+
+#Calculate the number of words in total in the subset
+total_words.logic <- sortedwords.logic %>% 
+  summarize(total = sum(n))
+
+#Mutate table to calculate then append fractional word frequency in the text.
+sortedwords.logic.fraction <- sortedwords.logic %>% as_tibble() %>% mutate(
+  logic.fraction = (n*100)/total_words.logic$total
+)
+```
+
+Next block joins the individual data tables for each subset in a larger file using column named 'word'. Columns get confusing names so they are renamed.
+
+**WARNING**: Words that are MISSING from **any subset** cause the full set to be pruned. I am losing the unique words this way. **Need to figure out how to join without pruning.**
+
+
+```{r}
+total <- merge(sortedwords.comments.all.fraction,sortedwords.technical.fraction,by="word") 
+total2 <- merge(total,sortedwords.writing.fraction,by="word")
+total3 <- merge(total2,sortedwords.logic.fraction,by="word")
+#rename lines that were possibly confusing
+names(total3)[2] <- "all.count"
+names(total3)[4] <- "technical.count"
+names(total3)[6] <- "writing.count"
+names(total3)[8] <- "logic.count"
+
+#Mutate table to calculate then append fractional word frequency in the text.
+total4 <- total3 %>% as_tibble() %>% mutate(
+  writing.wt = (writing.count *100)/all.count
+)
+
+total5 <- total4 %>% as_tibble() %>% mutate(
+  technical.wt = (technical.count *100)/all.count
+)
+
+total6 <- total5 %>% as_tibble() %>% mutate(
+  logic.wt = (logic.count *100)/all.count
+)
+
+```
+
+These graphs only compare frequencies for ~770 words that appear in ALL of the sub-categories. 
+
+```{r}
+ggplot(total6, aes(`technical.fraction`,`writing.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+```{r}
+ggplot(total6, aes(`logic.fraction`,`writing.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+```{r}
+ggplot(total6, aes(`logic.fraction`,`technical.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+
+```{r}
+ggplot(total6, aes(`all.fraction`,`writing.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+
+```{r}
+ggplot(total6, aes(`all.fraction`,`technical.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+
+```{r}
+ggplot(total6, aes(`all.fraction`,`logic.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+
+
+***
+***
 
 ###Other Analysis Approaches
 This approach summarizes the word frequencies in the FULL set of TA comments first, then breaks them down into sub-groups. It has examples of other code bits as well.

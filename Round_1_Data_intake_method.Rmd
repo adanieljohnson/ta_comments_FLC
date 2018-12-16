@@ -242,13 +242,13 @@ Join the individual data tables for each subset in a larger file using column na
 
 
 ```{r}
-total <- merge(sortedwords.comments.all.fraction,sortedwords.writing.fraction,by="word") 
-total2 <- merge(total,sortedwords.technical.fraction,by="word")
+total <- merge(sortedwords.comments.all.fraction,sortedwords.technical.fraction,by="word") 
+total2 <- merge(total,sortedwords.writing.fraction,by="word")
 total3 <- merge(total2,sortedwords.logic.fraction,by="word")
 #rename lines that were possibly confusing
 names(total3)[2] <- "all.count"
-names(total3)[4] <- "writing.count"
-names(total3)[6] <- "technical.count"
+names(total3)[4] <- "technical.count"
+names(total3)[6] <- "writing.count"
 names(total3)[8] <- "logic.count"
 
 #Mutate table to calculate then append fractional word frequency in the text.
@@ -267,14 +267,68 @@ total6 <- total5 %>% as_tibble() %>% mutate(
 ```
 
 
-To Do Next:
+```{r}
+ggplot(total6, aes(`technical.fraction`,`writing.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
 
-Now I need to cross-graph the weights for each word relative to others. 
+```{r}
+ggplot(total6, aes(`logic.fraction`,`writing.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+```{r}
+ggplot(total6, aes(`logic.fraction`,`technical.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
 
 
 
-***
-***
+```{r}
+ggplot(total6, aes(`all.fraction`,`writing.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+
+```{r}
+ggplot(total6, aes(`all.fraction`,`technical.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
+
+```{r}
+ggplot(total6, aes(`all.fraction`,`logic.fraction`)) +
+  geom_jitter(alpha = 0.1, size = 2.5, width = 0.25, height = 0.25) +
+  geom_text(aes(label = word), check_overlap = TRUE, vjust = 1.5) +
+  scale_x_log10(labels = percent_format()) +
+  scale_y_log10(labels = percent_format()) +
+  geom_abline(color = "red")
+```
+
+
 
 
 ###Alternative Options
