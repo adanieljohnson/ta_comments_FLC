@@ -114,7 +114,7 @@ unique(base_data$code.structure)
 ####\  
 
 ##Log-Odds Approach to Text Comparison
-I evaluated several iterations of different analysis strategies. The log-odds ratios method outlined below has been the most informative to date. 
+I have looked at several "first-pass" analysis strategies, and the log-odds ratios method outlined below has been the most informative I have found to date. 
 
 ```{r}
 # Isolate table rows to compare. Then reduce larger dataframe to only 2 required columns of data.
