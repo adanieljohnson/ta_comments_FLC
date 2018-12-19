@@ -23,8 +23,8 @@ I based the original workflow on this tutorial [https://rpubs.com/Billyhansen6/3
 
 ####\  
 
-##Starting Version 1.0
-Rows 22 to ~235 of this code are original starting version. Works as of 12/18/2018
+##Starting Version for Bigrams, Trigrams
+The original code is in rows 22 to ~235 of of Version 2 of this document. Works as of 12/18/2018. This is modified for n-grams instead of single words.
 
 ```{r}
 library(tidyverse)
@@ -67,108 +67,85 @@ table(sms_raw2$type)
 ```{r}
 ##Text Transformation using "tm" package in R to create a volitile coprus that contains the "text" vector from our data frame.
 sms_corpus2 <- VCorpus(VectorSource(sms_raw2$text))
-print(sms_corpus2)
 
-#Check out the first few messages in the new corpus, which is basically a list that can be manipulated with list operations.
-inspect(sms_corpus2[1:3])
-
-#Use "as.character" function to see what a message looks like.
-as.character(sms_corpus2[[3]])
-```
-
-In order to standardize the messages, the data set must be tranformed to all lower case letters. The words "Free", "free", and "FREE" should all be treated as the same word. Use the "tm_map"" funtion in R, and use the "content_transformer" function to transform the text.
-```{r}
+#Convert to all lower case letters with "tm_map"" funtion in R, then use the "content_transformer" function to transform the text.
 sms_corpus_clean2 <- tm_map(sms_corpus2, content_transformer(tolower))
-```
 
-Look at third message again to see if our data was transformed.
-```{r}
-as.character(sms_corpus2[[3]])
-
-as.character((sms_corpus_clean2[[3]]))
-```
-
-This removes numbers. **May not want to do.**
-```{r}
+#This removes numbers. **May not want to do.**
 sms_corpus_clean2 <- tm_map(sms_corpus_clean2, removeNumbers)
-```
 
-Stopword removal takes out words that appear often but don't contribute to our objective. These words include "to", "and", "but" and "or". **One of variables to test out.**
-```{r}
+#Stopword removal. **One of variables to test out.**
 sms_corpus_clean2 <- tm_map(sms_corpus_clean2, removeWords, stopwords())
-```
 
-Remove punctuation as well using the "removePunctuation" function. **Try not doing this. Removes evidence of questions.**
-```{r}
+#Remove punctuation as well using the "removePunctuation" function. Try not doing this. Removes evidence of questions.
 sms_corpus_clean2 <- tm_map(sms_corpus_clean2, removePunctuation)
-as.character((sms_corpus_clean2[[3]]))
 ```
 
 Perform "stemming" to the text data to strip the suffix from words. **Try NOT doing this.** 
-```{r}
+```{}
 sms_corpus_clean2 <- tm_map(sms_corpus_clean2, stemDocument)
 ```
 
-And now the final step in text mining is to remove white space from the document. 
+Final step in text mining is to remove white spaces. 
 ```{r}
 sms_corpus_clean2 <- tm_map(sms_corpus_clean2, stripWhitespace)
 ```
 
+Code to inspect a line of text.
 ```{r}
 as.character(sms_corpus_clean2[[3]])
 ```
 
-**Original Version**
-Performs tokenization using the "DocumentTermMatrix" function. This creates a matrix in which the rows indicate documents (SMS messages in this case) and the columns indicate words. It should be noted that the "DocumentTermMaxtrix" function has the power to do all of the text mining above in one command.
+
+#Single word tokenization
+Block tokenizes using the "DocumentTermMatrix" function. This creates a matrix in which the rows indicate documents (SMS messages in this case) and the columns indicate words. It should be noted that the "DocumentTermMaxtrix" function has the power to do all of the text mining above in one command. The "tidy" command is a hack that makes it easier to inspect the document terms matrix.
 ```{r}
 sms_dtm2 <- DocumentTermMatrix(sms_corpus_clean2)
 sms_dtm2_tidy <- tidy(sms_dtm2)
 ```
 
-
-**Quick code block to generate 2-grams and 3-grams from full corpus of TA comments**
+#N-gram tokenization
+This code block uses tm's NLP functions to generate n-grams from the full corpus of TA comments
 
 ```{r}
+
+NLP_Tokenizer <- function(x) {
+      unlist(lapply(ngrams(words(x), 2), paste, collapse = " "), use.names = FALSE)
+}
+
+sms_dtm2_bigrams <- TermDocumentMatrix(sms_corpus_clean2, control=list(tokenize = NLP_Tokenizer))
+
+inspect(sms_dtm2_bigrams)
+
+```
+
+This should build an inspectable doc-terms matrix using n-grams described in "sms_dtm2_bigrams"
+```{r}
+sms_dtm2_bigrams_tidy <- tidy(sms_dtm2_bigrams)
+
+#sms_dtm_trigram <- DocumentTermMatrix(sms_corpus_clean2, control = list(tokenize=tdm_NLP))
+#sms_dtm_trigram_tidy <- tidy(sms_dtm_trigram)
+```
+
+Data Tables for Analysis
+sms_dtm2
+sms_dtm2_bigrams
+
+**Along the way I picked up this quick code block for generating 2-grams and 3-grams from full corpus of TA comments using the "corpus"" library**
+
+```{}
 library(corpus)
 corpus <- sms_corpus_clean2 
 text_filter(corpus)$drop_punct==TRUE
 term_stats(corpus, ngrams = 2:3)
 ```
 
+Data Tables for Analysis
+sms_dtm2
+sms_dtm2_bigrams
+sms_dtm_trigram
 
-text.corpus = sms_corpus_clean2
-
-**This code block used tm's NLP generate n-grams from full corpus of TA comments**
-
-```{r}
-
-NLPtrigramTokenizer <- function(x) {
-      unlist(lapply(ngrams(words(x), 3), paste, collapse = " "), use.names = FALSE)
-}
-
-tdm_NLP <- TermDocumentMatrix(sms_corpus_clean2, control=list(tokenize = NLPtrigramTokenizer))
-
-inspect(tdm_NLP)
-
-```
-
-This should build a doc-terms matrix tokenize using n-grams 
-```{r}
-library(topicmodels)
-library(RWeka)
-corpus <- sms_corpus_clean2 
-text_filter(corpus)$drop_punct==TRUE
-term_stats(corpus, ngrams = 2:3)
-
-sms_dtm_bigram <- DocumentTermMatrix(sms_corpus_clean2, control = list(tokenize=term_stats))
-sms_dtm_bigram_tidy <- tidy(sms_dtm_bigram)
-```
-
-
-
-
-
-
+```{}
 **OPTION**
 library(tm); library(tau);
 
@@ -211,7 +188,7 @@ Yes. Package NLP provides functionality to compute n-grams which can be used to 
 
   tdm <- TermDocumentMatrix(crude, control = list(tokenize = BigramTokenizer))
   inspect(removeSparseTerms(tdm[, 1:10], 0.7))
-
+```
 ####\  
 
 ##Data Preparation
@@ -224,8 +201,8 @@ Split data into training and testing sets, so that after Naive Bayes spam filter
 
 This code assumes comments are random. **Probably want to try randomizing them.**
 ```{r}
-sms_dtm_train2 <- sms_dtm2[1:6846, ]
-sms_dtm_test2 <- sms_dtm2[6847:9129, ]
+sms_dtm_train2 <- sms_dtm2_bigrams[1:6846, ]
+sms_dtm_test2 <- sms_dtm2_bigrams[6847:9129, ]
 ```
 
 Save vectors labeling rows in the training and testing vectors
@@ -267,6 +244,13 @@ Remove words from the matrix that appear less than 5 times.
 sms_freq_words2 <- findFreqTerms(sms_dtm_train2, 5)
 str(sms_freq_words2)
 ```
+
+Data Tables for Analysis
+sms_dtm2 = sms_dtm2_bigrams,  sms_dtm_trigram
+sms_dtm_train2, _test2
+sms_train_labels2, sms_test_labels2
+
+
 
 Limit our Document Term Matrix to only include words in the sms_freq_vector. We want all the rows, but we want to limit the column to these words in the frequency vector.
 ```{r}
