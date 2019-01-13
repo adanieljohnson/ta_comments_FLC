@@ -1,5 +1,5 @@
 ---
-title: "Text Classification Overview"
+title: "Elements of Text Mining and Classification"
 author: "Dan Johnson"
 date: "1/9/2019"
 output: html_document
@@ -8,28 +8,33 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+#Background - 
+My general approach for this project is to use an initial codebook and corpus of hand-coded TA comments to 1) evaluate the classification categories, and 2) test various automated classification methods. The process can be broken down into:
 
-#Overview 
-My general approach for this project is:
+**Feature Selection and Engineering**
 
-*  Use first set of TA comments to develop an initial codebook
-*  Hand code the first cycle of data.
-*  Identify existing features to evaluate and/or engineer features
-	+  Initial pass is done; I have categorized data and working codebook
-	+  Want to:
-	    -  Look for alternative category models using Latent Dirichlet Allocation
-	    -  Try reverse engineering the model parameters from initial codebook
+*  Identify existing text features to evaluate
+*  Engineer additional features using established NLP methods
+*	 Try reverse engineering model parameters that can identify the comment categories in my initial codebook
+
+**Categorization Methods**
+
+*  Look at alternative comment categorization models
+
+**Classifier Methods**
+For each applicable classifier method:
 
 *  Establish randomized training and test datasets
-*  For each classifier:
-  +  Train model, then run on test dataset
-  +  Calculate accuracy score using Gini index or similar method
+*  Train model, then run on test dataset
+*  Calculate accuracy score using Gini index or similar method
 *  Select best performing classifier and operationalize for new datasets
 
+This page outlines general mechanics of text classification, and summarizes various classifier methods.
 
-#Background - Elements of Text Data Mining
-##Feature Engineering
-This is the process of tabulating, calculating, or creating text-based features for subsequent evaluation. These features can help improve text classification accuracy. The examples below are used in natural language processing regularly.
+
+
+#Feature Selection and Engineering
+This is the process of selecting, tabulating, calculating, or creating text-based features for subsequent evaluation. The features below are used in natural language processing routinely.
 
 *  Count-based Vectors
 	+  Word Count of the documents – total number of words in the documents
@@ -48,14 +53,264 @@ This is the process of tabulating, calculating, or creating text-based features 
 	+ Adverb Count
 	+ Pronoun Count
 *  Word Embedding
-*  Topic Modeling
-	+  Latent Dirichlet Allocation
+
+
+
+###Word Embedding
+**Word embedding** is a set of language modeling and feature learning techniques in natural language processing (NLP) where words or phrases from the vocabulary are mapped to vectors of real numbers. Conceptually it involves a mathematical embedding from a space with one dimension per word to a continuous vector space with a much lower dimension.
+
+Methods to generate the mapping include neural networks, dimensionality reduction, probabilistic models, knowledge base methods, and explicit representation in terms of the context in which words appear. The technique of representing words as vectors has roots in the 1960s with the development of the vector space model for information retrieval. 
+
+Word embeddings come in two different styles, one in which words are expressed as vectors of co-occurring words, and another in which words are expressed as vectors of linguistic contexts in which the words occur. Most new word embedding techniques rely on a neural network architecture instead of more traditional n-gram models and unsupervised learning. 
+
+One of the main limitations of word embeddings (word vector space models in general) is that possible meanings of a word are conflated into a single representation (a single vector in the semantic space). Sense embeddings are a solution to this problem: individual meanings of words are represented as distinct vectors in the space.
+
+Software for training and using word embeddings includes Tomas Mikolov's Word2vec, Stanford University's GloVe, AllenNLP's Elmo, fastText, Gensim, Indra and Deeplearning4j. 
+
+**Principal Component Analysis (PCA)** and **T-Distributed Stochastic Neighbour Embedding (t-SNE)** are both used to reduce the dimensionality of word vector spaces and visualize word embeddings and clusters.
+
+
+####Word2vec
+Word2vec is a group of shallow, two-layer neural network models that are used to produce word embeddings. The toolkit which can train vector space models faster than the previous approaches. These models are trained to reconstruct linguistic contexts of words. Word2vec takes as its input a large corpus of text and produces a vector space, typically of several hundred dimensions, with each unique word in the corpus being assigned a corresponding vector in the space. Word vectors are positioned in the vector space such that words that share common contexts in the corpus are located in close proximity to one another in the space.
+
+Word2vec was created by a team of researchers at Google. Embedding vectors created using the Word2vec algorithm have many advantages compared to latent semantic analysis methods.
+
+The use of different model parameters and different corpus sizes can greatly affect the quality of a word2vec model. Accuracy can be improved in a number of ways, including the choice of model architecture (CBOW or Skip-Gram), increasing the training data set, increasing the number of vector dimensions, and increasing the window size of words considered by the algorithm. Each of these improvements comes with the cost of increased computational complexity and therefore increased model generation time.
+
+In models using large corpora and a high number of dimensions, the skip-gram model yields the highest overall accuracy, and consistently produces the highest accuracy on semantic relationships, as well as yielding the highest syntactic accuracy in most cases. However, the CBOW is less computationally expensive and yields similar accuracy results.
+
+Accuracy increases overall as the number of words used increases, and as the number of dimensions increases. Altszyler et al. (2017) studied Word2vec performance in two semantic tests for different corpus size. They found that Word2vec has a steep learning curve, outperforming another word-embedding technique (LSA) when it is trained with medium to large corpus size (more than 10 million words). However, with a small training corpus LSA showed better performance. Additionally they show that the best parameter setting depends on the task and the training corpus. Nevertheless, for skip-gram models trained in medium size corpora, with 50 dimensions, a window size of 15 and 10 negative samples seems to be a good parameter setting. 
+
+
+####fastText
+A Python-based library for efficient text classification and representation learning
+
+fastText is a library for learning of word embeddings and text classification created by Facebook's AI Research (FAIR) lab. The model allows to create an unsupervised learning or supervised learning algorithm for obtaining vector representations for words. Facebook makes available pretrained models for 294 languages. fastText uses a neural network for word embedding.
+
+https://fasttext.cc/
+
+
+####GloVe
+GloVe, short for Global Vectors, is a model for distributed word representation. The model is an unsupervised learning algorithm for obtaining vector representations for words. Training is performed on aggregated global word-word co-occurrence statistics from a corpus, and the resulting representations showcase interesting linear substructures of the word vector space. It is developed as an open-source project at Stanford. 
+
+Pre-trained word vectors data are made available under the Public Domain Dedication and License v1.0 whose full text can be found at: http://www.opendatacommons.org/licenses/pddl/1.0/. Options are:
+
+*  Wikipedia 2014 + Gigaword 5 (6B tokens, 400K vocab, uncased, 50d, 100d, 200d, & 300d vectors, 822 MB download): glove.6B.zip
+*  Common Crawl (42B tokens, 1.9M vocab, uncased, 300d vectors, 1.75 GB download): glove.42B.300d.zip
+*  Common Crawl (840B tokens, 2.2M vocab, cased, 300d vectors, 2.03 GB download): glove.840B.300d.zip
+*  Twitter (2B tweets, 27B tokens, 1.2M vocab, uncased, 25d, 50d, 100d, & 200d vectors, 1.42 GB download): glove.twitter.27B.zip
+
+The Euclidean distance (or cosine similarity) between two word vectors provides an effective method for measuring the linguistic or semantic similarity of the corresponding words. Sometimes, the nearest neighbors according to this metric reveal rare but relevant words that lie outside an average human's vocabulary. 
+
+For example, here are the closest words to the target word frog:
+
+*  frog
+*  frogs
+*  toad
+*  litoria
+*  leptodactylidae
+*  rana
+*  lizard
+*  eleutherodactylus 
+
+The similarity metrics used for nearest neighbor evaluations produce a single scalar that quantifies the relatedness of two words. This simplicity can be problematic since two given words almost always exhibit more intricate relationships than can be captured by a single number. For example, man may be regarded as similar to woman in that both words describe human beings; on the other hand, the two words are often considered opposites since they highlight a primary axis along which humans differ from one another.
+
+In order to capture in a quantitative way the nuance necessary to distinguish man from woman, it is necessary for a model to associate more than a single number to the word pair. A natural and simple candidate for an enlarged set of discriminative numbers is the vector difference between the two word vectors. GloVe is designed in order that such vector differences capture as much as possible the meaning specified by the juxtaposition of two words.
+
+The underlying concept that distinguishes man from woman, i.e. sex or gender, may be equivalently specified by various other word pairs, such as king and queen or brother and sister. To state this observation mathematically, we might expect that the vector differences man - woman, king - queen, and brother - sister might all be roughly equal. This property and other interesting patterns can be observed in the above set of visualizations.
+
+The GloVe model is trained on the non-zero entries of a global word-word co-occurrence matrix, which tabulates how frequently words co-occur with one another in a given corpus. Populating this matrix requires a single pass through the entire corpus to collect the statistics. For large corpora, this pass can be computationally expensive, but it is a one-time up-front cost. Subsequent training iterations are much faster because the number of non-zero matrix entries is typically much smaller than the total number of words in the corpus.
+
+The tools provided in this package automate the collection and preparation of co-occurrence statistics for input into the model. The core training code is separated from these preprocessing steps and can be executed independently.
+
+GloVe is essentially a log-bilinear model with a weighted least-squares objective. The main intuition underlying the model is the simple observation that ratios of word-word co-occurrence probabilities have the potential for encoding some form of meaning. For example, consider the co-occurrence probabilities for target words ice and steam with various probe words from the vocabulary. 
+
+As one might expect, ice co-occurs more frequently with solid than it does with gas, whereas steam co-occurs more frequently with gas than it does with solid. Both words co-occur with their shared property water frequently, and both co-occur with the unrelated word fashion infrequently.
+
+https://nlp.stanford.edu/projects/glove/
+
+
+
+
+
+#Categorization Methods
+###Categorization by Subject Matter Expert
+
 
 ###Topic Modeling to Identify Features
-**Topic Modeling** is a technique to identify the groups of words (called a topic) from a collection of documents that contains best information in the collection. Latent Dirichlet Allocation is one method for generating topic model features. LDA is an iterative model which starts from a fixed number of topics. Each topic is represented as a distribution over words, and each document is then represented as a distribution over topics. Although the tokens themselves are meaningless, the probability distributions over words provided by the topics provide a sense of the different ideas contained in the documents. 
+**Topic Modeling** is a technique to identify the groups of words (called a topic) from a collection of documents that contains best information in the collection. 
+
+**Latent Dirichlet Allocation (LDA)** is one method for generating topic model features. LDA is an iterative model which starts from a fixed number of topics. Each topic is represented as a distribution over words, and each document is then represented as a distribution over topics. Although the tokens themselves are meaningless, the probability distributions over words provided by the topics provide a sense of the different ideas contained in the documents. 
+
+
+
+
+
+
+
+
+
+####Brown Clustering
+A hierarchical clustering algorithm that is applied to text, grouping words into clusters that are assumed to be semantically related by virtue of their having been embedded in similar contexts.
+
+In natural language processing, Brown clustering or IBM clustering is a form of hierarchical clustering of words based on the contexts in which they occur. The intuition behind the method is that a class-based language model (also called cluster n-gram model), i.e. one where probabilities of words are based on the classes (clusters) of previous words, is used to address the data sparsity problem inherent in language modeling.
+
+Brown groups items (i.e., types) into classes, using a binary merging criterion based on the log-probability of a text under a class-based language model, i.e. a probability model that takes the clustering into account. 
+
+
+
+
+####Latent semantic analysis (LSA) 
+A technique in natural language processing, in particular distributional semantics, of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms. LSA assumes that words that are close in meaning will occur in similar pieces of text (the distributional hypothesis). A matrix containing word counts per paragraph (rows represent unique words and columns represent each paragraph) is constructed from a large piece of text and a mathematical technique called singular value decomposition (SVD) is used to reduce the number of rows while preserving the similarity structure among columns. Words are then compared by taking the cosine of the angle between the two vectors (or the dot product between the normalizations of the two vectors) formed by any two rows. Values close to 1 represent very similar words while values close to 0 represent very dissimilar words.[1]
+
+In the context of its application to information retrieval, it is sometimes called latent semantic indexing (LSI).
+
+Overview
+Animation of the topic detection process in a document-word matrix. Every column corresponds to a document, every row to a word. A cell stores the weighting of a word in a document (e.g. by tf-idf), dark cells indicate high weights. LSA groups both documents that contain similar words, as well as words that occur in a similar set of documents. The resulting patterns are used to detect latent components.[3]
+Occurrence matrix
+
+LSA can use a term-document matrix which describes the occurrences of terms in documents; it is a sparse matrix whose rows correspond to terms and whose columns correspond to documents. A typical example of the weighting of the elements of the matrix is tf-idf (term frequency–inverse document frequency): the weight of an element of the matrix is proportional to the number of times the terms appear in each document, where rare terms are upweighted to reflect their relative importance.
+
+This matrix is also common to standard semantic models, though it is not necessarily explicitly expressed as a matrix, since the mathematical properties of matrices are not always used.
+
+Rank lowering
+
+After the construction of the occurrence matrix, LSA finds a low-rank approximation[4] to the term-document matrix. There could be various reasons for these approximations:
+
+    The original term-document matrix is presumed too large for the computing resources; in this case, the approximated low rank matrix is interpreted as an approximation (a "least and necessary evil").
+    The original term-document matrix is presumed noisy: for example, anecdotal instances of terms are to be eliminated. From this point of view, the approximated matrix is interpreted as a de-noisified matrix (a better matrix than the original).
+    The original term-document matrix is presumed overly sparse relative to the "true" term-document matrix. That is, the original matrix lists only the words actually in each document, whereas we might be interested in all words related to each document—generally a much larger set due to synonymy.
+
+The consequence of the rank lowering is that some dimensions are combined and depend on more than one term:
+
+        {(car), (truck), (flower)} --> {(1.3452 * car + 0.2828 * truck), (flower)}
+
+This mitigates the problem of identifying synonymy, as the rank lowering is expected to merge the dimensions associated with terms that have similar meanings. It also mitigates the problem with polysemy, since components of polysemous words that point in the "right" direction are added to the components of words that share a similar meaning. Conversely, components that point in other directions tend to either simply cancel out, or, at worst, to be smaller than components in the directions corresponding to the intended sense.
+
+
+
+Applications
+
+The new low-dimensional space typically can be used to:
+
+    Compare the documents in the low-dimensional space (data clustering, document classification).
+    Find similar documents across languages, after analyzing a base set of translated documents (cross language retrieval).
+    Find relations between terms (synonymy and polysemy).
+    Given a query of terms, translate it into the low-dimensional space, and find matching documents (information retrieval).
+    Find the best similarity between small groups of terms, in a semantic way (i.e. in a context of a knowledge corpus), as for example in multi choice questions MCQ answering model.[5]
+    Expand the feature space of machine learning / text mining systems [6]
+    Analyze word association in text corpus [7]
+
+Synonymy and polysemy are fundamental problems in natural language processing:
+
+    Synonymy is the phenomenon where different words describe the same idea. Thus, a query in a search engine may fail to retrieve a relevant document that does not contain the words which appeared in the query. For example, a search for "doctors" may not return a document containing the word "physicians", even though the words have the same meaning.
+    Polysemy is the phenomenon where the same word has multiple meanings. So a search may retrieve irrelevant documents containing the desired words in the wrong meaning. For example, a botanist and a computer scientist looking for the word "tree" probably desire different sets of documents.
+
+Commercial applications
+
+LSA has been used to assist in performing prior art searches for patents.[8]
+Applications in human memory
+
+The use of Latent Semantic Analysis has been prevalent in the study of human memory, especially in areas of free recall and memory search. There is a positive correlation between the semantic similarity of two words (as measured by LSA) and the probability that the words would be recalled one after another in free recall tasks using study lists of random common nouns. They also noted that in these situations, the inter-response time between the similar words was much quicker than between dissimilar words. These findings are referred to as the Semantic Proximity Effect.[9]
+
+When participants made mistakes in recalling studied items, these mistakes tended to be items that were more semantically related to the desired item and found in a previously studied list. These prior-list intrusions, as they have come to be called, seem to compete with items on the current list for recall.[10]
+
+Another model, termed Word Association Spaces (WAS) is also used in memory studies by collecting free association data from a series of experiments and which includes measures of word relatedness for over 72,000 distinct word pairs.[11]
+Implementation
+
+The SVD is typically computed using large matrix methods (for example, Lanczos methods) but may also be computed incrementally and with greatly reduced resources via a neural network-like approach, which does not require the large, full-rank matrix to be held in memory.[12] A fast, incremental, low-memory, large-matrix SVD algorithm has recently been developed.[13] MATLAB and Python implementations of these fast algorithms are available. Unlike Gorrell and Webb's (2005) stochastic approximation, Brand's algorithm (2003) provides an exact solution. In recent years progress has been made to reduce the computational complexity of SVD; for instance, by using a parallel ARPACK algorithm to perform parallel eigenvalue decomposition it is possible to speed up the SVD computation cost while providing comparable prediction quality.[14]
+Limitations
+
+Some of LSA's drawbacks include:
+
+    The resulting dimensions might be difficult to interpret. For instance, in
+
+        {(car), (truck), (flower)} ↦ {(1.3452 * car + 0.2828 * truck), (flower)}
+
+    the (1.3452 * car + 0.2828 * truck) component could be interpreted as "vehicle". However, it is very likely that cases close to
+
+        {(car), (bottle), (flower)} ↦ {(1.3452 * car + 0.2828 * bottle), (flower)}
+
+    will occur. This leads to results which can be justified on the mathematical level, but have no interpretable meaning in natural language.
+
+    LSA cannot capture polysemy (i.e., multiple meanings of a word) because each occurrence of a word is treated as having the same meaning due to the word being represented as a single point in space.[citation needed]. For example, the occurrence of "chair" in a document containing "The Chair of the Board" and in a separate document containing "the chair maker" are considered the same. The behavior results in the vector representation being an average of all the word's different meanings in the corpus, which can make it difficult for comparison. However, the effect is often lessened due to words having a predominant sense throughout a corpus (i.e. not all meanings are equally likely).
+    Limitations of bag of words model (BOW), where a text is represented as an unordered collection of words. To address some of the limitation of bag of words model (BOW), multi-gram dictionary can be used to find direct and indirect association as well as higher-order co-occurrences among terms.[15]
+    The probabilistic model of LSA does not match observed data: LSA assumes that words and documents form a joint Gaussian model (ergodic hypothesis), while a Poisson distribution has been observed. Thus, a newer alternative is probabilistic latent semantic analysis, based on a multinomial model, which is reported to give better results than standard LSA.[16]
+
+Alternative methods
+Semantic hashing
+
+In semantic hashing [17] documents are mapped to memory addresses by means of a neural network in such a way that semantically similar documents are located at nearby addresses. Deep neural network essentially builds a graphical model of the word-count vectors obtained from a large set of documents. Documents similar to a query document can then be found by simply accessing all the addresses that differ by only a few bits from the address of the query document. This way of extending the efficiency of hash-coding to approximate matching is much faster than locality sensitive hashing, which is the fastest current method.
+
+
+Latent semantic indexing
+
+Latent semantic indexing (LSI) is an indexing and retrieval method that uses a mathematical technique called singular value decomposition (SVD) to identify patterns in the relationships between the terms and concepts contained in an unstructured collection of text. LSI is based on the principle that words that are used in the same contexts tend to have similar meanings. A key feature of LSI is its ability to extract the conceptual content of a body of text by establishing associations between those terms that occur in similar contexts.[18]
+
+LSI is also an application of correspondence analysis, a multivariate statistical technique developed by Jean-Paul Benzécri[19] in the early 1970s, to a contingency table built from word counts in documents.
+
+Called "latent semantic indexing" because of its ability to correlate semantically related terms that are latent in a collection of text, it was first applied to text at Bellcore in the late 1980s. The method, also called latent semantic analysis (LSA), uncovers the underlying latent semantic structure in the usage of words in a body of text and how it can be used to extract the meaning of the text in response to user queries, commonly referred to as concept searches. Queries, or concept searches, against a set of documents that have undergone LSI will return results that are conceptually similar in meaning to the search criteria even if the results don’t share a specific word or words with the search criteria.
+
+
+Benefits of LSI
+
+LSI overcomes two of the most problematic constraints of Boolean keyword queries: multiple words that have similar meanings (synonymy) and words that have more than one meaning (polysemy)[clarification needed]. Synonymy is often the cause of mismatches in the vocabulary used by the authors of documents and the users of information retrieval systems.[20] As a result, Boolean or keyword queries often return irrelevant results and miss information that is relevant.
+
+LSI is also used to perform automated document categorization. In fact, several experiments have demonstrated that there are a number of correlations between the way LSI and humans process and categorize text.[21] Document categorization is the assignment of documents to one or more predefined categories based on their similarity to the conceptual content of the categories.[22] LSI uses example documents to establish the conceptual basis for each category. During categorization processing, the concepts contained in the documents being categorized are compared to the concepts contained in the example items, and a category (or categories) is assigned to the documents based on the similarities between the concepts they contain and the concepts that are contained in the example documents.
+
+Dynamic clustering based on the conceptual content of documents can also be accomplished using LSI. Clustering is a way to group documents based on their conceptual similarity to each other without using example documents to establish the conceptual basis for each cluster. This is very useful when dealing with an unknown collection of unstructured text.
+
+Because it uses a strictly mathematical approach, LSI is inherently independent of language. This enables LSI to elicit the semantic content of information written in any language without requiring the use of auxiliary structures, such as dictionaries and thesauri. LSI can also perform cross-linguistic concept searching and example-based categorization. For example, queries can be made in one language, such as English, and conceptually similar results will be returned even if they are composed of an entirely different language or of multiple languages.[citation needed]
+
+LSI is not restricted to working only with words. It can also process arbitrary character strings. Any object that can be expressed as text can be represented in an LSI vector space. For example, tests with MEDLINE abstracts have shown that LSI is able to effectively classify genes based on conceptual modeling of the biological information contained in the titles and abstracts of the MEDLINE citations.[23]
+
+LSI automatically adapts to new and changing terminology, and has been shown to be very tolerant of noise (i.e., misspelled words, typographical errors, unreadable characters, etc.).[24] This is especially important for applications using text derived from Optical Character Recognition (OCR) and speech-to-text conversion. LSI also deals effectively with sparse, ambiguous, and contradictory data.
+
+Text does not need to be in sentence form for LSI to be effective. It can work with lists, free-form notes, email, Web-based content, etc. As long as a collection of text contains multiple terms, LSI can be used to identify patterns in the relationships between the important terms and concepts contained in the text.
+
+LSI has proven to be a useful solution to a number of conceptual matching problems.[25][26] The technique has been shown to capture key relationship information, including causal, goal-oriented, and taxonomic information.[27]
+
+
+Additional uses of LSI
+
+It is generally acknowledged that the ability to work with text on a semantic basis is essential to modern information retrieval systems. As a result, the use of LSI has significantly expanded in recent years as earlier challenges in scalability and performance have been overcome.
+
+LSI is being used in a variety of information retrieval and text processing applications, although its primary application has been for concept searching and automated document categorization.[32] Below are some other ways in which LSI is being used:
+
+    Information discovery[33] (eDiscovery, Government/Intelligence community, Publishing)
+    Automated document classification (eDiscovery, Government/Intelligence community, Publishing)[34]
+    Text summarization[35] (eDiscovery, Publishing)
+    Relationship discovery[36] (Government, Intelligence community, Social Networking)
+    Automatic generation of link charts of individuals and organizations[37] (Government, Intelligence community)
+    Matching technical papers and grants with reviewers[38] (Government)
+    Online customer support[39] (Customer Management)
+    Determining document authorship[40] (Education)
+    Automatic keyword annotation of images[41]
+    Understanding software source code[42] (Software Engineering)
+    Filtering spam[43] (System Administration)
+    Information visualization[44]
+    Essay scoring[45] (Education)
+    Literature-based discovery[46]
+    Stock returns prediction[6]
+    Dream Content Analysis (Psychology) [7]
+
+LSI is increasingly being used for electronic document discovery (eDiscovery) to help enterprises prepare for litigation. In eDiscovery, the ability to cluster, categorize, and search large collections of unstructured text on a conceptual basis is essential. Concept-based searching using LSI has been applied to the eDiscovery process by leading providers as early as 2003.[47]
+
+Challenges to LSI
+
+Early challenges to LSI focused on scalability and performance. LSI requires relatively high computational performance and memory in comparison to other information retrieval techniques.[48] However, with the implementation of modern high-speed processors and the availability of inexpensive memory, these considerations have been largely overcome. Real-world applications involving more than 30 million documents that were fully processed through the matrix and SVD computations are common in some LSI applications. A fully scalable (unlimited number of documents, online training) implementation of LSI is contained in the open source gensim software package.[49]
+
+Another challenge to LSI has been the alleged difficulty in determining the optimal number of dimensions to use for performing the SVD. As a general rule, fewer dimensions allow for broader comparisons of the concepts contained in a collection of text, while a higher number of dimensions enable more specific (or more relevant) comparisons of concepts. The actual number of dimensions that can be used is limited by the number of documents in the collection. Research has demonstrated that around 300 dimensions will usually provide the best results with moderate-sized document collections (hundreds of thousands of documents) and perhaps 400 dimensions for larger document collections (millions of documents).[50] However, recent studies indicate that 50-1000 dimensions are suitable depending on the size and nature of the document collection.[51]
+
+Checking the amount of variance in the data after computing the SVD can be used to determine the optimal number of dimensions to retain. The variance contained in the data can be viewed by plotting the singular values (S) in a scree plot. Some LSI practitioners select the dimensionality associated with the knee of the curve as the cut-off point for the number of dimensions to retain. Others argue that some quantity of the variance must be retained, and the amount of variance in the data should dictate the proper dimensionality to retain. Seventy percent is often mentioned as the amount of variance in the data that should be used to select the optimal dimensionality for recomputing the SVD.[52][53][54] 
+
+
+
 
 
 ##Text Classification Strategies
+
+
 There are 3 types text classifiers. 
 
 *  Pattern matching (limited benefit)
@@ -70,9 +325,7 @@ The **bag of keywords approach** is the simplest manual method. It requires comp
 
 **Rules-based classification algorithms** are based on linguistic rules that capture all of the elements and attributes of a document to assign it to a category. Rules can be written manually or generated with an automatic analysis and only then validated manually (a time savings of up to 90%). Rules can be understood and improved (unlike the black box system used with statistics-based algorithms). A rules-based approach is flexible, powerful (much more than a bag of keywords) and easy to express. This text classification algorithm performs at its best if the lingustic engine is based on a true semantic technology because the deeper understanding of text (meaning, relevancy, relationship between concepts, etc.) makes it possible to leverage many elements to work faster and obtain better results. 
 
-Text classifier methods also can be defined as either supervised or un-supervised. 
-
-**Supervised learning** is machine learning that infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value. A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a "reasonable" way. 
+Text classifier methods also can be defined as either un-supervised or supervised. 
 
 **Unsupervised learning** is a branch of machine learning that uses test data that has not been labeled, classified or categorized. Instead of responding to feedback, unsupervised learning identifies commonalities in the data and reacts based on the presence or absence of such commonalities in each new piece of data. 
 
@@ -83,6 +336,8 @@ The unsupervised learning algorithms I found most often in literature are:
 	+  k-means
 	+  Mixture models
 *  Blind signal separation techniques like principal component analysis (PCA)
+
+**Supervised learning** is machine learning that infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value. A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a "reasonable" way. 
 
 Supervised text classification methods I found referenced most often in the literature are:
 
