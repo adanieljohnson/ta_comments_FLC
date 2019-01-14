@@ -16,7 +16,7 @@ To score the full data table, the 1200 scored training comments were rejoined wi
 ## Subject Category
 Is primary emphasis of the comment on:
 
-*  Fundamental pieces
+*  Fundamental required sections of a report?
 *  How to communicate generally?
 *  How to collect, analyze and present data correctly?
 *  The underlying rationale for the report/experiment?

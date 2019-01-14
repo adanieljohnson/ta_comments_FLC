@@ -1,0 +1,78 @@
+---
+title: "Jan 14 Check-In"
+author: "Dan Johnson"
+date: "12/21/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##What Is Working
+
+1.  Solved the data confidentiality problem. Turned out to be easier and more secure to do outside of R.
+2.  Manipulating the column vectors, except I need to recode some values to simplify.
+3.  Calculation and plotting correlations and log-odds pairs is working (except for broken parts that recoding should solve hopefully.)
+3.  Tokenizer and terms cleanup seems to work well. (Still struggling with understanding how data get transformed in certain copied code blocks.)
+4.  Have an operational categorical naive Bayes workflow that can perform analysis using 1-, 2-, or 3-grams.
+
+
+## Coding & Interpretation Questions
+
+1.  Randomization. Does the straight split I used bias the data?
+2.  When I join columns in correlation analysis, when a word is MISSING from **any subset** the data for that word is pruned from the full dataset. I am losing the unique words this way. Need to figure out how to join without pruning.
+3. Could use help understanding the NB table so I do not over/under-interpret.
+4.  Assuming NB was final model (it is not) I am unsure how to build the conversion engine. 
+5.  Broken correlation analyses. I have a problem buried in the coded data that is throwing an error in correlations. Jerid recommended recoding the values in the `code.subject` column.  
+
+For recoding comment labels, I am considering recoding **comment.subject** as:
+```
+0_null
+1_basic
+2_writing
+3_technical
+4_logic
+5_exposition
+6_misconduct
+7_administrative
+8_nobasis
+9_split
+10_context
+11_flag
+12_narrative
+13_sciname
+```
+Recoding **comment.structure** as:
+```
+0_null
+1_pointer
+2_copyedit
+3_general
+4_specific
+5_rationale
+6_holistic
+7_idiomatic
+8_nobasis
+```
+Any obvious problems with these?
+
+
+## Bigger Questions
+After posting an initial naive Bayes trial, Jerid wrote:
+>Naive bayes function from `e1071` package only works with categorical features. For many NLP tasks this oversimplifies features making the appearance of a word a 'yes' or 'no' decision.
+
+I spent time looking at various methods as part of background research. The summary is posted elsewhere. Question is whether I should focus on:
+
+*  Continued refinement of NB, or exploring other supervised models? 
+    +  How deep to go into different methods?
+    +  When to drop one model, move to another?
+*  Using my existing code-book to reverse engineer a pure rules based method instead?
+    +  Faster for me, but what about others?
+*  Extending previous item, create a HYBRID of statistical and rules-based?
+    +  Words to evaluate are pre-selected limited vocabulary (see codebook for lists)
+    +  Words are scored present/absent in a comment, then comment sorted based on most likely.
+*  Step back and rethink the categories using LDA, etc.? 
+    +  Seems counter-productive given I have a model built already.
+
+ 
