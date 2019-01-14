@@ -1,5 +1,5 @@
 ---
-title: "Elements of Text Mining and Classification"
+title: "Text Classification Primer"
 author: "Dan Johnson"
 date: "1/9/2019"
 output: html_document
@@ -8,52 +8,44 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#Background - 
-My general approach for this project is to use an initial codebook and corpus of hand-coded TA comments to 1) evaluate the classification categories, and 2) test various automated classification methods. The process can be broken down into:
 
-**Feature Selection and Engineering**
+Text classification problems can be broken down into three overlapping components:
 
-*  Identify existing text features to evaluate
-*  Engineer additional features using established NLP methods
-*	 Try reverse engineering model parameters that can identify the comment categories in my initial codebook
+1.  Feature selection and engineering
+2.  Topic categorization and modeling
+3.  Selecting an appropriate text classifier method
 
-**Categorization Methods**
+My approach for this text classification project is to use an initial codebook and corpus of hand-coded TA comments to test various approaches to semi- and fully automated classification methods and, if appropriate, revise the underlying classification scheme. 
 
-*  Look at alternative comment categorization models
-
-**Classifier Methods**
-For each applicable classifier method:
-
-*  Establish randomized training and test datasets
-*  Train model, then run on test dataset
-*  Calculate accuracy score using Gini index or similar method
-*  Select best performing classifier and operationalize for new datasets
-
-This page outlines general mechanics of text classification, and summarizes various classifier methods.
+This primer page describes the general mechanics of text classification and various classifier methods. Other pages outline the dataset structure (TA comments corpus), and initial codebook. 
 
 
+##Feature Selection and Engineering
+This is the process of selecting, tabulating, calculating, or creating text-based features for subsequent evaluation. This includes:
 
-#Feature Selection and Engineering
-This is the process of selecting, tabulating, calculating, or creating text-based features for subsequent evaluation. The features below are used in natural language processing routinely.
+*  Identifying existing, directly observable text features within the dataset
+*  Engineering additional features using established NLP methods
+*	 Using an empirically defined feature set to reverse engineer relevant features
+
+The features below are used in natural language processing routinely. Not all can be used in all situations though.
 
 *  Count-based Vectors
-	+  Word Count of the documents – total number of words in the documents
-	+  Character Count of the documents – total number of characters in the documents
-	+  Punctuation Count in the Complete Essay – total number of punctuation marks in the documents
-	+  Upper Case Count in the Complete Essay – total number of upper count words in the documents
-	+  Title Word Count in the Complete Essay – total number of proper case (title) words in the documents
+	+  Word Count – total number of words in the documents
+	+  Character Count – total number of characters in the documents
+	+  Punctuation Count – total number of punctuation marks in the documents
+	+  Upper Case Count – total number of upper case words in the documents
+	+  Title Word Count – total number of consecutive upper case (title) words in the documents
 *  Distribution and Frequency Calculations
 	+  Average word density of sentences 
 	+  Average length of the words used in the documents
 	+  TF-IDF
-*  Part of Speech Tagging and Frequency Distribution of Tags. 
+*  Part of Speech Tagging and Frequency Distribution of Tags 
 	+ Noun Count
 	+ Verb Count
 	+ Adjective Count
 	+ Adverb Count
 	+ Pronoun Count
 *  Word Embedding
-
 
 
 ###Word Embedding
@@ -65,7 +57,7 @@ Word embeddings come in two different styles, one in which words are expressed a
 
 One of the main limitations of word embeddings (word vector space models in general) is that possible meanings of a word are conflated into a single representation (a single vector in the semantic space). Sense embeddings are a solution to this problem: individual meanings of words are represented as distinct vectors in the space.
 
-Software for training and using word embeddings includes Tomas Mikolov's Word2vec, Stanford University's GloVe, AllenNLP's Elmo, fastText, Gensim, Indra and Deeplearning4j. 
+Software for training and using word embeddings includes Tomas Mikolov's Word2vec, Stanford University's GloVe, fastText, Gensim, AllenNLP's Elmo, Indra and Deeplearning4j. 
 
 **Principal Component Analysis (PCA)** and **T-Distributed Stochastic Neighbour Embedding (t-SNE)** are both used to reduce the dimensionality of word vector spaces and visualize word embeddings and clusters.
 
@@ -130,25 +122,14 @@ As one might expect, ice co-occurs more frequently with solid than it does with 
 https://nlp.stanford.edu/projects/glove/
 
 
+##Categorization and Modeling Methods
+**Curated Categories** (my term) are established by subject matter experts using an iterative process. The established categories can based on prior empirical studies, or constructed *de novo* through iterative coding.
 
+**Topic Modeling** is a group of techniques to identify the groups of words (called a topic) from a collection of documents that contains best information in the collection. Topic modeling is more an iterative/generative process, and does not require any prior knowledge of the documents or relationships.
 
-
-#Categorization Methods
-###Categorization by Subject Matter Expert
-
-
-###Topic Modeling to Identify Features
-**Topic Modeling** is a technique to identify the groups of words (called a topic) from a collection of documents that contains best information in the collection. 
-
-**Latent Dirichlet Allocation (LDA)** is one method for generating topic model features. LDA is an iterative model which starts from a fixed number of topics. Each topic is represented as a distribution over words, and each document is then represented as a distribution over topics. Although the tokens themselves are meaningless, the probability distributions over words provided by the topics provide a sense of the different ideas contained in the documents. 
-
-
-
-
-
-
-
-
+###Topic Modeling Methods to Identify Features
+####Latent Dirichlet Allocation
+(LDA) is a common method for generating topic model features. LDA is an iterative model which starts from a fixed number of topics. Each topic is represented as a distribution over words, and each document is then represented as a distribution over topics. Although the tokens themselves are meaningless, the probability distributions over words provided by the topics provide a sense of the different ideas contained in the documents. 
 
 ####Brown Clustering
 A hierarchical clustering algorithm that is applied to text, grouping words into clusters that are assumed to be semantically related by virtue of their having been embedded in similar contexts.
@@ -158,158 +139,38 @@ In natural language processing, Brown clustering or IBM clustering is a form of 
 Brown groups items (i.e., types) into classes, using a binary merging criterion based on the log-probability of a text under a class-based language model, i.e. a probability model that takes the clustering into account. 
 
 
-
-
-####Latent semantic analysis (LSA) 
-A technique in natural language processing, in particular distributional semantics, of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms. LSA assumes that words that are close in meaning will occur in similar pieces of text (the distributional hypothesis). A matrix containing word counts per paragraph (rows represent unique words and columns represent each paragraph) is constructed from a large piece of text and a mathematical technique called singular value decomposition (SVD) is used to reduce the number of rows while preserving the similarity structure among columns. Words are then compared by taking the cosine of the angle between the two vectors (or the dot product between the normalizations of the two vectors) formed by any two rows. Values close to 1 represent very similar words while values close to 0 represent very dissimilar words.[1]
+####Latent semantic analysis
+LSA is a technique in natural language processing of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms. LSA assumes that words that are close in meaning will occur in similar pieces of text (the distributional hypothesis). A matrix containing word counts per paragraph (rows represent unique words and columns represent each paragraph) is constructed from a large piece of text and a mathematical technique called singular value decomposition (SVD) is used to reduce the number of rows while preserving the similarity structure among columns. Words are then compared by taking the cosine of the angle between the two vectors (or the dot product between the normalizations of the two vectors) formed by any two rows. Values close to 1 represent very similar words while values close to 0 represent very dissimilar words.
 
 In the context of its application to information retrieval, it is sometimes called latent semantic indexing (LSI).
 
-Overview
-Animation of the topic detection process in a document-word matrix. Every column corresponds to a document, every row to a word. A cell stores the weighting of a word in a document (e.g. by tf-idf), dark cells indicate high weights. LSA groups both documents that contain similar words, as well as words that occur in a similar set of documents. The resulting patterns are used to detect latent components.[3]
-Occurrence matrix
-
 LSA can use a term-document matrix which describes the occurrences of terms in documents; it is a sparse matrix whose rows correspond to terms and whose columns correspond to documents. A typical example of the weighting of the elements of the matrix is tf-idf (term frequency–inverse document frequency): the weight of an element of the matrix is proportional to the number of times the terms appear in each document, where rare terms are upweighted to reflect their relative importance.
 
-This matrix is also common to standard semantic models, though it is not necessarily explicitly expressed as a matrix, since the mathematical properties of matrices are not always used.
+Applications of LSA include:
 
-Rank lowering
+*  Comparing documents in low-dimensional space (data clustering, document classification).
+*  Finding relations between terms (synonymy and polysemy). Synonymy is the phenomenon where different words describe the same idea. Polysemy is the phenomenon where the same word has multiple meanings.
+*  Given a query of terms, translating it into the low-dimensional space, and find matching documents (information retrieval).
+*  Analyzing word association in text corpus.
 
-After the construction of the occurrence matrix, LSA finds a low-rank approximation[4] to the term-document matrix. There could be various reasons for these approximations:
+LSA overcomes two of the most problematic constraints of Boolean keyword queries: multiple words that have similar meanings (synonymy) and words that have more than one meaning (polysemy). 
 
-    The original term-document matrix is presumed too large for the computing resources; in this case, the approximated low rank matrix is interpreted as an approximation (a "least and necessary evil").
-    The original term-document matrix is presumed noisy: for example, anecdotal instances of terms are to be eliminated. From this point of view, the approximated matrix is interpreted as a de-noisified matrix (a better matrix than the original).
-    The original term-document matrix is presumed overly sparse relative to the "true" term-document matrix. That is, the original matrix lists only the words actually in each document, whereas we might be interested in all words related to each document—generally a much larger set due to synonymy.
+LSA is also used to perform automated document categorization. Document categorization is the assignment of documents to one or more predefined categories based on their similarity to the conceptual content of the categories. Several experiments have demonstrated that there are a number of correlations between the way LSI and humans process and categorize text.
 
-The consequence of the rank lowering is that some dimensions are combined and depend on more than one term:
+LSA uses example documents to establish the conceptual basis for each category. During categorization processing, the concepts contained in the documents being categorized are compared to the concepts contained in the example items, and a category (or categories) is assigned to the documents based on the similarities between the concepts they contain and the concepts that are contained in the example documents.
 
-        {(car), (truck), (flower)} --> {(1.3452 * car + 0.2828 * truck), (flower)}
+LSA automatically adapts to new and changing terminology, and has been shown to be very tolerant of noise (i.e., misspelled words, typographical errors, unreadable characters, etc.).[24] This is especially important for applications using text derived from Optical Character Recognition (OCR) and speech-to-text conversion. LSA also deals effectively with sparse, ambiguous, and contradictory data.
 
-This mitigates the problem of identifying synonymy, as the rank lowering is expected to merge the dimensions associated with terms that have similar meanings. It also mitigates the problem with polysemy, since components of polysemous words that point in the "right" direction are added to the components of words that share a similar meaning. Conversely, components that point in other directions tend to either simply cancel out, or, at worst, to be smaller than components in the directions corresponding to the intended sense.
-
-
-
-Applications
-
-The new low-dimensional space typically can be used to:
-
-    Compare the documents in the low-dimensional space (data clustering, document classification).
-    Find similar documents across languages, after analyzing a base set of translated documents (cross language retrieval).
-    Find relations between terms (synonymy and polysemy).
-    Given a query of terms, translate it into the low-dimensional space, and find matching documents (information retrieval).
-    Find the best similarity between small groups of terms, in a semantic way (i.e. in a context of a knowledge corpus), as for example in multi choice questions MCQ answering model.[5]
-    Expand the feature space of machine learning / text mining systems [6]
-    Analyze word association in text corpus [7]
-
-Synonymy and polysemy are fundamental problems in natural language processing:
-
-    Synonymy is the phenomenon where different words describe the same idea. Thus, a query in a search engine may fail to retrieve a relevant document that does not contain the words which appeared in the query. For example, a search for "doctors" may not return a document containing the word "physicians", even though the words have the same meaning.
-    Polysemy is the phenomenon where the same word has multiple meanings. So a search may retrieve irrelevant documents containing the desired words in the wrong meaning. For example, a botanist and a computer scientist looking for the word "tree" probably desire different sets of documents.
-
-Commercial applications
-
-LSA has been used to assist in performing prior art searches for patents.[8]
-Applications in human memory
-
-The use of Latent Semantic Analysis has been prevalent in the study of human memory, especially in areas of free recall and memory search. There is a positive correlation between the semantic similarity of two words (as measured by LSA) and the probability that the words would be recalled one after another in free recall tasks using study lists of random common nouns. They also noted that in these situations, the inter-response time between the similar words was much quicker than between dissimilar words. These findings are referred to as the Semantic Proximity Effect.[9]
-
-When participants made mistakes in recalling studied items, these mistakes tended to be items that were more semantically related to the desired item and found in a previously studied list. These prior-list intrusions, as they have come to be called, seem to compete with items on the current list for recall.[10]
-
-Another model, termed Word Association Spaces (WAS) is also used in memory studies by collecting free association data from a series of experiments and which includes measures of word relatedness for over 72,000 distinct word pairs.[11]
-Implementation
-
-The SVD is typically computed using large matrix methods (for example, Lanczos methods) but may also be computed incrementally and with greatly reduced resources via a neural network-like approach, which does not require the large, full-rank matrix to be held in memory.[12] A fast, incremental, low-memory, large-matrix SVD algorithm has recently been developed.[13] MATLAB and Python implementations of these fast algorithms are available. Unlike Gorrell and Webb's (2005) stochastic approximation, Brand's algorithm (2003) provides an exact solution. In recent years progress has been made to reduce the computational complexity of SVD; for instance, by using a parallel ARPACK algorithm to perform parallel eigenvalue decomposition it is possible to speed up the SVD computation cost while providing comparable prediction quality.[14]
-Limitations
-
-Some of LSA's drawbacks include:
-
-    The resulting dimensions might be difficult to interpret. For instance, in
-
-        {(car), (truck), (flower)} ↦ {(1.3452 * car + 0.2828 * truck), (flower)}
-
-    the (1.3452 * car + 0.2828 * truck) component could be interpreted as "vehicle". However, it is very likely that cases close to
-
-        {(car), (bottle), (flower)} ↦ {(1.3452 * car + 0.2828 * bottle), (flower)}
-
-    will occur. This leads to results which can be justified on the mathematical level, but have no interpretable meaning in natural language.
-
-    LSA cannot capture polysemy (i.e., multiple meanings of a word) because each occurrence of a word is treated as having the same meaning due to the word being represented as a single point in space.[citation needed]. For example, the occurrence of "chair" in a document containing "The Chair of the Board" and in a separate document containing "the chair maker" are considered the same. The behavior results in the vector representation being an average of all the word's different meanings in the corpus, which can make it difficult for comparison. However, the effect is often lessened due to words having a predominant sense throughout a corpus (i.e. not all meanings are equally likely).
-    Limitations of bag of words model (BOW), where a text is represented as an unordered collection of words. To address some of the limitation of bag of words model (BOW), multi-gram dictionary can be used to find direct and indirect association as well as higher-order co-occurrences among terms.[15]
-    The probabilistic model of LSA does not match observed data: LSA assumes that words and documents form a joint Gaussian model (ergodic hypothesis), while a Poisson distribution has been observed. Thus, a newer alternative is probabilistic latent semantic analysis, based on a multinomial model, which is reported to give better results than standard LSA.[16]
-
-Alternative methods
-Semantic hashing
-
-In semantic hashing [17] documents are mapped to memory addresses by means of a neural network in such a way that semantically similar documents are located at nearby addresses. Deep neural network essentially builds a graphical model of the word-count vectors obtained from a large set of documents. Documents similar to a query document can then be found by simply accessing all the addresses that differ by only a few bits from the address of the query document. This way of extending the efficiency of hash-coding to approximate matching is much faster than locality sensitive hashing, which is the fastest current method.
+Text does not need to be in sentence form for LSA to be effective. It can work with lists, free-form notes, email, Web-based content, etc. As long as a collection of text contains multiple terms, LSA can be used to identify patterns in the relationships between the important terms and concepts contained in the text.
 
 
-Latent semantic indexing
+##Text Classifier Methods
+There are numerous methods for classifying texts. A typical workflow for comparing classifiers would be to identify potentially usable classifier methods, then for each applicable classifier method:
 
-Latent semantic indexing (LSI) is an indexing and retrieval method that uses a mathematical technique called singular value decomposition (SVD) to identify patterns in the relationships between the terms and concepts contained in an unstructured collection of text. LSI is based on the principle that words that are used in the same contexts tend to have similar meanings. A key feature of LSI is its ability to extract the conceptual content of a body of text by establishing associations between those terms that occur in similar contexts.[18]
-
-LSI is also an application of correspondence analysis, a multivariate statistical technique developed by Jean-Paul Benzécri[19] in the early 1970s, to a contingency table built from word counts in documents.
-
-Called "latent semantic indexing" because of its ability to correlate semantically related terms that are latent in a collection of text, it was first applied to text at Bellcore in the late 1980s. The method, also called latent semantic analysis (LSA), uncovers the underlying latent semantic structure in the usage of words in a body of text and how it can be used to extract the meaning of the text in response to user queries, commonly referred to as concept searches. Queries, or concept searches, against a set of documents that have undergone LSI will return results that are conceptually similar in meaning to the search criteria even if the results don’t share a specific word or words with the search criteria.
-
-
-Benefits of LSI
-
-LSI overcomes two of the most problematic constraints of Boolean keyword queries: multiple words that have similar meanings (synonymy) and words that have more than one meaning (polysemy)[clarification needed]. Synonymy is often the cause of mismatches in the vocabulary used by the authors of documents and the users of information retrieval systems.[20] As a result, Boolean or keyword queries often return irrelevant results and miss information that is relevant.
-
-LSI is also used to perform automated document categorization. In fact, several experiments have demonstrated that there are a number of correlations between the way LSI and humans process and categorize text.[21] Document categorization is the assignment of documents to one or more predefined categories based on their similarity to the conceptual content of the categories.[22] LSI uses example documents to establish the conceptual basis for each category. During categorization processing, the concepts contained in the documents being categorized are compared to the concepts contained in the example items, and a category (or categories) is assigned to the documents based on the similarities between the concepts they contain and the concepts that are contained in the example documents.
-
-Dynamic clustering based on the conceptual content of documents can also be accomplished using LSI. Clustering is a way to group documents based on their conceptual similarity to each other without using example documents to establish the conceptual basis for each cluster. This is very useful when dealing with an unknown collection of unstructured text.
-
-Because it uses a strictly mathematical approach, LSI is inherently independent of language. This enables LSI to elicit the semantic content of information written in any language without requiring the use of auxiliary structures, such as dictionaries and thesauri. LSI can also perform cross-linguistic concept searching and example-based categorization. For example, queries can be made in one language, such as English, and conceptually similar results will be returned even if they are composed of an entirely different language or of multiple languages.[citation needed]
-
-LSI is not restricted to working only with words. It can also process arbitrary character strings. Any object that can be expressed as text can be represented in an LSI vector space. For example, tests with MEDLINE abstracts have shown that LSI is able to effectively classify genes based on conceptual modeling of the biological information contained in the titles and abstracts of the MEDLINE citations.[23]
-
-LSI automatically adapts to new and changing terminology, and has been shown to be very tolerant of noise (i.e., misspelled words, typographical errors, unreadable characters, etc.).[24] This is especially important for applications using text derived from Optical Character Recognition (OCR) and speech-to-text conversion. LSI also deals effectively with sparse, ambiguous, and contradictory data.
-
-Text does not need to be in sentence form for LSI to be effective. It can work with lists, free-form notes, email, Web-based content, etc. As long as a collection of text contains multiple terms, LSI can be used to identify patterns in the relationships between the important terms and concepts contained in the text.
-
-LSI has proven to be a useful solution to a number of conceptual matching problems.[25][26] The technique has been shown to capture key relationship information, including causal, goal-oriented, and taxonomic information.[27]
-
-
-Additional uses of LSI
-
-It is generally acknowledged that the ability to work with text on a semantic basis is essential to modern information retrieval systems. As a result, the use of LSI has significantly expanded in recent years as earlier challenges in scalability and performance have been overcome.
-
-LSI is being used in a variety of information retrieval and text processing applications, although its primary application has been for concept searching and automated document categorization.[32] Below are some other ways in which LSI is being used:
-
-    Information discovery[33] (eDiscovery, Government/Intelligence community, Publishing)
-    Automated document classification (eDiscovery, Government/Intelligence community, Publishing)[34]
-    Text summarization[35] (eDiscovery, Publishing)
-    Relationship discovery[36] (Government, Intelligence community, Social Networking)
-    Automatic generation of link charts of individuals and organizations[37] (Government, Intelligence community)
-    Matching technical papers and grants with reviewers[38] (Government)
-    Online customer support[39] (Customer Management)
-    Determining document authorship[40] (Education)
-    Automatic keyword annotation of images[41]
-    Understanding software source code[42] (Software Engineering)
-    Filtering spam[43] (System Administration)
-    Information visualization[44]
-    Essay scoring[45] (Education)
-    Literature-based discovery[46]
-    Stock returns prediction[6]
-    Dream Content Analysis (Psychology) [7]
-
-LSI is increasingly being used for electronic document discovery (eDiscovery) to help enterprises prepare for litigation. In eDiscovery, the ability to cluster, categorize, and search large collections of unstructured text on a conceptual basis is essential. Concept-based searching using LSI has been applied to the eDiscovery process by leading providers as early as 2003.[47]
-
-Challenges to LSI
-
-Early challenges to LSI focused on scalability and performance. LSI requires relatively high computational performance and memory in comparison to other information retrieval techniques.[48] However, with the implementation of modern high-speed processors and the availability of inexpensive memory, these considerations have been largely overcome. Real-world applications involving more than 30 million documents that were fully processed through the matrix and SVD computations are common in some LSI applications. A fully scalable (unlimited number of documents, online training) implementation of LSI is contained in the open source gensim software package.[49]
-
-Another challenge to LSI has been the alleged difficulty in determining the optimal number of dimensions to use for performing the SVD. As a general rule, fewer dimensions allow for broader comparisons of the concepts contained in a collection of text, while a higher number of dimensions enable more specific (or more relevant) comparisons of concepts. The actual number of dimensions that can be used is limited by the number of documents in the collection. Research has demonstrated that around 300 dimensions will usually provide the best results with moderate-sized document collections (hundreds of thousands of documents) and perhaps 400 dimensions for larger document collections (millions of documents).[50] However, recent studies indicate that 50-1000 dimensions are suitable depending on the size and nature of the document collection.[51]
-
-Checking the amount of variance in the data after computing the SVD can be used to determine the optimal number of dimensions to retain. The variance contained in the data can be viewed by plotting the singular values (S) in a scree plot. Some LSI practitioners select the dimensionality associated with the knee of the curve as the cut-off point for the number of dimensions to retain. Others argue that some quantity of the variance must be retained, and the amount of variance in the data should dictate the proper dimensionality to retain. Seventy percent is often mentioned as the amount of variance in the data that should be used to select the optimal dimensionality for recomputing the SVD.[52][53][54] 
-
-
-
-
-
-##Text Classification Strategies
-
+*  Establish randomized training and test datasets
+*  Train the classifier model, then evaluate that model on a test dataset
+*  Calculate an accuracy score using Gini index or similar method
+*  Select best performing classifiers and either refine, or operationalize for new datasets
 
 There are 3 types text classifiers. 
 
@@ -321,9 +182,9 @@ There are three main approaches to text classification algorithms.
 
 The **bag of keywords approach** is the simplest manual method. It requires compiling a list of “key terms” that qualifies the type of content in question to a certain topic. If one or more qualifying keywords is present in a document, the document is assigned to the topic. One of the many problems with this approach is that identifying and organizing a list of terms (preferred, alternate, etc.) is labor intensive, and the natural ambiguity of language (one keyword can have different meanings) causes lots of false positives. This makes the bag of keywords approach not only not scalable, but also inaccurate.
 
-**Statistical approaches** are based on the manual identification/tagging of a “training set” of documents that covers the same topic. It uses a text classification algorithm (Bayesian, LSA, etc.) to look at frequency of these terms to infer the key elements of the document. And it uses key terms and frequency to build implicit rules in order to classify other content. This approach has no understanding of meaning. In addition, systems using these types of text classification algorithms are essentially a “black box”; no one can explain why specific terms are selected by the algorithm or how they are being weighted. In the event the classification is incorrect, there is no accurate way to modify a rule for better results. 
-
 **Rules-based classification algorithms** are based on linguistic rules that capture all of the elements and attributes of a document to assign it to a category. Rules can be written manually or generated with an automatic analysis and only then validated manually (a time savings of up to 90%). Rules can be understood and improved (unlike the black box system used with statistics-based algorithms). A rules-based approach is flexible, powerful (much more than a bag of keywords) and easy to express. This text classification algorithm performs at its best if the lingustic engine is based on a true semantic technology because the deeper understanding of text (meaning, relevancy, relationship between concepts, etc.) makes it possible to leverage many elements to work faster and obtain better results. 
+
+**Statistical approaches** are based on the manual identification/tagging of a “training set” of documents that covers the same topic. It uses a text classification algorithm (Bayesian, LSA, etc.) to look at frequency of these terms to infer the key elements of the document. And it uses key terms and frequency to build implicit rules in order to classify other content. This approach has no understanding of meaning. In addition, systems using these types of text classification algorithms are essentially a “black box”; no one can explain why specific terms are selected by the algorithm or how they are being weighted. In the event the classification is incorrect, there is no accurate way to modify a rule for better results. 
 
 Text classifier methods also can be defined as either un-supervised or supervised. 
 
