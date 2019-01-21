@@ -11,20 +11,153 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##What Is Working
 
-1.  Solved the data confidentiality problem. Turned out to be easier and more secure to do outside of R.
-2.  Manipulating the column vectors, except I need to recode some values to simplify.
-3.  Calculation and plotting correlations and log-odds pairs is working (except for broken parts that recoding should solve hopefully.)
-3.  Tokenizer and terms cleanup seems to work well. (Still struggling with understanding how data get transformed in certain copied code blocks.)
-4.  Have an operational categorical naive Bayes workflow that can perform analysis using 1-, 2-, or 3-grams.
+Solved the data confidentiality problem. Turned out to be easier and more secure to do outside of R.
+
+Manipulating the column vectors.
+  Suggested: I need to recode some values to simplify. 
+Second, in this same correlation analysis, I would recommend recoding the values in the `code.subject` column. You have some type of error there and I tend to avoid calling values such as "2. Writing Quality" as they tend make code more difficult to visually parse (and therefore debug) and it's also easy to get something wrong with the value (even though it seems that you've directly copied and pasted the values to double check). 
+
+For recoding comment labels, this is what I am considering:
+
+Recoding Comment.subject
+0_null
+1_basic
+2_writing
+3_technical
+4_logic
+5_exposition
+6_misconduct
+7_administrative
+8_nobasis
+9_split
+10_context
+11_flag
+12_narrative
+13_sciname
+
+Recoding Comment.structure
+0_null
+1_pointer
+2_copyedit
+3_general
+4_specific
+5_rationale
+6_holistic
+7_idiomatic
+8_nobasis
+
+
+
+
+Calculation and plotting correlations and log-odds pairs is working (except for broken parts that recoding should solve hopefully.)
+
+Suggested: Check my data for correlations.
+	"cor" blows up on missing data
+	Try "use" pairwise complete
+
+
+Tokenizer and terms cleanup seems to work well. (Still struggling with understanding how data get transformed in certain copied code blocks.)
+  Suggested: Look into lemmatization, not stemming
+
+
+Have an operational categorical naive Bayes workflow that can perform analysis using 1-, 2-, or 3-grams.
+	Suggested: some Bayes model commands to get out the classification of each comment.
+		prob
+		predict
+  
 
 
 ## Coding & Interpretation Questions
 
-1.  Randomization. Does the straight split I used bias the data?
-2.  When I join columns in correlation analysis, when a word is MISSING from **any subset** the data for that word is pruned from the full dataset. I am losing the unique words this way. Need to figure out how to join without pruning.
-3. Could use help understanding the NB table so I do not over/under-interpret.
-4.  Assuming NB was final model (it is not) I am unsure how to build the conversion engine. 
-5.  Broken correlation analyses. I have a problem buried in the coded data that is throwing an error in correlations. Jerid recommended recoding the values in the `code.subject` column.  
+1.  Randomization. Does the straight split I used bias the data? 
+  Comment: YES, so instead use the following code to pick more randomized dataset.
+
+```{r}
+library(dplyr)
+set.seed(1234) #randomization will be same set each time
+train <- sample_frac(mtcars, .4) #sets how many are in random training set
+test <- setdiff(mtcars, train) #chooses non-training for test set
+```
+
+
+Suggestions:
+  Try: 
+    Leave one out cross-validation
+    K-folds cross-validation
+
+  Packages to evaluate
+		caret
+		skimR
+		parsnip
+		recipe
+		tidymodels
+		UDPipe
+
+
+prob
+predict
+
+Lemmatization, not stemming
+UDPipe
+
+Thanks for the update. I can confirm that your work is publicly visible. It looks well organized and thorough. I've skimmed your analysis and read over some of the issues that you have encountered. I have a few questions and a few comments on your approach, but I think it would be best to talk about these in person. 
+ 
+I do have a few things for you to consider before we do get together. The first thing I suggest you do, which shouldn't be too much of a problem to create, is to provide the output of some of your datasets (particularly thinking about the contrast sets that you use in the correlation analysis). A quick `glimpse(data)` printed out would help me get a better sense of the structure you are using as input and output at each stage of your analysis.   
+
+
+
+Third thing that comes to mind has to do with the Naive Bayes analysis. As you've seen, naive bayes function from the `e1071` package only works with categorical features. For many NLP tasks this oversimplifies features making the appearance of a word a 'yes' or 'no' decision, which reduces information concerning the frequency of occurrence of words. It's been a while since I've used naive bayes in my own work, but last time I did, I ended up writing my own algorithm to deal with non-categorical features. I'm not altogether happy with the algorithm I coded, but when we meet we can talk about whether there are other package options out there now, or whether my function might be of some help to you.
+
+Anyway, things are looking good. Keep up the good work and great documentation!
+
+Several code questions. 
+
+I do have a few things for you to consider before we do get together. The first thing I suggest you do, which shouldn't be too much of a problem to create, is to provide the output of some of your datasets (particularly thinking about the contrast sets that you use in the correlation analysis). A quick `glimpse(data)` printed out would help me get a better sense of the structure you are using as input and output at each stage of your analysis.   
+
+
+
+
+Session 5
+Since it has been a while since we checked in, I believe we are going to start the session with each of us giving a 2-3 minute overview of our projects and where they stand. You might touch upon:
+
+Progress you have made since our previous session.
+
+1 or more blocks of code related to this work (either demonstrating something "new" that you are proud of or opening up a question that the group might be able to help on).
+
+The next step you are hoping to take or subquestion you are trying to answer.
+
+These presentations do not need to be formal, but you might consider supplementing your check-in with your Git website, RStudio environment, or RMarkdown file(s).
+
+The remainder of our time will be driven by issues that arise during these check-ins, and might involve whole group discussions or small group troubleshooting sessions. Mike and/or Jerid will follow up with further goals for Monday's meeting.
+
+GitHub Websites
+One thing that I haven't been keeping up with really well, but believe is a really great feature of the group is the collection of websites (Data Analysis in R) that Mike and Jerid have set up/structured for us. While mine currently exists as a barely organized collection of thoughts on our process and my project, I have been working to update the pages.
+
+    FLC - Data Analysis (AB)
+
+My project is still taking shape (and isn't yet really research, per se), but a few things I've been working on:
+
+    Project Updates - Updating some content on my Project page
+    New Page - Learning Analytics. This is a proposal I have had accepted for an April conference, and I am hoping our group might help me develop some of my thinking on the issue.
+    Course Notes - I haven't kept up with note taking in this space, but added some of the detail from my work during Session 4. I am looking forward to engaging more actively with this space during our actual sessions, and I am interested in hearing about others' thoughts on this process.
+
+While there are many more updates I hope to make this term, I wanted to share some of this work. You might also check out Dan's page (as his is more robust than mine).
+
+To-Do
+
+    Prepare to present on your progress at Monday's Session
+    Update your website (or have a plan to do so).
+    Raise questions (technical or otherwise) in the TLC discussion board space.
+
+I am looking forward to seeing everyone on Monday (assuming we aren't snowed out).
+
+
+
+2.  How to ID, prune unneeded packages.
+3.  When I join columns in correlation analysis, when a word is MISSING from **any subset** the data for that word is pruned from the full dataset. I am losing the unique words this way. Need to figure out how to join without pruning.
+4. Could use help understanding the NB table so I do not over/under-interpret.
+5.  Assuming NB was final model (it is not) I am unsure how to build the conversion engine. 
+6.  Broken correlation analyses. I have a problem buried in the coded data that is throwing an error in correlations. Jerid recommended recoding the values in the `code.subject` column.  
 
 For recoding comment labels, I am considering recoding **comment.subject** as:
 ```
@@ -59,6 +192,8 @@ Any obvious problems with these?
 
 
 ## Bigger Questions
+Python/Scython porting
+
 After posting an initial naive Bayes trial, Jerid wrote:
 >Naive bayes function from `e1071` package only works with categorical features. For many NLP tasks this oversimplifies features making the appearance of a word a 'yes' or 'no' decision.
 

@@ -134,14 +134,18 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Solved the data confidentiality problem. Turned out to be easier and more secure to do outside of R.</li>
 <li>Manipulating the column vectors, except I need to recode some values to simplify.</li>
-<li>Tokenizer seems to work well. Still struggling a bit with understanding how columns get transformed in certain copied code blocks.</li>
+<li>Calculation and plotting correlations and log-odds pairs is working (except for broken parts that recoding should solve hopefully.)</li>
+<li>Tokenizer and terms cleanup seems to work well. (Still struggling with understanding how data get transformed in certain copied code blocks.)</li>
+<li>Have an operational categorical naive Bayes workflow that can perform analysis using 1-, 2-, or 3-grams.</li>
 </ol>
 </div>
 <div id="coding-interpretation-questions" class="section level2">
 <h2>Coding &amp; Interpretation Questions</h2>
 <ol style="list-style-type: decimal">
 <li>Randomization. Does the straight split I used bias the data?</li>
+<li>When I join columns in correlation analysis, when a word is MISSING from <strong>any subset</strong> the data for that word is pruned from the full dataset. I am losing the unique words this way. Need to figure out how to join without pruning.</li>
 <li>Could use help understanding the NB table so I do not over/under-interpret.</li>
+<li>Assuming NB was final model (it is not) I am unsure how to build the conversion engine.</li>
 <li>Broken correlation analyses. I have a problem buried in the coded data that is throwing an error in correlations. Jerid recommended recoding the values in the <code>code.subject</code> column.</li>
 </ol>
 <p>For recoding comment labels, I am considering recoding <strong>comment.subject</strong> as:</p>
@@ -169,23 +173,30 @@ $(document).ready(function () {
 6_holistic
 7_idiomatic
 8_nobasis</code></pre>
+<p>Any obvious problems with these?</p>
 </div>
 <div id="bigger-questions" class="section level2">
 <h2>Bigger Questions</h2>
 <p>After posting an initial naive Bayes trial, Jerid wrote: &gt;Naive bayes function from <code>e1071</code> package only works with categorical features. For many NLP tasks this oversimplifies features making the appearance of a word a ‘yes’ or ‘no’ decision.</p>
-<p>I spent a lot of time looking at varied methods in literature for background. The list is posted elsewhere. Question is whether I should focus on:</p>
+<p>I spent time looking at various methods as part of background research. The summary is posted elsewhere. Question is whether I should focus on:</p>
 <ul>
-<li>Continued refinement of supervised models? If so
+<li>Continued refinement of NB, or exploring other supervised models?
 <ul>
 <li>How deep to go into different methods?</li>
+<li>When to drop one model, move to another?</li>
 </ul></li>
-<li>Using existing code-book to reverse engineer rules based method instead?
+<li>Using my existing code-book to reverse engineer a pure rules based method instead?
 <ul>
-<li>Shorter for me, but what about others?</li>
+<li>Faster for me, but what about others?</li>
+</ul></li>
+<li>Extending previous item, create a HYBRID of statistical and rules-based?
+<ul>
+<li>Words to evaluate are pre-selected limited vocabulary (see codebook for lists)</li>
+<li>Words are scored present/absent in a comment, then comment sorted based on most likely.</li>
 </ul></li>
 <li>Step back and rethink the categories using LDA, etc.?
 <ul>
-<li>Seems counter-productive given I have an experienced built model.</li>
+<li>Seems counter-productive given I have a model built already.</li>
 </ul></li>
 </ul>
 </div>
