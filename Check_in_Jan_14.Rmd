@@ -9,6 +9,48 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#New ideas From FLC Meeting #5
+
+My project is partly exploratory, in I am asking: what information is present and can be mined from the dataset? It also is partly predictive in that I hope to use the analysis as part of a decision- or task-oriented process.
+
+Data parameters to consider:
+
+*  Lexical diversity
+*  Reading metrics
+*  Using kappa score for comparisons of groups and methods
+*  Use R profile for storing API tokens
+
+Tools to consider:
+
+*  UDPipe for syntactic parsing
+*  Stylometry library
+*  QualtRics package for connecting to API
+*  By hand exploration followed up with computational exploration
+
+Reference sources:
+
+*  R Open Sci
+
+
+To Do List:
+
+*  Need to add some data intermediates to my work to help others visualize.
+*  Taskviews on CRAN
+
+
+Packages to evaluate
+
+*  caret
+*  skimR
+*  parsnip
+*  recipe
+*  tidymodels
+*  UDPipe
+*  package = usethis
+
+
+
+
 ##What Is Working
 
 Solved the data confidentiality problem. Turned out to be easier and more secure to do outside of R.
@@ -17,7 +59,7 @@ Manipulating the column vectors.
   Suggested: I need to recode some values to simplify. 
 Second, in this same correlation analysis, I would recommend recoding the values in the `code.subject` column. You have some type of error there and I tend to avoid calling values such as "2. Writing Quality" as they tend make code more difficult to visually parse (and therefore debug) and it's also easy to get something wrong with the value (even though it seems that you've directly copied and pasted the values to double check). 
 
-For recoding comment labels, this is what I am considering:
+For recoding comment labels, this is what I plan to use:
 
 Recoding Comment.subject
 0_null
@@ -51,7 +93,7 @@ Recoding Comment.structure
 
 Calculation and plotting correlations and log-odds pairs is working (except for broken parts that recoding should solve hopefully.)
 
-Suggested: Check my data for correlations.
+Suggested: Check my data for small errors that break correlations.
 	"cor" blows up on missing data
 	Try "use" pairwise complete
 
@@ -85,13 +127,6 @@ Suggestions:
     Leave one out cross-validation
     K-folds cross-validation
 
-  Packages to evaluate
-		caret
-		skimR
-		parsnip
-		recipe
-		tidymodels
-		UDPipe
 
 
 prob
@@ -100,8 +135,6 @@ predict
 Lemmatization, not stemming
 UDPipe
 
-Thanks for the update. I can confirm that your work is publicly visible. It looks well organized and thorough. I've skimmed your analysis and read over some of the issues that you have encountered. I have a few questions and a few comments on your approach, but I think it would be best to talk about these in person. 
- 
 I do have a few things for you to consider before we do get together. The first thing I suggest you do, which shouldn't be too much of a problem to create, is to provide the output of some of your datasets (particularly thinking about the contrast sets that you use in the correlation analysis). A quick `glimpse(data)` printed out would help me get a better sense of the structure you are using as input and output at each stage of your analysis.   
 
 
@@ -112,17 +145,7 @@ Anyway, things are looking good. Keep up the good work and great documentation!
 
 Several code questions. 
 
-I do have a few things for you to consider before we do get together. The first thing I suggest you do, which shouldn't be too much of a problem to create, is to provide the output of some of your datasets (particularly thinking about the contrast sets that you use in the correlation analysis). A quick `glimpse(data)` printed out would help me get a better sense of the structure you are using as input and output at each stage of your analysis.   
 
-
-
-
-Session 5
-Since it has been a while since we checked in, I believe we are going to start the session with each of us giving a 2-3 minute overview of our projects and where they stand. You might touch upon:
-
-Progress you have made since our previous session.
-
-1 or more blocks of code related to this work (either demonstrating something "new" that you are proud of or opening up a question that the group might be able to help on).
 
 The next step you are hoping to take or subquestion you are trying to answer.
 
