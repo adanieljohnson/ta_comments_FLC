@@ -61,6 +61,11 @@ https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/
 
 #File Management
 
+```{r}
+headlines2 <- read_docx("R_0eqZDDQ0nG2obuh_text.docx") %>% head(9)
+View(headlines2)
+```
+
 R can manipulate files and folders. This is a primer:
 http://theautomatic.net/2018/07/11/manipulate-files-r/
 
